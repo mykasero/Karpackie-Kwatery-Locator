@@ -3,8 +3,11 @@ from core.models import TestModel
 # Create your views here.
 
 def home(request):
-    context = TestModel.objects.all().values()
-    
+    context = {
+        'context': TestModel.objects.all().values(),
+        'stats' : {'appartments_number':250,'locations_number':13,'clients_number':500}
+    }
+    print(context)
     return render(request,"core/home.html", {'context':context})
 
 def apartments(request):
