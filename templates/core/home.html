@@ -34,6 +34,62 @@
                 font-size: 1.1rem;
             }
         }
+
+        /* TESTING THE COUNTER STYLES */
+        .counter-container {
+            text-align: center;
+            background: linear-gradient(135deg, rgba(31,93,140,255), rgba(5,62,115,255));
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            color: white;
+            max-width: 25%;
+        }
+
+        .counter {
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .counter-label {
+            font-size: 1.5rem;
+            color: #e0e0e0;
+        }
+        @media (min-width:700px)
+        and (max-width:992px){
+            .counter-container {
+                padding: 15px 20px; /* Reduce padding for smaller screens */
+                max-width: 50%; /* Allow full width on small screens */
+                margin: 20px 0;
+            }
+
+            .counter {
+                font-size: 2rem; /* Smaller font size for counters */
+                margin: 0 0;
+            }
+
+            .counter-label {
+                font-size: 1rem; /* Smaller font size for labels */
+            }
+        }
+        @media (max-width: 700px) {
+            .counter-container {
+                padding: 15px 20px; /* Reduce padding for smaller screens */
+                max-width: 75%; /* Allow full width on small screens */
+                margin: 20px 0;
+            }
+
+            .counter {
+                font-size: 2rem; /* Smaller font size for counters */
+                margin: 0 0;
+            }
+
+            .counter-label {
+                font-size: 1rem; /* Smaller font size for labels */
+            }
+        }
+
     </style>
 {% endblock %}
 {% block content %}
@@ -55,7 +111,7 @@
             </div>
         </div>
     </header>
-    <section class="page-section text-white" style="background-color: rgba(31,93,140,255);">
+    <section class="page-section text-white" style="background: linear-gradient(135deg, rgba(31,93,140,1), rgba(31, 75, 140, 1));">
         <div class="container px-4 px-lg-5 text-center">
             <h2 class="mb-4 shadow-text" style="color: rgba(33,37,41,255);">Możesz nas znaleźć na:</h2>
             <div>
@@ -67,23 +123,57 @@
     <section class="page-section" style="background-color: rgba(5,62,115,255);">
         <div class = "container">
             <div class ="text-center mt-5">
-                <p class="text-white-75 mb-5">Tutaj jakiś pierdolnik, może jakiś animowany (że idzie szybko od 0 do wpisanej ilości) 
-                    licznik ilości klientów którzy skorzystali z usług firmy, aktualna ilość dostępnych mieszkań pod wynajem, 
-                    ilość różnych lokalizacji(miast). Liczniki można by było aktualizować w zakładce dla administracji</p>
-                {% if context %}
-                    {% for item in context %}
-                        <div>
-                            {{ item.id }}
-                        </div>
-                        <div>
-                            {{ item.name }}
-                        </div>
-                        <div>
-                            {{ item.test_text }}
-                        </div>
-                    {% endfor %}
-                {% endif %}
+                <p class="text-white-75 mb-5">Tu będzie opis</p>
+            </div>
+
+            <div class="row" style="justify-content:center;">
+                <div class="counter-container">
+                    <div><img src='{% static "images/stats_bed.png" %}'></div>
+                    <div class="counter" id="appartments_counter">0 +</div>
+                    <div class="counter-label">Miejsc noclegowych</div>
+                </div>
+                <div class="counter-container" style="margin: 0 20px;">
+                    <div><img src='{% static "images/stats_map.png" %}'></div>
+                    <div class="counter" id="locations_counter">0+</div>
+                    <div class="counter-label">Lokalizacji kwater</div>
+                </div>
+                <div class="counter-container">
+                    <div><img src='{% static "images/stats_people.png" %}'></div>
+                    <div class="counter" id="clients_counter">0+</div>
+                    <div class="counter-label">Zadowolonych klientów</div>
+                </div>
             </div>
         </div>
     </section>
+{% endblock %}
+{% block scripts %}
+    <script>
+        
+            // JavaScript for the animated counter
+            function animateCounter(elementID,target, duration, addPlus = false) {
+                const counterElement = document.getElementById(elementID);
+                let start = 0;
+                const increment = target / (duration / 16); // 60 FPS
+
+                const updateCounter = () => {
+                    start += increment;
+                    if (start < target) {
+                        counterElement.textContent = Math.ceil(start);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counterElement.textContent = addPlus ? target + '+' : target;
+                    }
+                };
+
+                updateCounter();
+            }
+
+        // Wait for the DOM to load before running the script
+        document.addEventListener('DOMContentLoaded', function () {
+            // Start the counter animation when the page loads
+            animateCounter('appartments_counter',{{context.stats.appartments_number}}, 2000); // 2000ms (2 seconds) duration
+            animateCounter('locations_counter',{{context.stats.locations_number}}, 2000); // 2000ms (2 seconds) duration
+            animateCounter('clients_counter',{{context.stats.clients_number}}, 2000, true); // 2000ms (2 seconds) duration
+        });
+    </script>
 {% endblock %}
