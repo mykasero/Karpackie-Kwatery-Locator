@@ -24,6 +24,18 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
         
+        <style type="text/css">
+            @media screen 
+            and (min-width:992px){
+            .nav-item{
+                margin: 0 30px;
+            }
+            #mainNav .navbar-nav .nav-item .nav-link{
+                font-size: 1.1rem;
+            }
+        }
+        </style>
+
         <!-- Additional page specific stylings space-->
         {% block stylings %}
         {% endblock %}

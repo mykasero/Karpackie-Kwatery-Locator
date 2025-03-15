@@ -3,7 +3,30 @@
 
 {% block title %}<title>Galeria</title>{% endblock%}
 {% block stylings %}
+    <style type="text/css">
+        .shadow-text{
+            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+        }
+        .page-section{
+            padding: 4rem 0;
+        }
+        header.masthead {
+            padding-top: 10rem;
+            padding-bottom: calc(10rem - 4.5rem);
+            background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+          }
+        .masthead{
+            /*background-image: url({% static 'images/bedroom_image.jpg'%});*/
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
 
+    </style>
 {% endblock %}
 {% block content %}
     <!-- Masthead-->
