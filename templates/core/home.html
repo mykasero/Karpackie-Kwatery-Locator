@@ -25,7 +25,7 @@
             background-position: center;
             height: 100vh;
         }
-        @media screen 
+        /*@media screen 
         and (min-width:992px){
             .nav-item{
                 margin: 0 30px;
@@ -33,7 +33,7 @@
             #mainNav .navbar-nav .nav-item .nav-link{
                 font-size: 1.1rem;
             }
-        }
+        }*/
 
         /* TESTING THE COUNTER STYLES */
         .counter-container {
@@ -90,6 +90,19 @@
             }
         }
 
+        .ul2 {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .li2::before{
+            content: "🏠︎";
+            margin-right:10px;
+        }
+        .li2 {
+            margin-bottom: 10px;
+            color: white;
+            font-size: 1.2rem;
+        }
     </style>
 {% endblock %}
 {% block content %}
@@ -126,7 +139,7 @@
                 <p class="text-white-75 mb-5">Tu będzie opis</p>
             </div>
 
-            <div class="row" style="justify-content:center;">
+            <div class="row" style="justify-content:center;" id="counters">
                 <div class="counter-container">
                     <div><img src='{% static "images/stats_bed.png" %}'></div>
                     <div class="counter" id="appartments_counter">0 +</div>
@@ -143,37 +156,72 @@
                     <div class="counter-label">Zadowolonych klientów</div>
                 </div>
             </div>
+            <div class="text-center mt-5">
+                <h1 class="mb-4 shadow-text" style="color: rgba(33,37,41,255);">Dlaczego my?</h1>
+            </div>
+            <div style= "display: flex; align-content: center; justify-content: center; flex-wrap: wrap;">
+                <ul class="ul2">
+                    <li class="li2::before li2">Profesjonalna obsługa</li>
+                    <li class="li2::before li2">Najlepsze warunki zakwaterowania</li>
+                    <li class="li2::before li2">Wysoki standard mieszkań</li>
+                    <li class="li2::before li2">Elastyczne warunki współpracy z firmami i klientami indywidualnymi</li>
+                    <li class="li2::before li2">Komfort i wygoda w atrakcyjnej cenie</li>
+                    <li class="li2::before li2">Szeroka dostępność lokalizacji na terenie całej Polski</li>
+                    <li class="li2::before li2">Gwarancja satysfakcji klientów</li>
+                </ul>
+            </div>
         </div>
     </section>
 {% endblock %}
 {% block scripts %}
     <script>
         
-            // JavaScript for the animated counter
-            function animateCounter(elementID,target, duration, addPlus = false) {
-                const counterElement = document.getElementById(elementID);
-                let start = 0;
-                const increment = target / (duration / 16); // 60 FPS
+        // JavaScript for the animated counter
+        function animateCounter(elementID,target, duration, addPlus = false) {
+            const counterElement = document.getElementById(elementID);
+            let start = 0;
+            const increment = target / (duration / 16); // 60 FPS
 
-                const updateCounter = () => {
-                    start += increment;
-                    if (start < target) {
-                        counterElement.textContent = Math.ceil(start);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counterElement.textContent = addPlus ? target + '+' : target;
+            const updateCounter = () => {
+                start += increment;
+                if (start < target) {
+                    counterElement.textContent = Math.ceil(start);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counterElement.textContent = addPlus ? target + '+' : target;
+                }
+            };
+
+            updateCounter();
+        }
+            
+        function setupCounters() {
+            const counters = [
+                { id: 'appartments_counter', target: {{context.stats.appartments_number}}, duration: 2000, addPlus: false },
+                { id: 'locations_counter', target: {{context.stats.locations_number}}, duration: 2000, addPlus: false },
+                { id: 'clients_counter', target: {{context.stats.clients_number}}, duration: 2000, addPlus: true },
+            ];
+
+            const container = document.getElementById('counters');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Start all counters
+                        counters.forEach(counter => {
+                            animateCounter(counter.id, counter.target, counter.duration, counter.addPlus);
+                        });
+                        observer.unobserve(container); // Stop observing after animation starts
                     }
-                };
+                });
+            }, { threshold: 0.5 }); // Trigger when 50% of the container is visible
 
-                updateCounter();
+            // Observe the container
+            if (container) {
+                observer.observe(container);
             }
-
+        }
         // Wait for the DOM to load before running the script
-        document.addEventListener('DOMContentLoaded', function () {
-            // Start the counter animation when the page loads
-            animateCounter('appartments_counter',{{context.stats.appartments_number}}, 2000); // 2000ms (2 seconds) duration
-            animateCounter('locations_counter',{{context.stats.locations_number}}, 2000); // 2000ms (2 seconds) duration
-            animateCounter('clients_counter',{{context.stats.clients_number}}, 2000, true); // 2000ms (2 seconds) duration
-        });
+        document.addEventListener('DOMContentLoaded', setupCounters);
     </script>
 {% endblock %}
