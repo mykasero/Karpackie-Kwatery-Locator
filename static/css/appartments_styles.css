@@ -1,0 +1,109 @@
+/* General Reset */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%);
+    color: #fff;
+}
+
+.container2 {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.grid {
+    display: grid;
+}
+
+.item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: grid;
+    grid-template-areas:
+        "top-left middle top-right"
+        "bottom-left middle bottom-right";
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto auto;
+    height: auto; 
+    margin-bottom: 20px;
+}
+
+.top-left {
+    grid-area: top-left;
+    align-self: start;
+    justify-self: start;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.bottom-left {
+    grid-area: bottom-left;
+    align-self: end;
+    justify-self: start;
+    font-size: 0.9em;
+    color: #e0e0e0;
+}
+
+.middle {
+    grid-area: middle;
+    align-self: center;
+    justify-self: center;
+    font-size: 1em;
+    color: #e0e0e0;
+    padding: 0 10px;
+
+    overflow: hidden; /* Prevent text overflow */
+    word-wrap: break-word; /* Break long words if necessary */
+    white-space: normal; /* Allow text to wrap */
+}
+
+.top-right {
+    grid-area: top-right;
+    align-self: start;
+    justify-self: end;
+}
+
+.bottom-right {
+    grid-area: bottom-right;
+    align-self: end;
+    justify-self: end;
+}
+
+.bullet-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+.bullet-list li {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #e0e0e0;
+}
+
+/* Responsive Design */
+/* @media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+} */

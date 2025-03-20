@@ -10993,3 +10993,27 @@ header.masthead h1, header.masthead .h1 {
 #portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption, #portfolio .container-sm .portfolio-box:hover .portfolio-box-caption, #portfolio .container-md .portfolio-box:hover .portfolio-box-caption, #portfolio .container-lg .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xl .portfolio-box:hover .portfolio-box-caption, #portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
   opacity: 1;
 }
+/* Custom CSS for nested dropdowns */
+.dropdown-submenu {
+  position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+  margin-left: 0.125rem; /* Adjust spacing as needed */
+}
+
+/* Ensure dropdowns are visible on hover */
+.navbar-nav .dropdown:hover > .dropdown-menu {
+  display: block;
+}
+
+/* Adjust for mobile view */
+@media (max-width: 991.98px) {
+  .dropdown-submenu .dropdown-menu {
+      left: 0;
+      margin-left: 1rem; /* Indent sub-items for mobile */
+  }
+}
