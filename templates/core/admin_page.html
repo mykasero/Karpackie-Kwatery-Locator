@@ -27,10 +27,11 @@
         }
 
     </style>
+    <link href="{% static 'css/form_styles.css'%}" rel="stylesheet" />
 {% endblock %}
 {% block content %}
     <!-- Masthead-->
-    <header class="masthead">
+    <!--<header class="masthead">
         <div class="container px-4 px-lg-5 h-100">
             <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
@@ -38,13 +39,58 @@
                 </div>
                 <div class="col-lg-8 align-self-baseline">
                     <p class="text-white-75 mb-5">Będzie tutaj forma m.in. do wypełniania która po otrzymaniu informacji i zdjęć automatycznie będzie
-                        dodawać nowe lokalizacje/mieszkania ( a przynajmniej mam nadzieje że dam rade xd)
+                        dodawać nowe lokalizacje/mieszkania
                     </p>
-
                 </div>
-
             </div>
         </div>
-    </header>
+    </header>-->
+    <section class="page-section" style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%);">
+        <div class = "container2">
+            <div class ="text-center mt-5">
+                <p class="text-white-75 mb-5" style="font-size:40px;color:black;">Panel administracji</p>
+            </div>
+            <!--<div style="display: flex;
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        align-content: center;">
+                        
+                <form method="post" class="AppartmentForm" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {% if form.non_field_errors %}
+                            {% for error in form.non_field_errors %}
+                                <div class="alert alert-error">{{ error }}</div>
+                            {% endfor %}
+                    {% endif %}
+                    {% for form_item in form %}
+                        {% if form_item != form.non_field_errors %}
+                            {{ form_item.label }}<br>
+                            {{ form_item.help_text}}<br>
+                            {{ form_item }}<br>
+                        {% endif %}
+                    {% endfor %}
+                    <button type="submit" class="btn mt3 text-center fs-6">
+                        Dodaj lokal
+                    </button>
+                </form>
+            </div>-->
+            <div class="form-container">
+                <h2>Dodawanie Kwater</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                            {% if field.label == "Cechy/Atuty" %}{{field.help_text}}{% endif %}
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <button type="submit">Dodaj lokal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
 
 {% endblock %}

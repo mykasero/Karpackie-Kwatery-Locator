@@ -50,7 +50,36 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <!-- add href later -->
-                        <li class="nav-item"><a class="nav-link" href='/kwatery'>Kwatery</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Kwatery
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% if appartments %}
+                                    {% for city in cities_list %}
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle" >{{ city }}</a>
+                                            <ul class="dropdown-menu">
+                                                {% for appartment in appartments %}
+                                                    {% if city == appartment.city %}
+                                                    {% comment %} enter later appartment id as href {% endcomment %}
+                                                        <li>
+                                                            <a class="dropdown-item" href="{% url 'appartments' appartment_pk=appartment.pk %}">
+                                                                {{appartment.address}}
+                                                            </a>
+                                                        </li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li><a class="dropdown-item" href="#">Brak dostępnych lokalizacji</a></li>
+                                {% endif %}
+                            </ul>
+                        </li>
+
+
                         <li class="nav-item"><a class="nav-link" href='/galeria'>Galeria</a></li>
                         <li class="nav-item"><a class="nav-link" href='/kontakt'>Kontakt</a></li>
                         <li class="nav-item"><a class="nav-link" href='/administracja'>Admin</a></li>
