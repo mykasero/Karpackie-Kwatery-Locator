@@ -2,7 +2,7 @@
 <p><h2>About:</h2>
 <p>The webapp is for users to be able to see what the company has to offer and in which locations are the apartments available</p>
 
-<p>Below can be found details on the functionalities of the project, tools used and a link to an image host with some screenshots of the live site:</p>
+<p>Below can be found details on the functionalities of the project and tools used</p>
 
 <p><h2>Functionalities:</h2>
 <ul>
