@@ -1,0 +1,70 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}<title>Kwatery</title>{% endblock%}
+{% block stylings %}
+    <style type="text/css">
+        .shadow-text{
+            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+        }
+        .page-section{
+            padding: 4rem 0;
+        }
+        header.masthead {
+            padding-top: 10rem;
+            padding-bottom: calc(10rem - 4.5rem);
+            background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-size: cover;
+          }
+        .masthead{
+            /*background-image: url({% static 'images/bedroom_image.jpg'%});*/
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+        }
+
+        .grid{
+            min-height: 90vh;
+        }
+    </style>
+    <!-- Get custom css made for this page -->
+    <link href="{% static 'css/appartments_styles.css'%}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <!-- Masthead-->
+    
+    {% comment %} <header class="masthead"> {% endcomment %}
+    <div style="background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%); padding-top: 10rem;">
+        <div class = "container2">
+            <div class="grid">
+                <div class="item">
+                    <div class="top-left">Lokal - {{ context.appartment.name }}</div>
+                    <div class="bottom-left">Adres - {{ context.appartment.address }}, {{ item.city }}</div>
+                    <div class="middle"><h5>Opis</h5>{{ context.appartment.description}} </div>
+                    <div class="top-right">
+                        <ul class="bullet-list">
+                            <li style="padding-right:15px;">
+                                Atuty
+                            </li>
+                            {% for feature in context.extra_desc %}
+                                <li style="padding-right:15px;">
+                                    {{ feature }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <!--
+                <img src="{{context.appartment.image.url}}" style="max-width:300px;margin:10px;">
+                -->
+            </div>
+        </div>
+
+    </div>
+    {% comment %} </header> {% endcomment %}
+
+
+{% endblock %}
