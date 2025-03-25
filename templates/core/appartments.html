@@ -29,6 +29,11 @@
         .grid{
             min-height: 90vh;
         }
+
+        #map {
+            max-height:500px;
+            width: 100%;
+        }
     </style>
     <!-- Get custom css made for this page -->
     <link href="{% static 'css/appartments_styles.css'%}" rel="stylesheet" />
@@ -41,16 +46,19 @@
         <div class = "container2">
             <div class="grid">
                 <div class="item">
-                    <div class="top-left">Lokal - {{ context.appartment.name }}</div>
-                    <div class="bottom-left">Adres - {{ context.appartment.address }}, {{ item.city }}</div>
-                    <div class="middle"><h5>Opis</h5>{{ context.appartment.description}} </div>
-                    <div class="top-right">
+                    <div class="left-col">
+                        <div class="top-left">
+                            <h2>{{ context.appartment.city }}</h2>
+                            <h6>{{ context.appartment.address }}</h6>
+                        </div>
+                        <div class="map-container" id="map"></div>
+                        {% comment %} <div class="middle"><h5>Opis</h5>{{ context.appartment.description}} </div> {% endcomment %}
+                    </div>
+                        <div class="right-col">
+                        <h3>Atuty</h3>
                         <ul class="bullet-list">
-                            <li style="padding-right:15px;">
-                                Atuty
-                            </li>
                             {% for feature in context.extra_desc %}
-                                <li style="padding-right:15px;">
+                                <li class="bullet-list li::before"style="padding-right:15px;">
                                     {{ feature }}
                                 </li>
                             {% endfor %}
@@ -66,5 +74,23 @@
     </div>
     {% comment %} </header> {% endcomment %}
 
+    
 
+{% endblock %}
+{% block scripts %}
+    <script>
+        function initMap(){
+            const gmap = new google.maps.Map(document.getElementById("map"),{
+                center: { lat: {{ context.map_lat }}, lng: {{ context.map_lng }} },
+                zoom: 14,
+            });
+
+            /*{% comment %} new google.maps.Marker({
+                position: { lat: {{ context.map_lat }}, lng: {{ context.map_lng }} },
+                map:map,
+                title: "{{ context.appartment.address }}"
+            }); {% endcomment %}*/
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ context.google_maps }}&callback=initMap" async defer></script>
 {% endblock %}
