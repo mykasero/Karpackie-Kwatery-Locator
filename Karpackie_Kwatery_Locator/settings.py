@@ -89,6 +89,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Karpackie_Kwatery_Locator.wsgi.application'
 
+# google maps
+GOOGLE_MAPS_BACK=env("GOOGLE_KEY_BACKEND")
+GOOGLE_MAPS_FRONT=env("GOOGLE_KEY_FRONTEND")
 
 # Placeholder for future AWS S3 storage
 
