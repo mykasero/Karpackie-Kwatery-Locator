@@ -7,49 +7,134 @@
         .shadow-text{
             text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
         }
-        .page-section{
-            padding: 4rem 0;
+
+        /* Custom styling for the gallery */
+        #gallery-table_wrapper {
+            margin: 0 auto;
         }
-        header.masthead {
-            padding-top: 10rem;
-            padding-bottom: calc(10rem - 4.5rem);
-            background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            background-size: cover;
-          }
-        .masthead{
-            /*background-image: url({% static 'images/bedroom_image.jpg'%});*/
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
+        #gallery-table tbody {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+        #gallery-table tbody tr {
+            width: 23%;
+            margin: 1%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        #gallery-table tbody tr:hover {
+            transform: scale(1.05);
+        }
+        .dataTables_filter input {
+            margin-bottom: 15px;
         }
 
     </style>
+    <link href="{% static 'css/gallery_styles.css'%}" rel="stylesheet" />
 {% endblock %}
 {% block content %}
-    <!-- Masthead-->
-    <!--<header class="masthead">
-        <div class="container px-4 px-lg-5 h-100">
-            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
-                <div class="col-lg-8 align-self-end">
-                    <h1 class="text-white font-weight-bold">Tu będzie galeria</h1>
-                    <hr class="divider" />
-                </div>
-                <div class="col-lg-8 align-self-baseline">
-                    <p class="text-white-75 mb-5">Może jakiś krótki opis tutaj</p>
+    <div style="background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%); padding-top: 10rem;">
+        <div class = "container2">
+            <h1>Galeria</h1>
 
+            <div class="gallery-grid">
+                {% for image in images %}
+                    <div class="gallery-item">
+                            <img src="{{ image.url }}"
+                            class="img-thumbnail gallery-thumbnail"
+                            style="height: 150px; width:100%; object-fit: cover; cursor:pointer;"
+                            data-image="{{ image.url }}"
+                            data-title="{{ image.title }}"> 
+                        <div class="image-title">{{ image.title }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background: rgba(31, 93, 140, 0.95);">
+                <div class="modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
+                    <h5 class="modal-title" id=modalImageTitle style="color: white;"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij" style="filter: invert(1);"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img id="modalImage" src="" class="img-fluid" alt="" style="max-height: 70vh; border-radius: 5px;">
                 </div>
             </div>
         </div>
-    </header>-->
-    <section class="page-section" style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%);">
-        <div class = "container">
-            <div class ="text-center mt-5">
-                <p class="text-white-75 mb-5">Tu będzie galeria</p>
-            </div>
-        </div>
-    </section>
+    </div>
+{% endblock %}
+{% block scripts %}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Use jQuery.noConflict() if $ is conflicting with other libraries
+    var $ = jQuery;
+    
+    // Handle click on gallery thumbnails
+    $('.gallery-thumbnail').on('click', function() {
+        var imageUrl = $(this).data('image');
+        var imageTitle = $(this).data('title');
+        
+        console.log("Attempting to load image from:", imageUrl);
+
+        var img = new Image();
+        img.src = imageUrl;
+
+        img.onload = function() {
+            console.log("Image loaded successfully");
+            $('#modalImage').attr('src', imageUrl);
+            $('#modalImageTitle').text(imageTitle);
+            $('#imageModal').modal('show');
+        };
+        
+        img.onerror = function() {
+            console.error("Failed to load image from:", imageUrl);
+            $('#modalImageTitle').text("Error loading image");
+            $('#modalImage').attr('src', '');  // Clear any broken image
+            $('#imageModal').modal('show');
+        };
+    });
+
+    // Responsive grid adjustments
+    function adjustGrid() {
+        const grid = document.querySelector('.gallery-grid');
+        if (!grid) return;
+        
+        const width = window.innerWidth;
+        let columns;
+        
+        if (width < 576) columns = 2;      // Mobile
+        else if (width < 768) columns = 3; // Tablet
+        else columns = 4;  //  desktop
+        
+        grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+    }
+
+    // Initialize and add event listener
+    adjustGrid();
+    window.addEventListener('resize', adjustGrid);
+
+    // Hover effects (pure JS alternative)
+    document.querySelectorAll('.gallery-item').forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            item.style.transform = 'scale(1.03)';
+            item.style.boxShadow = '0 4px 8px rgba(0, 0, 0, 0.2)';
+        });
+        item.addEventListener('mouseleave', () => {
+            item.style.transform = 'scale(1)';
+            item.style.boxShadow = 'none';
+        });
+    });
+ });
+</script>
+
 
 {% endblock %}
