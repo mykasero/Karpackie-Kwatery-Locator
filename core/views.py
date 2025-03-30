@@ -4,14 +4,13 @@ from .forms import AppartmentForm
 import googlemaps
 from django.conf import settings
 from django.http import JsonResponse
+from django.core.paginator import Paginator
 # Create your views here.
 
 def home(request):
     context = {
-        'context': TestModel.objects.all().values(),
         'stats' : {'appartments_number':250,'locations_number':13,'clients_number':500}
     }
-    print(context)
     return render(request,"core/home.html", {'context':context})
 
 def appartments(request, appartment_pk):
@@ -53,7 +52,27 @@ def appartments(request, appartment_pk):
     return render(request,"core/appartments.html", {'context':context})
 
 def gallery(request):
-    return render(request,"core/gallery.html")
+    images = AppartmentsPhotosModel.objects.all().order_by('-id').values()
+    
+    # paginator = Paginator(images, 20)
+    # page_number = request.GET.get('page', 1)
+    # page_obj = paginator.get_page(page_number)
+    
+    image_data=[]
+    for image in images:
+        print(f"TEST IMAGE -> {image}")
+        appartment = get_object_or_404(AppartmentsModel, pk=image['appartment_id'])
+        image_data.append({
+            'id': image['id'],
+            'title': appartment.address + ", " + appartment.city,
+            'url': settings.MEDIA_URL+image['image'],
+        })
+    
+    context = {
+        'images':image_data,
+    }
+    
+    return render(request,"core/gallery.html", context)
 
 def contact(request):
     return render(request,"core/contact.html")
@@ -67,14 +86,15 @@ def admin_page(request):
             instance = form.save(commit=False)
             instance.uploaded_by = request.user
             instance.save()
-
+            
             for image in uploaded_files:
                 AppartmentsPhotosModel.objects.create(appartment=instance, image=image)
 
+            return render(request, "core/home.html")
         else:
             print(f"Form errors: {form.errors}")
+    
     else:
-        
         form = AppartmentForm()
         
     return render(request,"core/admin_page.html", {'form':form})
