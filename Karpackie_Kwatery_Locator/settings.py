@@ -52,7 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "corsheaders",
+    'corsheaders',
+    'storages',
     'core',
 ]
 
@@ -95,13 +96,29 @@ GOOGLE_MAPS_FRONT=env("GOOGLE_KEY_FRONTEND")
 
 # Placeholder for future AWS S3 storage
 
-# if not DEBUG:
-    # pass
-# else:
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#AWS conf
+AWS_ACCESS_KEY_ID =  env("AWS_ACCESS_KEY_ID")
+AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+AWS_QUERYSTRING_AUTH = env("AWS_QUERYSTRING_AUTH")
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+AWS_DEFAULT_ACL= None
+AWS_S3_FILE_OVERWRITE = False
 
-#here will go AWS conf
+if not DEBUG:
+    
+    STORAGES = {
+        "default" : {
+            "BACKEND" : "storages.backends.s3boto3.S3StaticStorage",
+        },
+        "staticfiles" : {
+            "BACKEND" : "storages.backends.s3boto3.S3StaticStorage",
+        },
+    }
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 
 # Database
@@ -163,12 +180,12 @@ USE_TZ = False
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR/'static']
 
-# Implement later when S3 bucket is created
-# if DEBUG:
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/' 
-# else:
-    # MEDIA_URL = env("MEDIA_URL")
+
+if DEBUG:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    MEDIA_URL = '/media/' 
+else:
+    MEDIA_URL = env("MEDIA_URL")
 
 
 # LOGIN_REDIRECT_URL = 'core/login_success.html'
