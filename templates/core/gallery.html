@@ -39,13 +39,13 @@
             <h1>Galeria</h1>
 
             <div class="gallery-grid">
-                {% for image in images %}
+                {% for image in gallery_items %}
                     <div class="gallery-item">
-                            <img src="{{ image.url }}"
+                            <img src="{{ image.first_image.image.url }}"
                             class="img-thumbnail gallery-thumbnail"
                             style="height: 150px; width:100%; object-fit: cover; cursor:pointer;"
-                            data-image="{{ image.url }}"
-                            data-title="{{ image.title }}"> 
+                            onclick="openModal('{{ item.title|escapejs }}', {{ image.all_images|safe}})">
+                            
                         <div class="image-title">{{ image.title }}</div>
                     </div>
                 {% endfor %}
@@ -60,9 +60,23 @@
                     <h5 class="modal-title" id=modalImageTitle style="color: white;"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij" style="filter: invert(1);"></button>
                 </div>
+                <!-- Previous Photo Arrow-->
+                <button id="prevImage" 
+                class="btn btn-lg position-absolute start-0 top-50 translate-middle-y"
+                style="z-index:1000; background:rgba(0,0,0,0.3); border:none; color:white;">
+                    ←
+                </button>
+                
+                <!-- Current image -->
                 <div class="modal-body text-center">
                     <img id="modalImage" src="" class="img-fluid" alt="" style="max-height: 70vh; border-radius: 5px;">
                 </div>
+                <!-- Next Photo Arrow -->
+                <button id="nextImage" 
+                class="btn btn-lg position-absolute end-0 top-50 translate-middle-y"
+                style="z-index:1000; background:rgba(0,0,0,0.3); border:none; color:white;">
+                    →
+                </button>
             </div>
         </div>
     </div>
@@ -73,56 +87,70 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+var currentImages = [];
+var currentIndex = 0;
 
-    // Use jQuery.noConflict() if $ is conflicting with other libraries
-    var $ = jQuery;
-    
-    // Handle click on gallery thumbnails
-    $('.gallery-thumbnail').on('click', function() {
-        var imageUrl = $(this).data('image');
-        var imageTitle = $(this).data('title');
-        
-        console.log("Attempting to load image from:", imageUrl);
+function openModal(title, images) {
+    currentImages = images;
+    currentIndex = 0;
+    updateModal();
+    new bootstrap.Modal(document.getElementById('imageModal')).show();
+}
 
-        var img = new Image();
-        img.src = imageUrl;
-
-        img.onload = function() {
-            console.log("Image loaded successfully");
-            $('#modalImage').attr('src', imageUrl);
-            $('#modalImageTitle').text(imageTitle);
-            $('#imageModal').modal('show');
-        };
-        
-        img.onerror = function() {
-            console.error("Failed to load image from:", imageUrl);
-            $('#modalImageTitle').text("Error loading image");
-            $('#modalImage').attr('src', '');  // Clear any broken image
-            $('#imageModal').modal('show');
-        };
-    });
-
-    // Responsive grid adjustments
-    function adjustGrid() {
-        const grid = document.querySelector('.gallery-grid');
-        if (!grid) return;
-        
-        const width = window.innerWidth;
-        let columns;
-        
-        if (width < 576) columns = 2;      // Mobile
-        else if (width < 768) columns = 3; // Tablet
-        else columns = 4;  //  desktop
-        
-        grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+function prevImage() {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateModal();
     }
+}
 
-    // Initialize and add event listener
+function nextImage() {
+    if (currentIndex < currentImages.length - 1) {
+        currentIndex++;
+        updateModal();
+    }
+}
+
+function updateModal() {
+    const image = currentImages[currentIndex];
+    document.getElementById('modalImage').src = image.url;
+    document.getElementById('modalImageTitle').textContent = image.title;
+}
+
+// Responsive grid function
+function adjustGrid() {
+    const grid = document.querySelector('.gallery-grid');
+    if (!grid) return;
+    
+    const width = window.innerWidth;
+    let columns;
+    
+    if (width < 576) columns = 2;      // Mobile
+    else if (width < 768) columns = 3; // Tablet
+    else columns = 4;                  // Desktop
+    
+    grid.style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+}
+
+// Initialize everything
+document.addEventListener('DOMContentLoaded', function() {
+    // Modal event listeners
+    document.getElementById('prevImage').addEventListener('click', prevImage);
+    document.getElementById('nextImage').addEventListener('click', nextImage);
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (document.getElementById('imageModal').classList.contains('show')) {
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
+        }
+    });
+    
+    // Set up responsive grid
     adjustGrid();
     window.addEventListener('resize', adjustGrid);
-
-    // Hover effects (pure JS alternative)
+    
+    // Hover effects
     document.querySelectorAll('.gallery-item').forEach(item => {
         item.addEventListener('mouseenter', () => {
             item.style.transform = 'scale(1.03)';
@@ -133,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             item.style.boxShadow = 'none';
         });
     });
- });
+});
 </script>
 
 

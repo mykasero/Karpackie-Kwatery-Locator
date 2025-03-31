@@ -52,24 +52,43 @@ def appartments(request, appartment_pk):
     return render(request,"core/appartments.html", {'context':context})
 
 def gallery(request):
-    images = AppartmentsPhotosModel.objects.all().order_by('-id').values()
+    # Get the first 
+    images = AppartmentsPhotosModel.objects.select_related('appartment').all()
     
-    # paginator = Paginator(images, 20)
-    # page_number = request.GET.get('page', 1)
-    # page_obj = paginator.get_page(page_number)
-    
-    image_data=[]
+    # image_data=[]
+    address_groups = {}
     for image in images:
-        print(f"TEST IMAGE -> {image}")
-        appartment = get_object_or_404(AppartmentsModel, pk=image['appartment_id'])
-        image_data.append({
-            'id': image['id'],
-            'title': appartment.address + ", " + appartment.city,
-            'url': settings.MEDIA_URL+image['image'],
+        # print(f"TEST IMAGE -> {image}")
+        # appartment = get_object_or_404(AppartmentsModel, pk=image['appartment_id'])
+        # image_data.append({
+        #     'id': image['id'],
+        #     'title': appartment.address + ", " + appartment.city,
+        #     'url': settings.MEDIA_URL+image['image'],
+        #     'address': appartment.address,
+        # })
+        
+        address = image.appartment.address + ", " + image.appartment.city
+        if address not in address_groups:
+            address_groups[address] = {
+                'first_image' : image,
+                'all_images' : [],
+            }
+        address_groups[address]['all_images'].append({
+            'url' : image.image.url,
+            'title' : address,
+        })
+    
+    gallery_items = []
+    
+    for address, data in address_groups.items():
+        gallery_items.append({
+            'title' : address,
+            'first_image' : data['first_image'],
+            'all_images' : data['all_images'],
         })
     
     context = {
-        'images':image_data,
+        'gallery_items': gallery_items
     }
     
     return render(request,"core/gallery.html", context)
