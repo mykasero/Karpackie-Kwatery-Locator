@@ -1,5 +1,5 @@
 from django import forms
-from .models import AppartmentsModel, AppartmentsPhotosModel
+from .models import AppartmentsModel, AppartmentsPhotosModel, HomepageCounters
 from django.forms.widgets import ClearableFileInput
 
 class MultipleFileInput(forms.ClearableFileInput):
@@ -37,9 +37,14 @@ class AppartmentForm(forms.ModelForm):
             'extra_desc': 'Podaj cechy oddzielając je symbolem ";"',
         }
         
-        
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     if 'images' not in self.files:
-    #         self.add_error('images', 'No file was submitted. Check the encoding type on the form.')
-    #     return cleaned_data
+class CountersForm(forms.ModelForm):
+    class Meta:
+        model = HomepageCounters
+        fields = [
+            "appartments_amount", "locations_amount", "clients_amount",
+        ]
+        labels = {
+            'appartments_amount' : "Ilość lokali",
+            'locations_amount' : "Ilość miejscowości",
+            'clients_amount' : 'Ilość klientów',
+        }

@@ -3,11 +3,6 @@ from django.conf import settings
 from django.utils import timezone
 # Create your models here.
 
-class TestModel(models.Model):
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(db_column="Test name")
-    test_text = models.TextField(db_column="test text")
-    
 class AppartmentsModel(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(db_column="Appartment name")
@@ -22,3 +17,9 @@ class AppartmentsModel(models.Model):
 class AppartmentsPhotosModel(models.Model):
     appartment = models.ForeignKey(AppartmentsModel, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='appartments_images/')
+    
+class HomepageCounters(models.Model):
+    id = models.AutoField(primary_key=True)
+    appartments_amount = models.IntegerField(db_column="Appartments Amount", default=0)
+    locations_amount = models.IntegerField(db_column="Locations Amount", default=0)
+    clients_amount = models.IntegerField(db_column="Clients Amount", default=0)

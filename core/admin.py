@@ -1,12 +1,7 @@
 from django.contrib import admin
-from .models import TestModel, AppartmentsModel, AppartmentsPhotosModel
+from .models import AppartmentsModel, AppartmentsPhotosModel, HomepageCounters
 # Register your models here.
 
-@admin.register(TestModel)
-class TestModelAdmin(admin.ModelAdmin):
-    ordering = ['id']
-    list_display=('id','name','test_text')
-    
 @admin.register(AppartmentsModel)
 class AppartmentsModelAdmin(admin.ModelAdmin):
     ordering = ['id']
@@ -15,3 +10,7 @@ class AppartmentsModelAdmin(admin.ModelAdmin):
 @admin.register(AppartmentsPhotosModel)
 class AppartmentsPhotosModelAdmin(admin.ModelAdmin):
     list_display=('id','image',)
+    
+@admin.register(HomepageCounters)
+class HomepageCountersModelAdmin(admin.ModelAdmin):
+    list_display=('id')
