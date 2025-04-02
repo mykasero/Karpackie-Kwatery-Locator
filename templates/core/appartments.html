@@ -7,24 +7,6 @@
         .shadow-text{
             text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
         }
-        .page-section{
-            padding: 4rem 0;
-        }
-        header.masthead {
-            padding-top: 10rem;
-            padding-bottom: calc(10rem - 4.5rem);
-            background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            background-size: cover;
-          }
-        .masthead{
-            /*background-image: url({% static 'images/bedroom_image.jpg'%});*/
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-        }
 
         .grid{
             min-height: 90vh;
@@ -34,14 +16,30 @@
             max-height:500px;
             width: 100%;
         }
+
+        .google-maps-link{
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1000; /* Ensure it appears above the map */
+            background: white;
+            padding: 5px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .gm-style-mtc{
+            display: none !important;
+        }
+
+        .map-wrapper{
+            position: relative;
+            min-height: 200px;
+        }
     </style>
-    <!-- Get custom css made for this page -->
     <link href="{% static 'css/appartments_styles.css'%}" rel="stylesheet" />
 {% endblock %}
 {% block content %}
-    <!-- Masthead-->
-    
-    {% comment %} <header class="masthead"> {% endcomment %}
     <div style="background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%); padding-top: 10rem;">
         <div class = "container2">
             <div class="grid">
@@ -51,8 +49,18 @@
                             <h2>{{ context.appartment.city }}</h2>
                             <h6>{{ context.appartment.address }}</h6>
                         </div>
-                        <div class="map-container" id="map"></div>
-                        {% comment %} <div class="middle"><h5>Opis</h5>{{ context.appartment.description}} </div> {% endcomment %}
+                        <div class="map-wrapper" style="position:relative;height:100%;">
+                            <div class="map-container" id="map"></div>
+                            
+                            <a href="https://www.google.com/maps/search/?api=1&query={{ context.str_city|urlencode }}" 
+                                target="_blank"
+                                class="google-maps-link"
+                                title="Open in Google Maps">
+                                <img src="{% static 'images/gmap_icon.png' %}" alt="Google Maps" width="32">
+                                Otwórz w Google Maps
+                            </a>
+                        </div>
+                       
                     </div>
                         <div class="right-col">
                         <h3>Atuty</h3>
@@ -65,14 +73,10 @@
                         </ul>
                     </div>
                 </div>
-                <!--
-                <img src="{{context.appartment.image.url}}" style="max-width:300px;margin:10px;">
-                -->
             </div>
         </div>
 
     </div>
-    {% comment %} </header> {% endcomment %}
 
     
 
@@ -80,16 +84,18 @@
 {% block scripts %}
     <script>
         function initMap(){
+            const location = { lat: {{ context.map_lat }}, lng: {{ context.map_lng }} };
             const gmap = new google.maps.Map(document.getElementById("map"),{
-                center: { lat: {{ context.map_lat }}, lng: {{ context.map_lng }} },
+                center: location,
                 zoom: 14,
+                mapTypeControl: false,
             });
 
-            /*{% comment %} new google.maps.Marker({
-                position: { lat: {{ context.map_lat }}, lng: {{ context.map_lng }} },
-                map:map,
+            new google.maps.Marker({
+                position: location,
+                map:gmap,
                 title: "{{ context.appartment.address }}"
-            }); {% endcomment %}*/
+            }); 
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ context.google_maps }}&callback=initMap" async defer></script>
