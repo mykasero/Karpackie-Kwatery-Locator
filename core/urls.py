@@ -9,4 +9,7 @@ urlpatterns = [
     path("administracja/", views.admin_page, name="admin_page"),
     path("administracja/dodaj_lokal", views.add_appartment, name="add_appartment"),
     path("administracja/liczniki", views.update_counters, name="update_counters"),
+    path("login/", views.login, name="login"),
+    path("logout/", views.logout, name="logout"),
+    path("rejestracja/", views.register, name="register"),
 ]

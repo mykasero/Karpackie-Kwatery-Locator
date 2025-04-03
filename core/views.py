@@ -5,7 +5,15 @@ import googlemaps
 from django.conf import settings
 from django.http import JsonResponse
 from django.core.paginator import Paginator
-# Create your views here.
+from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
+from django.contrib.auth.decorators import user_passes_test
+from core.forms import LoginForm, RegisterForm
+from django.contrib import messages
+from django.contrib.auth.models import Group
+
+
+def staff_required(login_url=None):
+    return user_passes_test(lambda u: u.is_staff, login_url = login_url)
 
 def home(request):
     if HomepageCounters.objects.all():
@@ -93,9 +101,11 @@ def gallery(request):
 def contact(request):
     return render(request,"core/contact.html")
 
+@staff_required(login_url="/login/")
 def admin_page(request):        
     return render(request,"core/admin_page.html")
 
+@staff_required(login_url="/login/")
 def add_appartment(request):
     if request.method=='POST':
         form_appartments = AppartmentForm(request.POST, request.FILES)
@@ -119,6 +129,7 @@ def add_appartment(request):
         
     return render(request,"core/add_appartment.html", {'form':form_appartments})
 
+@staff_required(login_url="/login/")
 def update_counters(request):
     if request.method=='POST':
         form_counters = CountersForm(request.POST)
@@ -136,3 +147,54 @@ def update_counters(request):
         form_counters = CountersForm()
         
     return render(request,"core/update_counters.html", {'form':form_counters})
+
+
+def login(request):
+    if request.user.is_authenticated:          
+        return render(request,"core/admin_page.html")
+    
+    else:
+        if request.method == "POST":
+            form = LoginForm()
+            username = request.POST['login']
+            password = request.POST['haslo']
+            
+            user = authenticate(request, username = username, password = password)
+            if user is not None:
+                auth_login(request,user)
+                return render(request, "core/admin_page.html")
+            
+            else:
+                messages.error(request,"Podano niewłaściwe dane")
+                return render(request,"core/login.html", {'form':form})
+        else:
+            if 'next' in request.GET:
+                messages.warning(request, f"Aby wyświetlić żądaną strone, musisz być zalogowany.")
+                
+            form = LoginForm()
+            return render(request, "core/login.html", {'form':form})
+        
+def logout(request):
+    auth_logout(request)
+    messages.info(request,"Wylogowano pomyślnie")
+    return redirect("/")
+
+def register(request):
+    form = RegisterForm()
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        
+        if form.is_valid():
+            user = form.save()
+            user.is_staff = True
+            user.save()
+            group = Group.objects.get(name="admin")
+            user.groups.add(group)
+            messages.info(request, "Pomyślnie zarejestrowano jako admin.")
+            return redirect("/")
+        
+        else:
+            return render(request,"core/register.html", {'form':form})
+    else:
+        form = RegisterForm()
+        return render(request,"core/register.html", {'form':form})
