@@ -13,4 +13,4 @@ class AppartmentsPhotosModelAdmin(admin.ModelAdmin):
     
 @admin.register(HomepageCounters)
 class HomepageCountersModelAdmin(admin.ModelAdmin):
-    list_display=('id')
+    list_display=('id',)
