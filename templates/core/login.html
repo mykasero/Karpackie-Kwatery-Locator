@@ -1,0 +1,56 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}<title>Login</title>{% endblock%}
+{% block stylings %}
+    <style type="text/css">
+        .shadow-text{
+            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+        }
+        .page-section{
+            padding: 4rem 0;
+        }
+        .form-group{
+        margin: 15px auto;
+        }
+        .form-container{
+            margin: 0 auto;
+            max-width: 75%;
+        }
+        @media (max-width:999px){
+            .form-group{
+                max-width: 75%;
+            }
+        }
+
+        @media (min-width:1000px){
+            .form-group{
+                max-width: 50%;
+            }
+        }
+    </style>
+    <link href="{% static 'css/form_styles.css'%}" rel="stylesheet" />
+    <link href="{% static 'css/gallery_styles.css'%}" rel="stylesheet" />
+{% endblock %}
+{% block content %}
+    <div style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%); padding-top: 10rem;">
+        <div class = "container2">
+            <div class="form-container">
+                <h2 class="text-center mb-5 shadow-text" style="color:white;">Login</h2>
+                <form method="post">
+                    {% csrf_token %}
+                    {% for field in form %}
+                        <div class="form-group">
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <div class="form-group">
+                        <button class="btn btn-primary" style="margin-bottom:20px;" type="submit" name="add_appartment">Zaloguj</button>
+                        <div class="text-center mb-5" style="color:white;">Nie masz konta? Rejestracje dla administracji znajdziesz <a href="/rejestracja">tutaj.</a></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
