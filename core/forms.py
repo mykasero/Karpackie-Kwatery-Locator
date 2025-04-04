@@ -78,7 +78,7 @@ class RegisterForm(UserCreationForm):
     # Add an access_code field for register form
     access_code = forms.CharField(
         label=mark_safe("<strong>Kod Dostepu</strong>"),
-        help_text=" ",
+        help_text=mark_safe("<ul><li>Przyznany tylko administracji</li></ul>"),
     )
     usable_password = None
     class Meta:
@@ -87,9 +87,12 @@ class RegisterForm(UserCreationForm):
 
         labels={
             'username' : mark_safe('<strong>Nazwa użytkownika</strong>'),
+            'password' : mark_safe('Hasło'),
+            'password2' : mark_safe('Potwierdź hasło'),
+            'access_code' : mark_safe('Kod dostępu'),
         }
         help_texts= {
-            'username' : 'Max długość 50 znaków. Dozwolone litery, cyfry i symbole @/./+/-/_',
+            'username' : mark_safe('<ul><li>Max długość 50 znaków.</li><li>Dozwolone litery, cyfry i symbole @/./+/-/_</li></ul>'),
         }
     
     # Create validation checks
