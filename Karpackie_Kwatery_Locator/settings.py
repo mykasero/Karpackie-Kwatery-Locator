@@ -123,8 +123,15 @@ else:
 
 # Database
 if DB_CHOICE:
-    # here will go heroku conn
-    pass
+    import dj_database_url
+    import psycopg2
+    
+    DATABASE_URL = env('DATABASE_URL')
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    
+    DATABASES = {
+        'default' : dj_database_url.config(conn_max_age=600, ssl_require=True),
+    }
 else:
     #docker
     DATABASES = {
