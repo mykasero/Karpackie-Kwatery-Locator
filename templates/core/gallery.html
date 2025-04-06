@@ -38,18 +38,22 @@
         <div class = "container2">
             <h1>Galeria</h1>
 
-            <div class="gallery-grid">
-                {% for image in gallery_items %}
-                    <div class="gallery-item">
-                            <img src="{{ image.first_image.image.url }}"
-                            class="img-thumbnail gallery-thumbnail"
-                            style="height: 150px; width:100%; object-fit: cover; cursor:pointer;"
-                            onclick="openModal('{{ item.title|escapejs }}', {{ image.all_images|safe}})">
-                            
-                        <div class="image-title">{{ image.title }}</div>
-                    </div>
-                {% endfor %}
-            </div>
+            {% if gallery_items %}
+                <div class="gallery-grid">
+                    {% for image in gallery_items %}
+                        <div class="gallery-item">
+                                <img src="{{ image.first_image.image.url }}"
+                                class="img-thumbnail gallery-thumbnail"
+                                style="height: 150px; width:100%; object-fit: cover; cursor:pointer;"
+                                onclick="openModal('{{ item.title|escapejs }}', {{ image.all_images|safe}})">
+                                
+                            <div class="image-title">{{ image.title }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <h6 style="mb-5 shadow-text" style="color:white;"> Brak lokalizacji do wyświetlenia.</h6>
+            {% endif %}
 
         </div>
     </div>
