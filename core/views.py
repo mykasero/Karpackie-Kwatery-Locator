@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import AppartmentsModel,AppartmentsPhotosModel, HomepageCounters
-from .forms import AppartmentForm, CountersForm
+from .forms import AppartmentForm, CountersForm, ContactForm
 import googlemaps
 from django.conf import settings
 from django.http import JsonResponse
@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import user_passes_test
 from core.forms import LoginForm, RegisterForm
 from django.contrib import messages
 from django.contrib.auth.models import Group
-
+from django.core.mail import send_mail
 
 def staff_required(login_url=None):
     return user_passes_test(lambda u: u.is_staff, login_url = login_url)
@@ -198,3 +198,28 @@ def register(request):
     else:
         form = RegisterForm()
         return render(request,"core/register.html", {'form':form})
+    
+    
+    
+def contact(request):
+    form = ContactForm()
+    
+    if request.method == "POST":
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            send_mail(
+                f"Wiadomość z formularza od {form.cleaned_data['name']} ({form.cleaned_data['email']})",
+                f"{form.cleaned_data['message']}    \n Numer telefonu kontaktującego -> {form.cleaned_data['phone_number']}",
+                form.cleaned_data['email'],
+                ['mykasero20@gmail.com'],
+                fail_silently=False,
+            )
+            messages.success(request, "Pomyślnie wysłano wiadomość.")
+            return redirect("/")
+        else:
+            return render(request,"core/contact.html", {'form':form})
+    else:
+        form = ContactForm()
+        return render(request,"core/contact.html", {'form':form})
+    

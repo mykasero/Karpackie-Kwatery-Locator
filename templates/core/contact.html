@@ -10,32 +10,51 @@
         .page-section{
             padding: 4rem 0;
         }
-        header.masthead {
-            padding-top: 10rem;
-            padding-bottom: calc(10rem - 4.5rem);
-            background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: scroll;
-            background-size: cover;
-          }
-        .masthead{
-            /*background-image: url({% static 'images/bedroom_image.jpg'%});*/
-            background-size: cover;
-            background-position: center;
-            height: 100vh;
-        }
+        .form-group{
+            margin: 15px auto;
+            }
+            .form-container{
+                margin: 0 auto;
+                max-width: 75%;
+            }
+            @media (max-width:999px){
+                .form-group{
+                    max-width: 75%;
+                }
+            }
+    
+            @media (min-width:1000px){
+                .form-group{
+                    max-width: 50%;
+                }
+            }
+
 
     </style>
+    <link href="{% static 'css/form_styles.css'%}" rel="stylesheet" />
+    <link href="{% static 'css/gallery_styles.css'%}" rel="stylesheet" />
 {% endblock %}
 {% block content %}
-    <section class="page-section" style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%);">
-        <div class = "container">
-            <div class ="text-center mt-5">
-                <p class="text-white-75 mb-5">Tu będzie formularz kontaktowy</p>
-            </div>
+<div style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%); padding-top: 10rem;">
+    <div class = "container2">
+        <div class="form-container">
+            <h2 class="text-center mb-5 shadow-text" style="color:white;">Formularz kontaktowy</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="form-group">
+                        {{ field.label }}
+                        {{ field.help_text }}
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <button class="btn btn-primary" type="submit">Wyślij</button>
+                </div>
+            </form>
         </div>
-    </section>
+    </div>
+</div>
 
 
 {% endblock %}

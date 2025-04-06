@@ -152,3 +152,25 @@ class RegisterForm(UserCreationForm):
                            )
         
         return cleaned_data
+    
+class ContactForm(forms.Form):
+    email = forms.EmailField(label = "Adres E-mail", max_length=100)
+    name = forms.CharField(label = "Imię")
+    phone_number = forms.CharField(label = "Numer telefonu")
+    message = forms.CharField(
+        label = "Wiadomość",
+        widget=forms.Textarea(attrs={
+            'rows' : 10,
+            'cols' : 50,     
+        })
+    )
+     
+    def clean(self):
+        cleaned_data = super().clean()
+            
+        phone_number = cleaned_data.get('phone_number')
+        
+        if not phone_number[1:].isnumeric():
+            self.add_error(None,forms.ValidationError(_("Podano niepoprawny format numeru telefonu."),
+                                    code="invalid",
+                                    ))
