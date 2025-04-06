@@ -23,3 +23,5 @@ class HomepageCounters(models.Model):
     appartments_amount = models.IntegerField(db_column="Appartments Amount", default=0)
     locations_amount = models.IntegerField(db_column="Locations Amount", default=0)
     clients_amount = models.IntegerField(db_column="Clients Amount", default=0)
+    
+    
