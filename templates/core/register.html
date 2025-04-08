@@ -10,6 +10,9 @@
         .page-section{
             padding: 4rem 0;
         }
+        li{
+            font-size:0.75rem;
+        }
         .form-group{
             margin: 15px auto;
             }
@@ -35,8 +38,16 @@
 {% block content %}
     <div style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%); padding-top: 10rem;">
         <div class = "container2">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
+                        {{ message }}
+                        <br>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div class="form-container">
-                <h2 class="text-center mb-5 shadow-text" style="color:white;">Rejestracja</h2>
+                <h2 class="text-center shadow-text" style="color:white;margin-bottom:20px;">Rejestracja</h2>
                 <form method="post">
                     {% csrf_token %}
                     {% if form.non_field_errors %}

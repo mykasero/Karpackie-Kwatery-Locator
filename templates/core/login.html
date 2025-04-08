@@ -35,8 +35,16 @@
 {% block content %}
     <div style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%); padding-top: 10rem;">
         <div class = "container2">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
+                        {{ message }}
+                        <br>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div class="form-container">
-                <h2 class="text-center mb-5 shadow-text" style="color:white;">Login</h2>
+                <h2 class="text-center shadow-text" style="color:white;margin-bottom:20px;">Login</h2>
                 <form method="post">
                     {% csrf_token %}
                     {% for field in form %}
@@ -46,7 +54,7 @@
                     {% endfor %}
                     <div class="form-group">
                         <button class="btn btn-primary" style="margin-bottom:20px;" type="submit" name="add_appartment">Zaloguj</button>
-                        <div class="text-center mb-5" style="color:white;">Nie masz konta? Rejestracje dla administracji znajdziesz <a href="/rejestracja">tutaj.</a></div>
+                        <div class="text-center mb-5" style="color:white; font-size:0.85rem;">Nie masz konta? Rejestracje dla administracji znajdziesz <a href="/rejestracja">tutaj.</a></div>
                     </div>
                 </form>
             </div>

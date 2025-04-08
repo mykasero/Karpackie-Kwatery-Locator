@@ -18,6 +18,14 @@
 {% block content %}
     <div style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%); padding-top: 10rem;">
         <div class = "container2" style=" display: flex;flex-direction: column;align-items: center;">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
+                        {{ message }}
+                        <br>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <h1 class="text-center mb-5 shadow-text" style="color:white;">Formularz zmiany liczb w licznikach</h1>
             
             <div class="form-container">

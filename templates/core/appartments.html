@@ -42,6 +42,14 @@
 {% block content %}
     <div style="background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%); padding-top: 10rem;">
         <div class = "container2">
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
+                        {{ message }}
+                        <br>
+                    </div>
+                {% endfor %}
+            {% endif %}
             <div class="grid">
                 <div class="item">
                     <div class="left-col">
