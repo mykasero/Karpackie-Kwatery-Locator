@@ -192,8 +192,9 @@ def register(request):
             group = Group.objects.get(name="admin")
             user.groups.add(group)
             messages.info(request, "Pomyślnie zarejestrowano jako admin.")
-            return redirect("/")
-        
+            # return render(request, "core/admin_page.html")
+            return redirect('administracja/')
+
         else:
             return render(request,"core/register.html", {'form':form})
     else:

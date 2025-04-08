@@ -52,16 +52,19 @@
                     {% csrf_token %}
                     {% if form.non_field_errors %}
                         {% for error in form.non_field_errors %}
-                            <div class="alert alert-error">{{ error }}</div>
+                            <div class="alert alert-warning" style="margin: 0 auto; max-width:50%;margin-bottom:10px;">{{ error }}</div>
                         {% endfor %}
                     {% endif %}
                     {% for field in form %}
-                        <div class="form-group">
-                            {{ field.label }}
-                            {{ field.help_text }}
-                            {{ field }}
-                        </div>
-                    {% endfor %}
+                            {% if field != form.non_field_errors %}
+                                <div class="form-group">
+                                    {{ field.label }}
+                                    {{ field.help_text }}
+                                    {{ field }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}  
+                    
                     <div class="form-group">
                         <button class="btn btn-primary" type="submit" name="add_appartment">Zarejestruj</button>
                     </div>
