@@ -69,6 +69,7 @@ def appartments(request, appartment_pk):
 def gallery(request):
     images = AppartmentsPhotosModel.objects.select_related('appartment').all()
     
+    
     address_groups = {}
     for image in images:
 
