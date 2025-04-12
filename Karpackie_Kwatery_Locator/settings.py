@@ -36,11 +36,13 @@ DB_CHOICE = bool(int(env("DB_CHOICE")))
 
 if DEBUG:
     ALLOWED_HOSTS = env("DJANGO_LOCAL_HOSTS").split(" ")
+    CSRF_TRUSTED_ORIGINS=["http://localhost:8080", "http://127.0.0.1:8080"]
+    CSRF_ALLOWED_ORIGINS=["http://localhost:8080", "http://127.0.0.1:8080"]
 else:   
     ALLOWED_HOSTS = env("DJANGO_ALLOWED_HOSTS").split(" ")
-    
-CSRF_TRUSTED_ORIGINS=["http://localhost:8080", "http://127.0.0.1:8080"]
-CSRF_ALLOWED_ORIGINS=["http://localhost:8080", "http://127.0.0.1:8080"]
+    CSRF_TRUSTED_ORIGINS=env("CSRF_TRUSTED_ORIGINS_PROD").split(" ")
+    CSRF_ALLOWED_ORIGINS=env("CSRF_ALLOWED_ORIGINS_PROD").split(" ")
+
 
 
 # Application definition
@@ -221,8 +223,8 @@ if DEBUG==1:
     CORS_ALLOWED_ORIGINS = json.loads(env('CORS_ALLOWED_ORIGINS'))
     # pass
 else:
-    # CORS_ALLOWED_ORIGINS = [env("CORS_ALLOWED_ORIGINS_PROD")] #heroku
-    CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000", "http://192.168.0.164:8000"]# docker "prod"
+    CORS_ALLOWED_ORIGINS = [env("CORS_ALLOWED_ORIGINS_PROD")] #heroku
+    # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000", "http://192.168.0.164:8000"]# docker "prod"
    
 CORS_ALLOW_METHODS = (
     *default_methods,
@@ -230,3 +232,7 @@ CORS_ALLOW_METHODS = (
 CORS_ALLOW_HEADERS = (
     *default_headers,
 )
+
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
