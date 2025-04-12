@@ -220,13 +220,9 @@ SESSION_SAVE_EVERY_REQUEST = False
 from corsheaders.defaults import default_methods, default_headers
 CORS_ALLOW_ALL_ORIGINS = False
 if DEBUG==1:
-    # CORS_ALLOWED_ORIGINS = json.loads(env('CORS_ALLOWED_ORIGINS'))
-    CORS_ALLOWED_ORIGINS = [env("CORS_ALLOWED_ORIGINS")]
-    #.
-    # pass
+    CORS_ALLOWED_ORIGINS = json.loads(env("CORS_ALLOWED_ORIGINS"))
 else:
-    CORS_ALLOWED_ORIGINS = [env("CORS_ALLOWED_ORIGINS_PROD")] #heroku
-    # CORS_ALLOWED_ORIGINS = ["http://localhost:8000", "http://127.0.0.1:8000", "http://192.168.0.164:8000"]# docker "prod"
+    CORS_ALLOWED_ORIGINS = json.loads(env("CORS_ALLOWED_ORIGINS_PROD")) # works with heroku and "prod" docker
    
 CORS_ALLOW_METHODS = (
     *default_methods,
