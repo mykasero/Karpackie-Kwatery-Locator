@@ -7,35 +7,6 @@
         .shadow-text{
             text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
         }
-
-        .grid{
-            min-height: 90vh;
-        }
-
-        #map {
-            max-height:500px;
-            width: 100%;
-        }
-
-        .google-maps-link{
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            z-index: 1000; /* Ensure it appears above the map */
-            background: white;
-            padding: 5px;
-            border-radius: 4px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-
-        .gm-style-mtc{
-            display: none !important;
-        }
-
-        .map-wrapper{
-            position: relative;
-            min-height: 200px;
-        }
     </style>
     <link href="{% static 'css/appartments_styles.css'%}" rel="stylesheet" />
 {% endblock %}
@@ -57,30 +28,31 @@
                             <h2>{{ context.appartment.city }}</h2>
                             <h6>{{ context.appartment.address }}</h6>
                         </div>
-                        <div class="map-wrapper" style="position:relative;height:100%;">
+                        
+                        <!-- Map will appear below both columns on desktop -->
+                        <div class="map-wrapper">
                             <div class="map-container" id="map"></div>
-                            
                             <a href="https://www.google.com/maps/search/?api=1&query={{ context.str_city|urlencode }}" 
-                                target="_blank"
-                                class="google-maps-link"
-                                title="Open in Google Maps">
+                               target="_blank"
+                               class="google-maps-link"
+                               title="Open in Google Maps">
                                 <img src="{% static 'images/gmap_icon.png' %}" alt="Google Maps" width="32">
                                 Otwórz w Google Maps
                             </a>
                         </div>
-                       
                     </div>
-                        <div class="right-col">
+                    
+                    <!-- Right Column (Features) -->
+                    <div class="right-col">
                         <h3>Atuty</h3>
                         <ul class="bullet-list">
                             {% for feature in context.extra_desc %}
-                                <li class="bullet-list li::before"style="padding-right:15px;">
+                                <li style="padding-right:15px;">
                                     {{ feature }}
                                 </li>
                             {% endfor %}
                         </ul>
                     </div>
-                </div>
             </div>
         </div>
 

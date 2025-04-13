@@ -1,4 +1,4 @@
-/* General Reset */
+/* ===== BASE STYLES ===== */
 body {
     margin: 0;
     padding: 0;
@@ -15,7 +15,7 @@ body {
 }
 
 .grid {
-    display: grid;
+    min-height: 90vh;
 }
 
 .item {
@@ -25,57 +25,139 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    min-height: 300px;
 }
 
+/* ===== ORIGINAL DESKTOP LAYOUT ===== */
 .left-col {
-    display: grid;
-    grid-template-rows: auto 1fr; /* Top content + map takes remaining space */
-    gap: 10px;
+    float: left;
+    width: 50%;
+    padding-right: 20px;
+    box-sizing: border-box;
+}
+
+.right-col {
+    float: right;
+    width: 50%;
+    box-sizing: border-box;
 }
 
 .top-left {
     font-size: 1.2em;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.map-container {
+.map-wrapper {
     position: relative;
     min-height: 200px;
-    height: 100%; /* Fill available space */
+    clear: both;
+    padding-top: 20px;
 }
 
-.right-col {
+#map {
+    max-height: 80vh;
+    width: 100%;
+    min-height: 60vh;
+}
+
+/* ===== MOBILE/TABLET LAYOUT ===== */
+@media (max-width: 1024px) {
+    .left-col,
+    .right-col {
+        float: none;
+        width: 100%;
+        padding-right: 0;
+    }
+    
+    .right-col {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .map-wrapper {
+        padding-top: 20px;
+    }
+    
+    #map {
+        max-height: 50vh;
+        min-height: 30vh;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container2 {
+        padding: 15px;
+    }
+    
+    .item {
+        padding: 15px;
+    }
+    
+    #map {
+        max-height: 40vh;
+        min-height: 30vh;
+        max-width: 100%;
+    }
+    
+    .google-maps-link {
+        padding: 4px 8px;
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .container2 {
+        padding: 10px;
+    }
+    
+    .item {
+        padding: 12px;
+    }
+    
+    #map {
+        max-height: 50vh;
+        min-height: 40vh;
+        max-width: 100%;
+    }
+    
+    .top-left h2 {
+        font-size: 1.4rem;
+    }
+    
+    .top-left h6 {
+        font-size: 0.95rem;
+    }
+    
+    .right-col h3 {
+        font-size: 1.2rem;
+    }
+    
+    .google-maps-link img {
+        width: 24px;
+    }
+}
+
+/* ===== SHARED STYLES ===== */
+.google-maps-link {
+    position: absolute;
+    top: 2rem;
+    left: 1rem;
+    z-index: 1000;
+    background: white;
+    padding: 5px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    color: #333;
+    text-decoration: none;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Content starts at top left */
-}
-.middle {
-    grid-area: middle;
-    align-self: start;
-    justify-self: center;
-    font-size: 1em;
-    color: #e0e0e0;
-    padding: 0 10px;
-
-    overflow: hidden; /* Prevent text overflow */
-    word-wrap: break-word; /* Break long words if necessary */
-    white-space: normal; /* Allow text to wrap */
+    align-items: center;
+    gap: 5px;
 }
 
-.top-right {
-    grid-area: top-right;
-    align-self: start;
-    justify-self: end;
-}
-
-.bottom-right {
-    grid-area: bottom-right;
-    align-self: end;
-    justify-self: end;
+.gm-style-mtc {
+    display: none !important;
 }
 
 .bullet-list {
@@ -89,11 +171,33 @@ body {
     margin: 5px 0;
     font-size: 0.9em;
     color: #e0e0e0;
+    display: flex;
+    align-items: flex-start;
 }
 
-.bullet-list li::before{
+.bullet-list li::before {
     content: "🏠︎";
-    margin-right:10px;
-
+    margin-right: 10px;
 }
 
+/* Clearfix for floated layout */
+.item::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Alert messages responsiveness */
+.alert {
+    max-width: 90%;
+    margin: 0 auto 20px !important;
+    padding: 10px 15px;
+    font-size: 0.95em;
+}
+
+@media (max-width: 768px) {
+    .alert {
+        max-width: 100%;
+        padding: 8px 12px;
+    }
+}
