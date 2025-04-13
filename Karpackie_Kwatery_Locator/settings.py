@@ -222,7 +222,7 @@ CORS_ALLOW_ALL_ORIGINS = False
 if DEBUG==1:
     CORS_ALLOWED_ORIGINS = json.loads(env("CORS_ALLOWED_ORIGINS"))
 else:
-    CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS_PROD", default=[]) # works with heroku and "prod" docker / testing 2
+    CORS_ALLOWED_ORIGINS = env.list("CORS_ALLOWED_ORIGINS_PROD", default=[]) # works with heroku and "prod" docker
    
 CORS_ALLOW_METHODS = (
     *default_methods,
