@@ -85,6 +85,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'core.contextprocessors.cities_context',
+                'core.contextprocessors.current_year_context',
             ],
         },
     },

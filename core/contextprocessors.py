@@ -1,6 +1,6 @@
 from .models import AppartmentsModel
 from django.core.cache import cache
-
+from datetime import date
 '''
     return a dict of dicts like this:
     {
@@ -33,4 +33,11 @@ def cities_context(request):
     return {
         'cities_list' : all_cities,
         'appartments' : all_apps,
+    }
+    
+def current_year_context(request):
+    current_year = date.today().year
+    
+    return {
+        'current_year' : current_year,
     }
