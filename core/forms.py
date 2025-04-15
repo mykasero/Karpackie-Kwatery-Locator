@@ -33,14 +33,12 @@ class AppartmentForm(forms.ModelForm):
     class Meta:
         model = AppartmentsModel
         fields = [
-            "name","address","city",
-            "description", "extra_desc",      
+            "name","address","city", "extra_desc",      
             ]
         labels = {
             'name':'Nazwa Lokalu',
             'address':'Adres lokalu',
             'city':'Miasto',
-            'description':'Opis lokalu',
             'extra_desc':'Cechy/Atuty',
             }
         help_texts = {
