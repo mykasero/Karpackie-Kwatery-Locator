@@ -1,0 +1,21 @@
+<div class="modal-content" style="background:linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%);">
+    <div class="modal-header">
+        <h5 class="modal-title">Potwierdź usunięcie</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+        <p>Usunąć lokalizacje?</p>
+        <p class="text-muted">Operacja jest nieodwracalna.</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="nice_buttons btn btn-secondary" data-bs-dismiss="modal">
+            Anuluj
+        </button>
+        <button type="submit" class="nice_buttons btn btn-danger" 
+        hx-post = "{% url 'remove_appartment' appartment_pk=appartment.pk %}" 
+        hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+        data-bs-dismiss="modal">
+            Usuń
+        </button>
+    </div>
+</div>

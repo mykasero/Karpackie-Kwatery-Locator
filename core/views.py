@@ -3,7 +3,7 @@ from .models import AppartmentsModel,AppartmentsPhotosModel, HomepageCounters
 from .forms import AppartmentForm, CountersForm, ContactForm
 import googlemaps
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
 from django.contrib.auth import login as auth_login, authenticate, logout as auth_logout
 from django.contrib.auth.decorators import user_passes_test
@@ -11,6 +11,9 @@ from core.forms import LoginForm, RegisterForm
 from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.core.mail import send_mail
+from datetime import datetime
+import json
+from django.urls import reverse
 
 def staff_required(login_url=None):
     return user_passes_test(lambda u: u.is_staff, login_url = login_url)
@@ -129,6 +132,78 @@ def add_appartment(request):
         print(f"test - {form_appartments}")
         
     return render(request,"core/add_appartment.html", {'form':form_appartments})
+
+@staff_required(login_url="/login/")
+def edit_appartment(request, appartment_pk):
+    appartment = get_object_or_404(AppartmentsModel, pk=appartment_pk)
+
+    if request.method == "POST":
+        form = AppartmentForm(request.POST, request.FILES, instance=appartment, initial={
+            'name' : appartment.name,
+            'address' : appartment.address,
+            'city' : appartment.city,
+            'extra_desc' : appartment.extra_desc,
+        })
+        uploaded_files = request.FILES.getlist('images')
+        if form.is_valid():
+            
+            instance = form.save(commit=False)
+            instance.updated_on = datetime.now()
+            instance.uploaded_by = request.user
+            instance.save()
+            
+            
+            for image in uploaded_files:
+                AppartmentsPhotosModel.objects.create(appartment=instance, image=image)
+            
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger' : json.dumps({
+                        "appartmentUpdated" : "True",
+                        "showMessage" : f"Zaktualizowano apartament",
+                    })
+                }
+            )
+        else:
+            return render(request, 'core/edit_appartment.html', {
+                'form' : form,
+                'appartment' : appartment,
+            })
+    else:
+        form = AppartmentForm(instance=appartment, initial={
+            'name' : appartment.name,
+            'address' : appartment.address,
+            'city' : appartment.city,
+            'extra_desc' : appartment.extra_desc,
+        })
+        return render(request, 'core/edit_appartment.html', {
+                'form' : form,
+                'appartment' : appartment,
+            })
+
+@staff_required(login_url="/login/")
+def remove_appartment_conf(request, appartment_pk):
+    appartment = get_object_or_404(AppartmentsModel, pk=appartment_pk)
+    return render(request, "core/remove_appartment_conf.html", {'appartment':appartment})
+
+@staff_required(login_url="/login/")
+def remove_appartment(request, appartment_pk):
+    appartment = get_object_or_404(AppartmentsModel, pk=appartment_pk)
+    if request.method == "POST":
+        appartment.delete()
+
+        return HttpResponse(
+            status=204,
+            headers={
+                'HX-Redirect' : reverse("home"),
+                'HX-Trigger' : json.dumps({
+                    "appartmentDeleted" : "True",
+                    "showMessage" : f"Usunięto apartament",
+                })
+            }
+        )
+
 
 @staff_required(login_url="/login/")
 def update_counters(request):

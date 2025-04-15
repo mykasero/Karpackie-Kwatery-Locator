@@ -21,6 +21,36 @@
                     </div>
                 {% endfor %}
             {% endif %}
+            <div style="display: flex; flex-direction: row;">
+                {% if user.is_staff %}
+                <button style="background-color:#212529" hx-get="{% url 'edit_appartment' appartment_pk=context.appartment.id %}" hx-target="#edit_dialog"
+                data-toggle="modal" data-target="#edit_modal"><img height="16" src="{% static 'images/edit.svg' %}"/></button><br> 
+                <button style="background-color:#212529" hx-get="{% url 'remove_appartment_conf' appartment_pk=context.appartment.pk %}" hx-target="#remove_dialog"
+                data-toggle="modal" data-target="#remove_modal"><img height = "16" src="{% static 'images/remove.svg' %}"/></button>
+                {% endif %}
+            </div>
+
+            <!-- Placeholder for the modal -->
+            <div id="edit_modal" class="modal fade">
+                <div id="edit_dialog" class="modal-dialog" hx-target="this"></div>
+            </div>
+            
+            {% comment %} <div id="remove_modal" class="modal fade">
+                <div id="remove_dialog" class="modal-dialog" hx-target="this"></div>
+            </div> {% endcomment %}
+            
+            <!-- Empty toast to show the message -->
+            <div class="toast-container position-fixed top-0 end-0 p-3">
+                <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive"
+                aria-atomic="true">
+                        <div class="d-flex">
+                            <div id="toast-body" class="toast-body"></div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                        </div>
+                </div>
+            </div>
+
             <div class="grid">
                 <div class="item">
                     <div class="left-col">
@@ -54,6 +84,28 @@
                         </ul>
                     </div>
             </div>
+
+            <!-- Placeholder for the modal -->
+            <div id="edit_modal" class="modal fade">
+                <div id="edit_dialog" class="modal-dialog" hx-target="this"></div>
+            </div>
+            
+            <div id="remove_modal" class="modal fade">
+                <div id="remove_dialog" class="modal-dialog" hx-target="this"></div>
+            </div>
+            
+            <!-- Empty toast to show the message -->
+            <div class="toast-container position-fixed top-0 end-0 p-3">
+                <div id="toast" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive"
+                aria-atomic="true">
+                        <div class="d-flex">
+                            <div id="toast-body" class="toast-body"></div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
+                        </div>
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -79,4 +131,6 @@
         }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key={{ context.google_maps }}&callback=initMap" async defer></script>
+    <script src="{% static 'js/dialog.js' %}"></script>
+    <script src="{% static 'js/toast.js' %}"></script>
 {% endblock %}
