@@ -7,6 +7,12 @@
         .shadow-text{
             text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
         }
+        .shadow-text2{
+            text-shadow: 4px 4px 2px rgba(7, 95, 146, 0.8);
+        }
+        .shadow-text3{
+            text-shadow: 4px 4px 2px rgba(5, 62, 115, 0.8);
+        }
         .page-section{
             padding: 4rem 0;
         }
@@ -45,8 +51,24 @@
                     </div>
                 {% endfor %}
             {% endif %}
-        <div class="form-container">
-            <h2 class="text-center shadow-text" style="color:white;">Formularz kontaktowy</h2>
+        <div class="form-container" style="font-family:'Merriweather';">
+            <div>
+                <h1 class="mb-4 shadow-text2 text-center" style="color: white;"><b>Kontakt</b></h1>
+                <hr style="color:rgba(189,156,79,255); border-top: 3px solid;">
+                <div style="padding: 0px 25%;">
+                    <p class="shadow-text3">
+                        <img src='{% static "images/map_icon.png" %}' style="height:32px; margin-right:10px;"> ul. Krakowska 216A, 38-400 Krosno
+                    </p>
+                    <p class="shadow-text3">
+                        <img src='{% static "images/email_icon.png" %}' style="height:32px; margin-right:10px;"> kontakt@kklocator.com
+                    </p>
+                    <p class="shadow-text3">
+                        <img src='{% static "images/phone_icon.png" %}' style="height:32px; margin-right:10px;"> +48 662 524 932 | +48 576 211 761
+                    </p>
+                </div>
+            </div>
+            <hr style="color:rgba(189,156,79,255); border-top: 3px solid;">
+            <h2 class="mb-4 shadow-text2 text-center" style="color:white;"><b>Formularz kontaktowy</b></h2>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
