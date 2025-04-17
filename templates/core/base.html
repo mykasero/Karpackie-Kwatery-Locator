@@ -26,6 +26,23 @@
         <link href="{% static 'css/styles.css'%}" rel="stylesheet" />
         
         <style type="text/css">
+            .footer-contact{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                margin-bottom:10px;
+            }
+            
+            @media screen 
+            and (max-width:912px){
+                .footer-contact{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    margin-bottom:10px;
+                    margin: 5px 25%;
+                }
+            }
             @media screen 
             and (min-width:992px){
             .nav-item{
@@ -97,6 +114,11 @@
 
         <!-- Footer -->
         <footer class="bg-light py-5">
+            <div class="footer-contact" style="color:#6c757d">
+                <p style="margin: 10px 10px;"><img src='{% static "images/map_icon.png" %}' style="height:24px; margin-right:10px;"> ul. Krakowska 216A, 38-400 Krosno</p>
+                <p style="margin: 10px 10px;"><img src='{% static "images/email_icon.png" %}' style="height:24px; margin-right:10px;"> kontakt@kklocator.com</p>
+                <p style="margin: 10px 10px;"><img src='{% static "images/phone_icon.png" %}' style="height:24px; margin-right:10px;"> +48 662 524 932 | +48 576 211 761</p>
+            </div>
             <div class= "container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; {{ current_year }} - Karpackie Kwatery Locator Sp. z.o.o.</div></div>
         </footer>
     
