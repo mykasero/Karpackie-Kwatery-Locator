@@ -126,7 +126,7 @@ else:
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
-
+#
 # Database
 if DB_CHOICE:
     import dj_database_url
