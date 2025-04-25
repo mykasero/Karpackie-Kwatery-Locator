@@ -5,8 +5,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
-
-
+from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 
 import environ
 env = environ.Env()
@@ -150,7 +150,8 @@ class RegisterForm(UserCreationForm):
                            )
         
         return cleaned_data
-    
+
+
 class ContactForm(forms.Form):
     email = forms.EmailField(label = "Adres E-mail", max_length=100)
     name = forms.CharField(label = "Imię")
@@ -162,7 +163,9 @@ class ContactForm(forms.Form):
             'cols' : 50,     
         })
     )
-     
+    # captcha = ReCaptchaField(widget=ReCaptchaV3())
+    captcha=ReCaptchaField()
+    
     def clean(self):
         cleaned_data = super().clean()
             

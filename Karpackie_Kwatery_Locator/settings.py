@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'storages',
     'core',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -97,8 +98,6 @@ WSGI_APPLICATION = 'Karpackie_Kwatery_Locator.wsgi.application'
 GOOGLE_MAPS_BACK=env("GOOGLE_KEY_BACKEND")
 GOOGLE_MAPS_FRONT=env("GOOGLE_KEY_FRONTEND")
 
-# Placeholder for future AWS S3 storage
-
 #AWS conf
 AWS_ACCESS_KEY_ID =  env("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
@@ -108,6 +107,10 @@ AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
 AWS_DEFAULT_ACL= None
 AWS_S3_FILE_OVERWRITE = False
 
+#reCaptcha
+RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+RECAPTCHA_REQUIRED_SCORE = 0.5  # Default threshold
 if not DEBUG:
     
     STORAGES = {
@@ -232,6 +235,6 @@ CORS_ALLOW_HEADERS = (
     *default_headers,
 )
 
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# if not DEBUG:
+#     SECURE_SSL_REDIRECT = True
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

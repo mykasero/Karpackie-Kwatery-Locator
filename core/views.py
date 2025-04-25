@@ -285,13 +285,13 @@ def contact(request):
         form = ContactForm(request.POST)
         if form.is_valid():
             print(form.cleaned_data)
-            send_mail(
-                f"Wiadomość z formularza od {form.cleaned_data['name']} ({form.cleaned_data['email']})",
-                f"{form.cleaned_data['message']}    \n Numer telefonu kontaktującego -> {form.cleaned_data['phone_number']}",
-                form.cleaned_data['email'],
-                ['mykasero20@gmail.com'],
-                fail_silently=False,
-            )
+            # send_mail(
+            #     f"Wiadomość z formularza od {form.cleaned_data['name']} ({form.cleaned_data['email']})",
+            #     f"{form.cleaned_data['message']}    \n Numer telefonu kontaktującego -> {form.cleaned_data['phone_number']}",
+            #     form.cleaned_data['email'],
+            #     ['mykasero20@gmail.com'],
+            #     fail_silently=False,
+            # )
             messages.success(request, "Pomyślnie wysłano wiadomość.")
             return redirect("/")
         else:
