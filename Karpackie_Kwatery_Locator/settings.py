@@ -138,6 +138,10 @@ if DB_CHOICE:
     DATABASES = {
         'default' : dj_database_url.config(conn_max_age=600, ssl_require=True),
     }
+    
+    if not DEBUG:
+        SECURE_SSL_REDIRECT = True
+        SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 else:
     #docker
     DATABASES = {
@@ -235,6 +239,5 @@ CORS_ALLOW_HEADERS = (
     *default_headers,
 )
 
-# if not DEBUG:
-#     SECURE_SSL_REDIRECT = True
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    
