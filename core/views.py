@@ -14,6 +14,7 @@ from django.core.mail import send_mail
 from datetime import datetime
 import json
 from django.urls import reverse
+from django.core.paginator import Paginator
 
 def staff_required(login_url=None):
     return user_passes_test(lambda u: u.is_staff, login_url = login_url)
@@ -53,10 +54,12 @@ def appartments(request, appartment_pk):
         else:
             # default coordinates if the geocoding goes wrong
             lat, lng = 50.041069, 21.999145
+
         
     except Exception as e:
         # default coordinates if the geocoding goes wrong
         lat, lng = 50.041069, 21.999145
+        print(f"geocode_result failed 2 - - {e}")
     
     context = {
         'appartment' : current_appartment,
@@ -87,6 +90,8 @@ def gallery(request):
             'title' : address,
         })
     
+    
+    
     gallery_items = []
     
     for address, data in address_groups.items():
@@ -96,8 +101,19 @@ def gallery(request):
             'all_images' : data['all_images'],
         })
     
+    # print(f"TEST 1 -> {gallery_items}")
+    # print(f"TEST 2 -> {[image['first_image'] for image in gallery_items]}")
+    
+    first_images = [image['first_image'] for image in gallery_items]
+    
+    paginator = Paginator(gallery_items, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
     context = {
-        'gallery_items': gallery_items
+        'gallery_items': gallery_items,
+        'page_obj' : page_obj,
+        'paginated_items' : page_obj.object_list,
     }
     
     return render(request,"core/gallery.html", context)
