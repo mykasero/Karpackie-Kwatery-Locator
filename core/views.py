@@ -75,7 +75,6 @@ def appartments(request, appartment_pk):
 def gallery(request):
     images = AppartmentsPhotosModel.objects.select_related('appartment').all()
     
-    
     address_groups = {}
     for image in images:
 
@@ -88,9 +87,8 @@ def gallery(request):
         address_groups[address]['all_images'].append({
             'url' : image.image.url,
             'title' : address,
+            'id' : image.id,
         })
-    
-    
     
     gallery_items = []
     
@@ -100,10 +98,7 @@ def gallery(request):
             'first_image' : data['first_image'],
             'all_images' : data['all_images'],
         })
-    
-    # print(f"TEST 1 -> {gallery_items}")
-    # print(f"TEST 2 -> {[image['first_image'] for image in gallery_items]}")
-    
+
     first_images = [image['first_image'] for image in gallery_items]
     
     paginator = Paginator(gallery_items, 9)
@@ -118,6 +113,13 @@ def gallery(request):
     
     return render(request,"core/gallery.html", context)
 
+@staff_required(login_url="/login/")
+def remove_image(request, image_id):
+    image = get_object_or_404(AppartmentsPhotosModel, id=image_id)
+    image.delete()
+    
+    return redirect('gallery')
+    
 def contact(request):
     return render(request,"core/contact.html")
 

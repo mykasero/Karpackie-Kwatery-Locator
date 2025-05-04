@@ -81,6 +81,25 @@
                     <h5 class="modal-title" id=modalImageTitle style="color: white;"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij" style="filter: invert(1);"></button>
                 </div>
+                
+                    <form method="post"
+                        action="" 
+                        id="deleteForm" 
+                        style="display: flex;
+                                margin: 0px auto;
+                                margin-top: 10px;">
+
+                        {% csrf_token %}
+                        {% if user.is_staff %}
+                            <input type="hidden" name="next" value="{{ request.path }}">
+                            
+                            <button type="submit"
+                                    class="btn btn-danger">
+                                Usuń to zdjęcie
+                            </button>
+                        {% endif %}
+                    </form>
+                
                 <!-- Previous Photo Arrow-->
                 <button id="prevImage" 
                 class="btn btn-lg position-absolute start-0 top-50 translate-middle-y"
@@ -112,6 +131,7 @@ var currentImages = [];
 var currentIndex = 0;
 
 function openModal(title, images) {
+    console.log("Images:", images);
     currentImages = images;
     currentIndex = 0;
     updateModal();
@@ -136,6 +156,9 @@ function updateModal() {
     const image = currentImages[currentIndex];
     document.getElementById('modalImage').src = image.url;
     document.getElementById('modalImageTitle').textContent = image.title;
+    
+    // Update delete button with current image ID
+    document.getElementById('deleteForm').action = `/galeria/usun_zdj/${image.id}/`;
 }
 
 // Responsive grid function
@@ -159,6 +182,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('prevImage').addEventListener('click', prevImage);
     document.getElementById('nextImage').addEventListener('click', nextImage);
     
+    // Add delete button listener
+    const deleteBtn = document.getElementById('deleteImageBtn');
+    if (deleteBtn) {
+        deleteBtn.addEventListener('click', deleteImage);
+    }
+
     // Keyboard navigation
     document.addEventListener('keydown', function(e) {
         if (document.getElementById('imageModal').classList.contains('show')) {
