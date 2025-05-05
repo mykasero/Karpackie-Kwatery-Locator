@@ -15,6 +15,10 @@ from datetime import datetime
 import json
 from django.urls import reverse
 from django.core.paginator import Paginator
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 def staff_required(login_url=None):
     return user_passes_test(lambda u: u.is_staff, login_url = login_url)
@@ -119,9 +123,6 @@ def remove_image(request, image_id):
     image.delete()
     
     return redirect('gallery')
-    
-def contact(request):
-    return render(request,"core/contact.html")
 
 @staff_required(login_url="/login/")
 def admin_page(request):        
@@ -294,27 +295,39 @@ def register(request):
         form = RegisterForm()
         return render(request,"core/register.html", {'form':form})
     
-    
-    
 def contact(request):
-    form = ContactForm()
-    
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
-            print(form.cleaned_data)
-            # send_mail(
-            #     f"Wiadomość z formularza od {form.cleaned_data['name']} ({form.cleaned_data['email']})",
-            #     f"{form.cleaned_data['message']}    \n Numer telefonu kontaktującego -> {form.cleaned_data['phone_number']}",
-            #     form.cleaned_data['email'],
-            #     ['mykasero20@gmail.com'],
-            #     fail_silently=False,
-            # )
-            messages.success(request, "Pomyślnie wysłano wiadomość.")
-            return redirect("/")
+            email_address = form.cleaned_data['email']
+            name = form.cleaned_data['name']
+            phone_number = form.cleaned_data['phone_number']
+            message = form.cleaned_data['message']
+            send_to = env("EMAIL_SEND_TO")
+            subject = f"Zapytanie z formularza kontaktowego od {name}"
+            email_body = f"""
+            Imie: {name}
+            Adres mailowy: {email_address}
+            Nr. telefonu: {phone_number}
+            
+            Wiadomość: {message}
+            """
+            print(f"TEST - - - DEFAULT - {settings.DEFAULT_FROM_EMAIL}, SEND_TO - {send_to}")
+            send_mail(
+                subject,
+                email_body,
+                settings.DEFAULT_FROM_EMAIL,
+                [send_to],
+            )
+            
+            messages.success(request, "Pomyślnie wysłano zgłoszenie.")
+            return render(request,"core/home.html")
         else:
+            form = ContactForm(request.POST)
             return render(request,"core/contact.html", {'form':form})
     else:
+        
         form = ContactForm()
-        return render(request,"core/contact.html", {'form':form})
+        
+    return render(request,"core/contact.html", {'form':form})
     

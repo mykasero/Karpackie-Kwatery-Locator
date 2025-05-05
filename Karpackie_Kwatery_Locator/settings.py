@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'storages',
     'core',
     'django_recaptcha',
+    'anymail',
 ]
 
 MIDDLEWARE = [
@@ -93,6 +94,15 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Karpackie_Kwatery_Locator.wsgi.application'
+
+#mailing (Brevo)
+EMAIL_BACKEND = env("EMAIL_BACKEND")
+
+ANYMAIL = {
+    "BREVO_API_KEY" : env("EMAIL_API_KEY"),
+}
+
+DEFAULT_FROM_EMAIL=env("DEFAULT_FROM_EMAIL")
 
 # google maps
 GOOGLE_MAPS_BACK=env("GOOGLE_KEY_BACKEND")
