@@ -5,7 +5,7 @@
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
-            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 4px 4px 2px rgba(14, 14, 14, 0.1);
         }
         .page-section{
             padding: 4rem 0;
@@ -32,9 +32,10 @@
     <link href="{% static 'css/form_styles.css'%}" rel="stylesheet" />
     <link href="{% static 'css/gallery_styles.css'%}" rel="stylesheet" />
 {% endblock %}
+{% block navbar_class %}navbar-shrink{% endblock %}
 {% block content %}
-    <div style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%); padding-top: 10rem;">
-        <div class = "container2">
+    <div style="background:white; padding-top: 10rem;">
+        <div class = "container2" style='color:black;font-family:"SEGOE UI"'>
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
@@ -44,7 +45,7 @@
                 {% endfor %}
             {% endif %}
             <div class="form-container">
-                <h2 class="text-center shadow-text" style="color:white;margin-bottom:20px;">Login</h2>
+                <h2 class="text-center shadow-text" style="margin-bottom:20px;color:black;">Login</h2>
                 <form method="post">
                     {% csrf_token %}
                     {% for field in form %}
@@ -53,8 +54,8 @@
                         </div>
                     {% endfor %}
                     <div class="form-group">
-                        <button class="btn btn-primary" style="margin-bottom:20px;" type="submit" name="add_appartment">Zaloguj</button>
-                        <div class="text-center mb-5" style="color:white; font-size:0.85rem;">Nie masz konta? Rejestracje dla administracji znajdziesz <a href="/rejestracja">tutaj.</a></div>
+                        <button class="btn btn-primary" style="margin-bottom:20px; color:black;" type="submit" name="add_appartment">Zaloguj</button>
+                        <div class="text-center mb-5" style="font-size:0.85rem;">Nie masz konta? Rejestracje dla administracji znajdziesz <a href="/rejestracja">tutaj.</a></div>
                     </div>
                 </form>
             </div>

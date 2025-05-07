@@ -5,7 +5,7 @@
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
-            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 4px 4px 2px rgba(14, 14, 14, 0.1);
         }
         .page-section{
             padding: 4rem 0;
@@ -15,9 +15,10 @@
     <link href="{% static 'css/form_styles.css'%}" rel="stylesheet" />
     <link href="{% static 'css/gallery_styles.css'%}" rel="stylesheet" />
 {% endblock %}
+{% block navbar_class %}navbar-shrink{% endblock %}
 {% block content %}
-    <div style="background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%); padding-top: 10rem;">
-        <div class = "container2">
+    <div style="background:white; padding-top: 10rem;">
+        <div class = "container2" style='color:black; font-family:"SEGOE UI";'>
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
@@ -26,13 +27,13 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <h1 class="text-center mb-5 shadow-text" style="color:white;">Panel administracji</h1>
+            <h1 class="text-center mb-5 shadow-text">Panel administracji</h1>
             <div class="mb-5">
-                <h6 class="mb-2 shadow-text" style="color:white;">Formularz dodawania nowego lokalu</h6>
+                <h6 class="mb-2 shadow-text">Formularz dodawania nowego lokalu</h6>
                 <a class="btn btn-primary btn-xl" style="height:50px; font-size:0.7rem;" href="/administracja/dodaj_lokal">Przejdź</a>
             </div>
             <div class="mb-5">
-                <h6 class="mb-2 shadow-text" style="color:white;">Formularz zmiany liczb w licznikach</h6>
+                <h6 class="mb-2 shadow-text">Formularz zmiany liczb w licznikach</h6>
                 <a class="btn btn-primary btn-xl" style="height:50px; font-size:0.7rem;" href="/administracja/liczniki">Przejdź</a>
             </div>
         </div>
