@@ -5,7 +5,7 @@
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
-            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 4px 4px 2px rgba(14, 14, 14, 0.1);
         }
         .page-section{
             padding: 4rem 0;
@@ -15,9 +15,10 @@
     <link href="{% static 'css/form_styles.css'%}" rel="stylesheet" />
     <link href="{% static 'css/gallery_styles.css'%}" rel="stylesheet" />
 {% endblock %}
+{% block navbar_class %}navbar-shrink{% endblock %}
 {% block content %}
-    <div style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%); padding-top: 10rem;">
-        <div class = "container2">
+    <div style="background:white; padding-top: 10rem;">
+        <div class = "container2" style='color:black;font-family:"SEGOE UI";'>
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
@@ -26,9 +27,9 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <h1 class="text-center mb-5 shadow-text" style="color:white;">Formularz dodawania nowego lokalu</h1>
+            <h1 class="text-center mb-5 shadow-text" style="color:black;">Formularz dodawania nowego lokalu</h1>
             <div class="form-container">
-                <h2>Dodawanie Kwater</h2>
+                <h2 style="color:black;">Dodawanie Kwater</h2>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% for field in form %}
@@ -43,7 +44,7 @@
                         </div>
                     {% endfor %}
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit" name="add_appartment">Dodaj lokal</button>
+                        <button class="btn btn-primary" style="color:black;" type="submit" name="add_appartment">Dodaj lokal</button>
                     </div>
                 </form>
             </div>

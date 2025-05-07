@@ -5,14 +5,24 @@
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
-            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 4px 4px 2px rgba(14, 14, 14, 0.1);
+        }
+        .modal-content{
+            background: rgba(255,255,255, 0.8);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0,0,0,0.5);
+            color:black;
+        }
+        .modal-title{
+            color:black!important;
         }
     </style>
     <link href="{% static 'css/appartments_styles.css'%}" rel="stylesheet" />
 {% endblock %}
+{% block navbar_class %}navbar-shrink{% endblock %}
 {% block content %}
-    <div style="background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%); padding-top: 10rem;">
-        <div class = "container2">
+    <div style="background: white; padding-top: 10rem;">
+        <div class = "container2" style='color:black; font-family:"SEGOE UI";'>
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
@@ -77,7 +87,7 @@
                         <h3>Atuty</h3>
                         <ul class="bullet-list">
                             {% for feature in context.extra_desc %}
-                                <li style="padding-right:15px;">
+                                <li style="padding-right:15px; color:black;">
                                     {{ feature }}
                                 </li>
                             {% endfor %}
