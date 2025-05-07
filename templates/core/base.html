@@ -61,17 +61,25 @@
 
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 {% block navbar_class %}{% endblock %}" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <div class="navbar-brand"><a href="/"><img style="height:80px;" src="{% static 'images/logo_navbar.png' %}" alt=""/></a></div>
                 <a class="navbar-brand" href="/">Strona Główna</a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <button class="navbar-toggler navbar-toggler-right" 
+                    type="button" data-bs-toggle="collapse" 
+                    data-bs-target="#navbarResponsive" 
+                    aria-controls="navbarResponsive" 
+                    aria-expanded="false" 
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto my-2 my-lg-0">
                         <!-- add href later -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Kwatery
+                                Nieruchomości
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if appartments %}
@@ -114,12 +122,12 @@
 
         <!-- Footer -->
         <footer class="bg-light py-5">
-            <div class="footer-contact" style="color:#6c757d">
+            <div class="footer-contact" style='color:#6c757d; font-family:"SEGOE UI";'>
                 <p style="margin: 10px 10px;"><img src='{% static "images/map_icon.png" %}' style="height:24px; margin-right:10px;"> ul. Krakowska 216A, 38-400 Krosno</p>
                 <p style="margin: 10px 10px;"><img src='{% static "images/email_icon.png" %}' style="height:24px; margin-right:10px;"> kontakt@kklocator.com</p>
                 <p style="margin: 10px 10px;"><img src='{% static "images/phone_icon.png" %}' style="height:24px; margin-right:10px;"> +48 662 524 932 | +48 576 211 761</p>
             </div>
-            <div class= "container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; {{ current_year }} - Karpackie Kwatery Locator Sp. z.o.o.</div></div>
+            <div class= "container px-4 px-lg-5"><div class="text-center text-muted" style='font-size:calc(0.875em * 0.75); font-family:"SEGOE UI";'>Copyright &copy; {{ current_year }} - Karpackie Kwatery Locator Sp. z.o.o.</div></div>
         </footer>
     
         <!-- Bootstrap core JS-->
@@ -127,7 +135,7 @@
         <!-- SimpleLightbox plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
         <!-- Core theme JS-->
-        <script src="{% static 'js/scripts.js' %}"></script>
+        <script src="{% static 'js/dropdowns.js' %}"></script>
 
         <!-- Additional Scripts -->
         {% block scripts %}

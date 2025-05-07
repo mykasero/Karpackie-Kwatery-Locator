@@ -312,7 +312,6 @@ def contact(request):
             
             Wiadomość: {message}
             """
-            print(f"TEST - - - DEFAULT - {settings.DEFAULT_FROM_EMAIL}, SEND_TO - {send_to}")
             send_mail(
                 subject,
                 email_body,
