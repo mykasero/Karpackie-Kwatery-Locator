@@ -5,9 +5,18 @@
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
-            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 4px 4px 2px rgba(14, 14, 14, 0.1);
         }
 
+        .modal-content{
+            background: rgba(255,255,255, 0.8);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0,0,0,0.5);
+            color:black;
+        }
+        .modal-title{
+            color:black!important;
+        }
         @media (min-width:576px){
             .gallery-grid{
                 grid-template-columns: repeat(3, 1fr)!important;
@@ -23,8 +32,10 @@
     </style>
     <link href="{% static 'css/gallery_styles.css'%}" rel="stylesheet" />
 {% endblock %}
+{% block navbar_class %}navbar-shrink{% endblock %}
 {% block content %}
-    <div style="background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%); padding-top: 10rem;">
+    {% comment %} <div style="background: linear-gradient(135deg, rgb(31, 93, 140) 0%, rgb(5, 62, 115) 100%); padding-top: 10rem;"> {% endcomment %}
+    <div style='background:white; padding-top: 10rem; color:black; font-family:"SEGOE UI";'>
         <div class = "container2">
             {% if messages %}
                 {% for message in messages %}
@@ -76,7 +87,7 @@
     </div>
     <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg">
-            <div class="modal-content" style="background: rgba(31, 93, 140, 0.95);">
+            <div class="modal-content">
                 <div class="modal-header" style="border-bottom: 1px solid rgba(255, 255, 255, 0.2);">
                     <h5 class="modal-title" id=modalImageTitle style="color: white;"></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Zamknij" style="filter: invert(1);"></button>
@@ -103,7 +114,7 @@
                 <!-- Previous Photo Arrow-->
                 <button id="prevImage" 
                 class="btn btn-lg position-absolute start-0 top-50 translate-middle-y"
-                style="z-index:1000; background:rgba(0,0,0,0.3); border:none; color:white;">
+                style="z-index:1000; background:rgba(0,0,0,0.5); border:none; color:white;">
                     ←
                 </button>
                 
@@ -114,7 +125,7 @@
                 <!-- Next Photo Arrow -->
                 <button id="nextImage" 
                 class="btn btn-lg position-absolute end-0 top-50 translate-middle-y"
-                style="z-index:1000; background:rgba(0,0,0,0.3); border:none; color:white;">
+                style="z-index:1000; background:rgba(0,0,0,0.5); border:none; color:white;">
                     →
                 </button>
             </div>

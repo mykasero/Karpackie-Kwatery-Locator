@@ -5,7 +5,7 @@
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
-            text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.4);
+            text-shadow: 4px 4px 2px rgba(14, 14, 14, 0.1);
         }
         .shadow-text2{
             text-shadow: 4px 4px 2px rgba(7, 95, 146, 0.8);
@@ -53,8 +53,9 @@
     <link href="{% static 'css/form_styles.css'%}" rel="stylesheet" />
     <link href="{% static 'css/gallery_styles.css'%}" rel="stylesheet" />
 {% endblock %}
+{% block navbar_class %}navbar-shrink{% endblock %}
 {% block content %}
-<div style="background:linear-gradient(135deg, rgb(52, 125, 181) 0%, rgb(10, 67, 120) 100%); padding-top: 10rem;">
+<div style="background:white; padding-top: 10rem;">
     <div class = "container2">
         {% if messages %}
                 {% for message in messages %}
@@ -64,24 +65,24 @@
                     </div>
                 {% endfor %}
             {% endif %}
-        <div class="form-container" style="font-family:'Merriweather';">
+        <div class="form-container" style='font-family:"SEGOE UI"; color:black;'>
             <div>
-                <h1 class="mb-4 shadow-text2 text-center" style="color: white;"><b>Kontakt</b></h1>
+                <h1 class="mb-4 shadow-text text-center"><b>Kontakt</b></h1>
                 <hr style="color:rgba(189,156,79,255); border-top: 3px solid;">
                 <div style="padding: 0px 25%;">
-                    <p class="shadow-text3">
+                    <p class="shadow-text">
                         <img src='{% static "images/map_icon.png" %}' style="height:32px; margin-right:10px;"> ul. Krakowska 216A, 38-400 Krosno
                     </p>
-                    <p class="shadow-text3">
+                    <p class="shadow-text">
                         <img src='{% static "images/email_icon.png" %}' style="height:32px; margin-right:10px;"> kontakt@kklocator.com
                     </p>
-                    <p class="shadow-text3">
+                    <p class="shadow-text">
                         <img src='{% static "images/phone_icon.png" %}' style="height:32px; margin-right:10px;"> +48 662 524 932 | +48 576 211 761
                     </p>
                 </div>
             </div>
             <hr style="color:rgba(189,156,79,255); border-top: 3px solid;">
-            <h2 class="mb-4 shadow-text2 text-center" style="color:white;"><b>Formularz kontaktowy</b></h2>
+            <h2 class="mb-4 shadow-text text-center" style="color:black;"><b>Formularz kontaktowy</b></h2>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
@@ -98,8 +99,15 @@
                 {% endif %} 
                 {% endfor %}
                 <div class="form-group">
-                    <button class="btn btn-primary" type="submit">Wyślij</button>
+                    <button class="btn btn-primary" style="color:black;" type="submit">Wyślij</button>
                 </div>
+                <p class="text-muted" style="text-align:justify;font-size:calc(0.875em * 0.75);">
+                    Administratorem Państwa danych osobowych jest Karpackie Kwatery Locator Sp. z o.o. z siedzibą w Krośnie, 
+                    ul. Krakowska 216A, 38-400 Krosno, wpisana do rejestru przedsiębiorców Krajowego Rejestru Sądowego przez 
+                    Sąd Rejonowy w Rzeszowie, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0001038275,
+                    NIP: 6842671330, REGON: 525409151, o kapitale zakładowym w wysokości 20 000,00 zł. Dane osobowe przetwarzamy 
+                    w celu świadczenia usług zakwaterowania oraz realizacji obowiązków wynikających z zawartych umów.
+                </p>
             </form>
         </div>
     </div>
