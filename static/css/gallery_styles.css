@@ -21,16 +21,16 @@ body {
 }
 
 .gallery-item {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0,0,0,0.5);
 }
 
 .gallery-item:hover {
     transform: scale(1.03);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
 }
 
 .gallery-image {
@@ -43,9 +43,10 @@ body {
 .image-title {
     padding: 10px;
     text-align: center;
-    color: #e0e0e0;
+    color: black;
     font-size: 0.9em;
     word-break: break-word;
+    font-family: 'Segoe UI';
 }
 
 #prevImage, #nextImage {
@@ -98,7 +99,7 @@ body {
 }
 
 .pagination a:hover:not(.active){
-    background-color: #ddd;
+    background-color: rgba(14, 14, 14, 0.1);
 }
 
 .step-links{
