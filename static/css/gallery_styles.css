@@ -47,6 +47,7 @@ body {
     font-size: 0.9em;
     word-break: break-word;
     font-family: 'Segoe UI';
+    font-weight: 600;
 }
 
 #prevImage, #nextImage {
