@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -32,6 +33,12 @@
                 justify-content: center;
                 margin-bottom:10px;
             }
+
+            .language-selector[open] > .dropdown-menu {
+                display: block !important;
+                transform: none;            /* cancel any transform on open */
+                visibility: visible;        /* in case Bootstrap uses visibility */
+                }
             
             @media screen 
             and (max-width:912px){
@@ -69,7 +76,7 @@
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3 {% block navbar_class %}{% endblock %}" id="mainNav">
             <div class="container px-4 px-lg-5">
                 <div class="navbar-brand"><a href="/"><img style="height:80px;" src="{% static 'images/logo_navbar.png' %}" alt=""/></a></div>
-                <a class="navbar-brand" href="/">Strona Główna</a>
+                <a class="navbar-brand" href="/">{% trans "Strona Główna" %}</a>
                 <button class="navbar-toggler navbar-toggler-right" 
                     type="button" data-bs-toggle="collapse" 
                     data-bs-target="#navbarResponsive" 
@@ -84,7 +91,7 @@
                         <!-- add href later -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Nieruchomości
+                                {% trans "Nieruchomości" %}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% if appartments %}
@@ -106,16 +113,70 @@
                                         </li>
                                     {% endfor %}
                                 {% else %}
-                                    <li><a class="dropdown-item" href="#">Brak dostępnych lokalizacji</a></li>
+                                    <li><a class="dropdown-item" href="#">{% trans "Brak dostępnych lokalizacji" %}</a></li>
                                 {% endif %}
                             </ul>
                         </li>
 
 
-                        <li class="nav-item"><a class="nav-link" href='/galeria'>Galeria</a></li>
-                        <li class="nav-item"><a class="nav-link" href='/kontakt'>Kontakt</a></li>
+                        <li class="nav-item"><a class="nav-link" href='/galeria'>{% trans "Galeria" %}</a></li>
+                        <li class="nav-item"><a class="nav-link" href='/kontakt'>{% trans "Kontakt" %}</a></li>
                         <li class="nav-item"><a class="nav-link" href='/administracja'>Admin</a></li>
                         {% if user.is_authenticated %}<li class="nav-item"><a class="nav-link" href="/logout">Wyloguj</a></li>{% endif %}
+                        <li class="nav-item dropdown">
+                            <form action="{% url 'set_language' %}" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                                <details class="language-selector">
+                                    <summary class="nav-link" style="cursor:pointer; display:flex; align-items: center;">
+                                    {% comment %} <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> {% endcomment %}
+                                        {% if request.LANGUAGE_CODE == 'pl' %}
+                                            <img src="{% static 'images/pl.png' %}" alt="PL" width="20" class="me-1"> Polski
+                                        {% else %}
+                                            <img src="{% static 'images/us.png' %}" alt="EN" width="20" class="me-1"> English
+                                        {% endif %}
+                                    {% comment %} </a> {% endcomment %}
+                                    </summary>
+                                    <ul class="dropdown-menu dropdown-menu-end" style="margin:0; padding:0; list-style:none;">
+                                        <li>
+                                        <button
+                                            type="submit"
+                                            name="language"
+                                            value="pl"
+                                            class="dropdown-item"
+                                            {% if request.LANGUAGE_CODE == 'pl' %}disabled aria-current="true"{% endif %}
+                                        >
+                                            <img src="{% static 'images/pl.png' %}" alt="PL" width="20" class="me-1"> Polski
+                                        </button>
+                                        </li>
+                                        <li>
+                                        <button
+                                            type="submit"
+                                            name="language"
+                                            value="en"
+                                            class="dropdown-item"
+                                            {% if request.LANGUAGE_CODE == 'en' %}disabled aria-current="true"{% endif %}
+                                        >
+                                            <img src="{% static 'images/us.png' %}" alt="EN" width="20" class="me-1"> English
+                                        </button>
+                                        </li>
+                                    </ul>
+                                    {% comment %} <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
+                                        <li>
+                                            <a class="dropdown-item" href="/i18n/setlang/?language=pl&next={{ request.get_full_path|urlencode }}">
+                                                <img src="{% static 'images/pl.png' %}" alt="PL" width="20" class="me-1"> Polski
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/i18n/setlang/?language=en&next={{ request.get_full_path|urlencode }}">
+                                                <img src="{% static 'images/us.png' %}" alt="EN" width="20" class="me-1"> English
+                                            </a>
+                                        </li>
+                                    </ul> {% endcomment %}
+                                </details>
+                            </form>
+
+                        </li>
                     </ul>
                 </div>
             </div>
