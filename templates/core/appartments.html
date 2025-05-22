@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
-
-{% block title %}<title>Kwatery</title>{% endblock%}
+{% load i18n %}
+{% block title %}<title>{% trans "Kwatery" %}</title>{% endblock%}
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
@@ -26,7 +26,7 @@
             {% if messages %}
                 {% for message in messages %}
                     <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
-                        {{ message }}
+                        {% trans "{{ message }}" %}
                         <br>
                     </div>
                 {% endfor %}
@@ -77,14 +77,14 @@
                                class="google-maps-link"
                                title="Open in Google Maps">
                                 <img src="{% static 'images/gmap_icon.png' %}" alt="Google Maps" width="32">
-                                Otwórz w Google Maps
+                                {% trans "Otwórz w Google Maps" %}
                             </a>
                         </div>
                     </div>
                     
                     <!-- Right Column (Features) -->
                     <div class="right-col">
-                        <h3>Atuty</h3>
+                        <h3>{% trans "Atuty" %}</h3>
                         <ul class="bullet-list">
                             {% for feature in context.extra_desc %}
                                 <li style="padding-right:15px; color:black;">
