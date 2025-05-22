@@ -4,10 +4,9 @@ from django.forms.widgets import ClearableFileInput
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.safestring import mark_safe
 from django.contrib.auth.models import User
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from django_recaptcha.fields import ReCaptchaField
 from django_recaptcha.widgets import ReCaptchaV3
-
 import environ
 env = environ.Env()
 environ.Env.read_env()
@@ -33,7 +32,7 @@ class AppartmentForm(forms.ModelForm):
     class Meta:
         model = AppartmentsModel
         fields = [
-            "name","address","city", "extra_desc",      
+            "name","address","city", "extra_desc_pl","extra_desc_en",      
             ]
         labels = {
             'name':'Nazwa Lokalu',
@@ -153,11 +152,11 @@ class RegisterForm(UserCreationForm):
 
 
 class ContactForm(forms.Form):
-    email = forms.EmailField(label = "Adres E-mail", max_length=100)
-    name = forms.CharField(label = "Imię")
-    phone_number = forms.CharField(label = "Numer telefonu")
+    email = forms.EmailField(label = _("Adres E-mail"), max_length=100)
+    name = forms.CharField(label = _("Imię"))
+    phone_number = forms.CharField(label = _("Numer telefonu"))
     message = forms.CharField(
-        label = "Wiadomość",
+        label = _("Wiadomość"),
         widget=forms.Textarea(attrs={
             'rows' : 10,
             'cols' : 50,     

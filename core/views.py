@@ -16,6 +16,7 @@ import json
 from django.urls import reverse
 from django.core.paginator import Paginator
 import environ
+from django.utils.translation import gettext_lazy as _
 
 env = environ.Env()
 environ.Env.read_env()
@@ -264,14 +265,14 @@ def login(request):
                 return render(request,"core/login.html", {'form':form})
         else:
             if 'next' in request.GET:
-                messages.warning(request, f"Aby wyświetlić żądaną strone, musisz być zalogowany.")
+                messages.warning(request, _("Aby wyświetlić żądaną strone, musisz być zalogowany."))
                 
             form = LoginForm()
             return render(request, "core/login.html", {'form':form})
         
 def logout(request):
     auth_logout(request)
-    messages.info(request,"Wylogowano pomyślnie")
+    messages.info(request, _("Wylogowano pomyślnie"))
     return redirect("/")
 
 def register(request):
@@ -285,7 +286,7 @@ def register(request):
             user.save()
             group = Group.objects.get(name="admin")
             user.groups.add(group)
-            messages.info(request, "Pomyślnie zarejestrowano jako admin.")
+            messages.info(request, _("Pomyślnie zarejestrowano jako admin."))
             # return render(request, "core/admin_page.html")
             return redirect('administracja/')
 
@@ -319,7 +320,7 @@ def contact(request):
                 [send_to],
             )
             
-            messages.success(request, "Pomyślnie wysłano zgłoszenie.")
+            messages.success(request, _("Pomyślnie wysłano zgłoszenie."))
             return render(request,"core/home.html")
         else:
             form = ContactForm(request.POST)
