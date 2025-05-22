@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
-
-{% block title %}<title>Kontakt</title>{% endblock%}
+{% load i18n %}
+{% block title %}<title>{% trans "Kontakt" %}</title>{% endblock%}
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
@@ -67,7 +67,7 @@
             {% endif %}
         <div class="form-container" style='font-family:"SEGOE UI"; color:black;'>
             <div>
-                <h1 class="mb-4 shadow-text text-center"><b>Kontakt</b></h1>
+                <h1 class="mb-4 shadow-text text-center"><b>{% trans "Kontakt" %}</b></h1>
                 <hr style="color:rgba(189,156,79,255); border-top: 3px solid;">
                 <div style="padding: 0px 25%;">
                     <p class="shadow-text">
@@ -82,7 +82,7 @@
                 </div>
             </div>
             <hr style="color:rgba(189,156,79,255); border-top: 3px solid;">
-            <h2 class="mb-4 shadow-text text-center" style="color:black;"><b>Formularz kontaktowy</b></h2>
+            <h2 class="mb-4 shadow-text text-center" style="color:black;"><b>{% trans "Formularz kontaktowy" %}</b></h2>
             <form method="post">
                 {% csrf_token %}
                 {% for field in form %}
@@ -99,14 +99,10 @@
                 {% endif %} 
                 {% endfor %}
                 <div class="form-group">
-                    <button class="btn btn-primary" style="color:black;" type="submit">Wyślij</button>
+                    <button class="btn btn-primary" style="color:black;" type="submit">{% trans "Wyślij" %}</button>
                 </div>
                 <p class="text-muted" style="text-align:justify;font-size:calc(0.875em * 0.75);">
-                    Administratorem Państwa danych osobowych jest Karpackie Kwatery Locator Sp. z o.o. z siedzibą w Krośnie, 
-                    ul. Krakowska 216A, 38-400 Krosno, wpisana do rejestru przedsiębiorców Krajowego Rejestru Sądowego przez 
-                    Sąd Rejonowy w Rzeszowie, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0001038275,
-                    NIP: 6842671330, REGON: 525409151, o kapitale zakładowym w wysokości 20 000,00 zł. Dane osobowe przetwarzamy 
-                    w celu świadczenia usług zakwaterowania oraz realizacji obowiązków wynikających z zawartych umów.
+                    {% trans "Administratorem Państwa danych osobowych jest Karpackie Kwatery Locator Sp. z o.o. z siedzibą w Krośnie, ul. Krakowska 216A, 38-400 Krosno, wpisana do rejestru przedsiębiorców Krajowego Rejestru Sądowego przez Sąd Rejonowy w Rzeszowie, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem KRS: 0001038275, NIP: 6842671330, REGON: 525409151, o kapitale zakładowym w wysokości 20 000,00 zł. Dane osobowe przetwarzamy w celu świadczenia usług zakwaterowania oraz realizacji obowiązków wynikających z zawartych umów." %}
                 </p>
             </form>
         </div>
