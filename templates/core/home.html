@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
-
-{% block title %}<title>Strona Główna</title>{% endblock%}
+{% load i18n %}
+{% block title %}<title>{% trans "Strona Główna" %}</title>{% endblock%}
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
@@ -142,7 +142,7 @@
                 </div>
                 <div class="col-lg-8 align-self-baseline">
                     <p class="mb-5" style="color:rgba(0,0,0,0.75); font-size:1.5rem; ">
-                        <b>Profesjonalna obsługa najmu nieruchomości - dla firm, pracowników i klientów indywidualnych.</b>
+                        <b>{% trans "Profesjonalna obsługa najmu nieruchomości - dla firm, pracowników i klientów indywidualnych." %}</b>
                     </p>
                 </div>
             </div>
@@ -150,83 +150,81 @@
     </header>
     <section class="page-section text-black" style='background: white; font-family:"Segoe UI";'>
         <div class="container px-4 px-lg-5">
-            <h1 class="mb-4 shadow-text2 text-center" style="color: black;"><b>O nas</b></h1>
+            <h1 class="mb-4 shadow-text2 text-center" style="color: black;"><b>{% trans "O nas" %}</b></h1>
             <div class="text-left shadow-text2" style="text-align:justify;">
-                <p><h3><span style="margin-right:5px;">&#128188</span> <b>Kim jesteśmy?</b></h3></p>
+                <p><h3><span style="margin-right:5px;">&#128188</span> <b>{% trans "Kim jesteśmy?"%}</b></h3></p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    Jesteśmy firmą, która łączy doświadczenie w zarządzaniu najmem z nowoczesnym podejściem do obsługi kwater pracowniczych i mieszkań dla klientów indywidualnych. Od 2022 roku rozwijamy się w m.in. województwie podkarpackim, lubelskim, świętokrzyskim i wielu innych.
+                    {% trans "Jesteśmy firmą, która łączy doświadczenie w zarządzaniu najmem z nowoczesnym podejściem do obsługi kwater pracowniczych i mieszkań dla klientów indywidualnych. Od 2023 roku rozwijamy się w m.in. województwie podkarpackim, lubelskim, świętokrzyskim i wielu innych." %}
                 </p>
-                <p><h3><span style="margin-right:10px;">&#128203 </span> <b>Nasza misja</b></h3></p>
+                <p><h3><span style="margin-right:10px;">&#128203 </span> <b>{% trans "Nasza misja" %}</b></h3></p>
                 <p class="p_light_weight">
-                    <b>Zapewniamy komfort</b> tym, którzy szukają miejsca do zamieszkania.
+                    {% trans "<b>Zapewniamy komfort</b> tym, którzy szukają miejsca do zamieszkania."%}
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    <b>Wyręczamy Cię z obowiązków</b>, których nie chcesz wykonywać samodzielnie.
+                    {% trans "<b>Wyręczamy Cię z obowiązków</b>, których nie chcesz wykonywać samodzielnie." %}
                 </p>
-                <p><h3><span style="margin-right:5px;">&#129513</span> <b>Dla kogo jesteśmy?</b></h3></p>
+                <p><h3><span style="margin-right:5px;">&#129513</span> <b>{% trans "Dla kogo jesteśmy?" %}</b></h3></p>
                 <p style="margin-bottom:20px;">
                     <ul class="p_light_weight" style="text-align:left;">
-                        <li><b>Dla firm</b> szukających kwater pracowniczych</li>
-                        <li><b>Dla osób prywatnych</b> potrzebujących wygodnego lokum</li>
-                        <li><b>Dla inwestorów</b> z pakietem mieszkań</li>
+                        <li>{% trans "<b>Dla firm</b> szukających kwater pracowniczych" %}</li>
+                        <li>{% trans "<b>Dla osób prywatnych</b> potrzebujących wygodnego lokum" %}</li>
+                        <li>{% trans "<b>Dla inwestorów</b> z pakietem mieszkań" %}</li>
                     </ul>
                 </p>
-                <p><h3><span style="margin-right:5px;">&#127968</span> <b>Nasze nieruchomości</b></h3></p>
+                <p><h3><span style="margin-right:5px;">&#127968</span> <b>{% trans "Nasze nieruchomości" %}</b></h3></p>
                 <p style="margin-bottom:20px;">
-                    <p><span style="margin-right:5px;">&#9989</span> <b>W pełni wyposażone i gotowe do zamieszkania</b></p>
+                    <p><span style="margin-right:5px;">&#9989</span> <b>{% trans "W pełni wyposażone i gotowe do zamieszkania" %}</b></p>
                     <p class="p_light_weight">
-                        Nowoczesne wnętrza, kompletne umeblowanie i regularna dbałość o czystość - wszystko po to, byś od razu mógł się wprowadzić, bez stresu i bez dodatkowych kosztów.
+                        {% trans "Nowoczesne wnętrza, kompletne umeblowanie i regularna dbałość o czystość - wszystko po to, byś od razu mógł się wprowadzić, bez stresu i bez dodatkowych kosztów." %}
                     </p>
-                    <p><span style="margin-right:5px;">&#9989</span> <b>Zlokalizowane tam, gdzie trzeba</b></p>
+                    <p><span style="margin-right:5px;">&#9989</span> <b>{% trans "Zlokalizowane tam, gdzie trzeba" %}</b></p>
                     <p class="p_light_weight">
-                        Oferujemy mieszkania w świetnie skomunikowanych miejscach - blisko zakładów pracy, w spokojnych dzielnicach, z dostępem do sklepów, przystanków i innych udogodnień.
+                        {% trans "Oferujemy mieszkania w świetnie skomunikowanych miejscach - blisko zakładów pracy, w spokojnych dzielnicach, z dostępem do sklepów, przystanków i innych udogodnień." %}
                     </p>
-                    <p><span style="margin-right:5px;">&#9989</span> <b>Dostosowane do różnych potrzeb</b></p>
+                    <p><span style="margin-right:5px;">&#9989</span> <b>{% trans "Dostosowane do różnych potrzeb" %}</b></p>
                     <p class="p_light_weight">
-                        Nasze kwatery idealnie sprawdzają się zarówno przy krótkich delegacjach, jak i przy dłuższych pobytach – dla firm, rodzin, par czy osób indywidualnych.
+                        {% trans "Nasze kwatery idealnie sprawdzają się zarówno przy krótkich delegacjach, jak i przy dłuższych pobytach – dla firm, rodzin, par czy osób indywidualnych." %}
                     </p>
                 </p>        
             </div>
 
             
-            <h1 class="mb-4 shadow-text2 text-center" style="color: black; margin-top:50px;"><b>Oferta</b></h1>
+            <h1 class="mb-4 shadow-text2 text-center" style="color: black; margin-top:50px;"><b>{% trans "Oferta" %}</b></h1>
             <div class="text-left shadow-text2" style="text-align:justify;">
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    Nasza oferta jest kompleksowa i elastyczna - odpowiada na realne potrzeby rynku, firm oraz osób prywatnych.
+                    {% trans "Nasza oferta jest kompleksowa i elastyczna - odpowiada na realne potrzeby rynku, firm oraz osób prywatnych." %}
                 </p>
                 <p>
-                    <h3><span style="margin-right:10px;">&#128119</span> <b>Dla firm i agencji zatrudnienia</b></h3>
+                    <h3><span style="margin-right:10px;">&#128119</span> <b>{% trans "Dla firm i agencji zatrudnienia" %}</b></h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    Zapewniamy sprawdzone kwatery pracownicze - gotowe do zamieszkania, w dobrych lokalizacjach, dostosowane do pobytów grupowych i rotacyjnych.
-                    Twoi pracownicy mieszkają wygodnie, bezpiecznie i blisko miejsca pracy - bez komplikacji.
+                    {% trans "Zapewniamy sprawdzone kwatery pracownicze - gotowe do zamieszkania, w dobrych lokalizacjach, dostosowane do pobytów grupowych i rotacyjnych. Twoi pracownicy mieszkają wygodnie, bezpiecznie i blisko miejsca pracy - bez komplikacji." %}
 
                 </p>
                 <p>
-                    <h3><span style="margin-right:10px;">&#128100</span> <b>Dla klientów indywidualnych</b></h3>
+                    <h3><span style="margin-right:10px;">&#128100</span> <b>{% trans "Dla klientów indywidualnych" %}</b></h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    Szukasz mieszkania na dłuższy pobyt? Nasze lokale to idealna opcja dla singli, par i rodzin - zadbane, w pełni wyposażone i gotowe do wprowadzenia się od zaraz.
+                    {% trans "Szukasz mieszkania na dłuższy pobyt? Nasze lokale to idealna opcja dla singli, par i rodzin - zadbane, w pełni wyposażone i gotowe do wprowadzenia się od zaraz." %}
                 </p>
                 <p>
-                    <h3><span style="margin-right:5px;">&#127970</span> <b>Dla właścicieli i inwestorów</b></h3>
+                    <h3><span style="margin-right:5px;">&#127970</span> <b>{% trans "Dla właścicieli i inwestorów" %}</b></h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    Masz mieszkanie, ale nie masz czasu się nim zajmować?
-                    Zdejmujemy z Ciebie cały ciężar:
-                    <ul class="p_light_weight" style="text-align:left;">
-                        <li>przygotowywujemy lokal,</li>
-                        <li>zajmujemy się najemcami,</li>
-                        <li>prowadzimy rozliczenia,</li>
-                        <li>dbamy o czystość i techniczny stan nieruchomości.</li>
+                    {% trans "Masz mieszkanie, ale nie masz czasu się nim zajmować? Zdejmujemy z Ciebie cały ciężar:" %}
+                    <ul class='p_light_weight' style='text-align:left;'>
+                        <li>{% trans "przygotowywujemy lokal," %}</li>
+                        <li>{% trans "zajmujemy się najemcami," %}</li>
+                        <li>{% trans "prowadzimy rozliczenia," %}</li>
+                        <li>{% trans "dbamy o czystość i techniczny stan nieruchomości." %}</li>
                     </ul>
-                    <b>Ty masz spokój - my robimy resztę. Dostarczamy gotowe rozwiązania - Ty nie musisz niczego organizować.</b>
+                    {% trans "<b>Ty masz spokój - my robimy resztę. Dostarczamy gotowe rozwiązania - Ty nie musisz niczego organizować.</b>" %}
                 </p>
                 <p>
-                    <h3><span style="margin-right:5px;">&#128222</span> <b>Potrzebujesz wsparcia?</b></h3>
+                    <h3><span style="margin-right:5px;">&#128222</span> <b>{% trans "Potrzebujesz wsparcia?" %}</b></h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    Niezależnie od tego, czy potrzebujesz mieszkania dla siebie lub swoich ludzi, czy masz nieruchomość i szukasz kogoś, kto ją poprowadzi – jesteśmy po to, żeby Ci pomóc!
+                {% trans "Niezależnie od tego, czy potrzebujesz mieszkania dla siebie lub swoich ludzi, czy masz nieruchomość i szukasz kogoś, kto ją poprowadzi – jesteśmy po to, żeby Ci pomóc!" %}
                 </p>
             </div>  
 
@@ -234,17 +232,17 @@
                 <div class="counter-container">
                     <div><img src='{% static "images/stats_bed.png" %}'></div>
                     <div class="counter" id="appartments_counter">0 +</div>
-                    <div class="counter-label">Miejsc noclegowych</div>
+                    <div class="counter-label">{% trans "Miejsc noclegowych" %}</div>
                 </div>
                 <div class="counter-container" style="margin: 0 20px;">
                     <div><img src='{% static "images/stats_map.png" %}'></div>
                     <div class="counter" id="locations_counter">0+</div>
-                    <div class="counter-label">Lokalizacji kwater</div>
+                    <div class="counter-label">{% trans "Lokalizacji kwater" %}</div>
                 </div>
                 <div class="counter-container">
                     <div><img src='{% static "images/stats_people.png" %}'></div>
                     <div class="counter" id="clients_counter">0+</div>
-                    <div class="counter-label">Zadowolonych klientów</div>
+                    <div class="counter-label">{% trans "Zadowolonych klientów" %}</div>
                 </div>
             </div>
         </div>
@@ -252,7 +250,7 @@
 
     <section class="page-section text-white" style="background: linear-gradient(135deg, rgba(31,93,140,1), rgba(34, 87, 130, 1));">
         <div class="container px-4 px-lg-5 text-center" style='font-family:"SEGOE UI"'>
-            <h2 class="mb-4 shadow-text2 p_light_weight" style='color: white;font-family:"SEGOE UI";'>Możesz nas znaleźć na:</h2>
+            <h2 class="mb-4 shadow-text2 p_light_weight" style='color: white;font-family:"SEGOE UI";'>{% trans "Możesz nas znaleźć na:" %}</h2>
             <div>
                 <a style="margin: 0px 20px;" href=""><img src='{% static "images/fb_icon.png" %}' style="width:64px; height:64px;"></a>
                 <a style="margin: 0px 20px;" href="https://www.instagram.com/twoj_locator/"><img src='{% static "images/ig_icon.png" %}' style="width:64px; height:64px;"></a>
