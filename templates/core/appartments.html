@@ -1,6 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
 {% load i18n %}
+{% load number_filters %}
 {% block title %}<title>{% trans "Kwatery" %}</title>{% endblock%}
 {% block stylings %}
     <style type="text/css">
@@ -126,7 +127,7 @@
 {% block scripts %}
     <script>
         function initMap(){
-            const location = { lat: {{ context.map_lat }}, lng: {{ context.map_lng }} };
+            const location = { lat: {{ context.map_lat|dot_notation }}, lng: {{ context.map_lng|dot_notation }} };
             const gmap = new google.maps.Map(document.getElementById("map"),{
                 center: location,
                 zoom: 14,
