@@ -14,7 +14,7 @@ import environ
 from pathlib import Path
 import os
 import json
-
+from django.utils.translation import gettext_lazy as _
 env = environ.Env()
 environ.Env.read_env()
 
@@ -54,9 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'corsheaders',
+    'core.apps.CoreConfig',
+    'corsheaders',    
+    'modeltranslation',
     'storages',
-    'core',
+    # 'core',
     'django_recaptcha',
     'anymail',
 ]
@@ -66,11 +68,13 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
 ]
 
 ROOT_URLCONF = 'Karpackie_Kwatery_Locator.urls'
@@ -88,6 +92,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'core.contextprocessors.cities_context',
                 'core.contextprocessors.current_year_context',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -95,14 +100,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Karpackie_Kwatery_Locator.wsgi.application'
 
-#mailing (Brevo)
-EMAIL_BACKEND = env("EMAIL_BACKEND")
 
-ANYMAIL = {
-    "BREVO_API_KEY" : env("EMAIL_API_KEY"),
-}
 
-DEFAULT_FROM_EMAIL=env("DEFAULT_FROM_EMAIL")
 
 # google maps
 GOOGLE_MAPS_BACK=env("GOOGLE_KEY_BACKEND")
@@ -117,11 +116,21 @@ AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
 AWS_DEFAULT_ACL= None
 AWS_S3_FILE_OVERWRITE = False
 
-#reCaptcha
-RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
-RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
-RECAPTCHA_REQUIRED_SCORE = 0.5  # Default threshold
+
 if not DEBUG:
+    #mailing (Brevo)
+    EMAIL_BACKEND = env("EMAIL_BACKEND")
+
+    ANYMAIL = {
+        "BREVO_API_KEY" : env("EMAIL_API_KEY"),
+    }
+
+    #reCaptcha
+    RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+    RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+    RECAPTCHA_REQUIRED_SCORE = 0.5  # Default threshold
+
+    DEFAULT_FROM_EMAIL=env("DEFAULT_FROM_EMAIL")
     
     STORAGES = {
         "default" : {
@@ -132,6 +141,7 @@ if not DEBUG:
         },
     }
 else:
+    SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -192,11 +202,23 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+USE_I18N = True
+USE_L10N = True
+LANGUAGE_CODE = 'pl'
+LANGUAGES = [
+    ('pl', _('Polski')),
+    ('en', _('English')),
+]
+
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR,'locale'),               
+]
+
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'pl'
 
 TIME_ZONE = 'Europe/Warsaw'
 
-USE_I18N = True
+
 
 USE_TZ = False
 

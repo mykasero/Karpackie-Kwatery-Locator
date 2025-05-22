@@ -1,0 +1,396 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-21 22:42+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\Karpackie_Kwatery_Locator\settings.py:202
+msgid "Polski"
+msgstr "Polish"
+
+#: .\Karpackie_Kwatery_Locator\settings.py:203
+msgid "English"
+msgstr ""
+
+#: .\core\forms.py:106
+msgid "Hasła nie są takie same"
+msgstr "Passwords cannot be the same"
+
+#: .\core\forms.py:111
+msgid "Pola haseł nie mogą być puste"
+msgstr "Password fields cannot be empty"
+
+#: .\core\forms.py:116
+msgid "Hasło za krótkie, minimalna długość 8 znaków"
+msgstr "Password too short, minimum length is 8 characters"
+
+#: .\core\forms.py:124
+msgid "Użytkownik o takiej nazwie już istnieje"
+msgstr "Invalid username"
+
+#: .\core\forms.py:130
+msgid "Nazwa za długa, maksymalna długość - 50 znaków"
+msgstr "Username too long, maximum length - 50 characters"
+
+#: .\core\forms.py:138
+msgid "Podano zły kod dostępu"
+msgstr "Wrong access code entered"
+
+#: .\core\forms.py:146
+msgid "Hasło nie może być złożone z samych cyfr"
+msgstr "Password cannot be made up of only numbers"
+
+#: .\core\forms.py:155
+msgid "Adres E-mail"
+msgstr "Email address"
+
+#: .\core\forms.py:156
+msgid "Imię"
+msgstr "Name"
+
+#: .\core\forms.py:157
+msgid "Numer telefonu"
+msgstr "Phone number"
+
+#: .\core\forms.py:159
+msgid "Wiadomość"
+msgstr "Message"
+
+#: .\core\forms.py:174
+msgid "Podano niepoprawny format numeru telefonu."
+msgstr "Wrong phone number format"
+
+#: .\core\views.py:268
+msgid "Aby wyświetlić żądaną strone, musisz być zalogowany."
+msgstr "To see the requested page, you need to be logged in."
+
+#: .\core\views.py:275
+msgid "Wylogowano pomyślnie"
+msgstr "Logout successful"
+
+#: .\core\views.py:289
+msgid "Pomyślnie zarejestrowano jako admin."
+msgstr "Registered as admin successfully"
+
+#: .\core\views.py:323
+msgid "Pomyślnie wysłano zgłoszenie."
+msgstr "Message sent successfully"
+
+#: .\templates\core\appartments.html:4
+msgid "Kwatery"
+msgstr "Kwatery"
+
+#: .\templates\core\appartments.html:29
+msgid "{{ message }}"
+msgstr ""
+
+#: .\templates\core\appartments.html:81
+msgid "Otwórz w Google Maps"
+msgstr "Open in Google Maps"
+
+#: .\templates\core\appartments.html:88
+msgid "Atuty"
+msgstr "Attributes"
+
+#: .\templates\core\base.html:79 .\templates\core\home.html:4
+msgid "Strona Główna"
+msgstr "Homepage"
+
+#: .\templates\core\base.html:94
+msgid "Nieruchomości"
+msgstr "Real Estate"
+
+#: .\templates\core\base.html:117
+msgid "Brak dostępnych lokalizacji"
+msgstr "No locations available"
+
+#: .\templates\core\base.html:123 .\templates\core\gallery.html:4
+#: .\templates\core\gallery.html:49
+msgid "Galeria"
+msgstr "Gallery"
+
+#: .\templates\core\base.html:124 .\templates\core\contact.html:4
+#: .\templates\core\contact.html:70
+msgid "Kontakt"
+msgstr "Contact"
+
+#: .\templates\core\contact.html:85
+msgid "Formularz kontaktowy"
+msgstr "Contact Form"
+
+#: .\templates\core\contact.html:102
+msgid "Wyślij"
+msgstr "Send"
+
+#: .\templates\core\contact.html:105
+msgid ""
+"Administratorem Państwa danych osobowych jest Karpackie Kwatery Locator Sp. "
+"z o.o. z siedzibą w Krośnie, ul. Krakowska 216A, 38-400 Krosno, wpisana do "
+"rejestru przedsiębiorców Krajowego Rejestru Sądowego przez Sąd Rejonowy w "
+"Rzeszowie, XII Wydział Gospodarczy Krajowego Rejestru Sądowego pod numerem "
+"KRS: 0001038275, NIP: 6842671330, REGON: 525409151, o kapitale zakładowym w "
+"wysokości 20 000,00 zł. Dane osobowe przetwarzamy w celu świadczenia usług "
+"zakwaterowania oraz realizacji obowiązków wynikających z zawartych umów."
+msgstr ""
+"The administrator of your personal data is Karpackie Kwatery Locator Sp. z "
+"o.o. with its seat in Krosno, Krakowska 216A Street, 38-400 Krosno, "
+"registered in the Register of Entrepreneurs of the National Court Register "
+"by District Court in Rzeszow, XII Economic Department of the National Court "
+"Register under KRS number: 0001038275, NIP: 6842671330, REGON: 525409151, "
+"with the share capital of 20 000,00 PLN. We process personal data for the "
+"purpose of providing accommodation services and fulfilling obligations under "
+"the concluded agreements"
+
+#: .\templates\core\gallery.html:68
+msgid "Pierwsza"
+msgstr "First"
+
+#: .\templates\core\gallery.html:69
+msgid "Poprzednia"
+msgstr "Previous"
+
+#: .\templates\core\gallery.html:72
+msgid "Strona"
+msgstr "Page"
+
+#: .\templates\core\gallery.html:76
+msgid "Następna"
+msgstr "Next"
+
+#: .\templates\core\gallery.html:77
+msgid "Ostatnia"
+msgstr "Last"
+
+#: .\templates\core\gallery.html:83
+msgid "Brak lokalizacji do wyświetlenia."
+msgstr "No accommodations available to display."
+
+#: .\templates\core\home.html:146
+msgid ""
+"Profesjonalna obsługa najmu nieruchomości - dla firm, pracowników i klientów "
+"indywidualnych."
+msgstr ""
+"Professional real estate rental service - for companies, employees and "
+"individual customers."
+
+#: .\templates\core\home.html:154
+msgid "O nas"
+msgstr "About us"
+
+#: .\templates\core\home.html:156
+msgid "Kim jesteśmy?"
+msgstr "Who are we?"
+
+#: .\templates\core\home.html:158
+msgid ""
+"Jesteśmy firmą, która łączy doświadczenie w zarządzaniu najmem z nowoczesnym "
+"podejściem do obsługi kwater pracowniczych i mieszkań dla klientów "
+"indywidualnych. Od 2023 roku rozwijamy się w m.in. województwie "
+"podkarpackim, lubelskim, świętokrzyskim i wielu innych."
+msgstr ""
+"We are a company that combines experience in rental management with a modern "
+"approach to servicing employee quarters and apartments for individual "
+"customers. As of 2023, we are expanding in, among others, Podkarpackie, "
+"Lublin, Świętokrzyskie and many other provinces."
+
+#: .\templates\core\home.html:160
+msgid "Nasza misja"
+msgstr "Our mission"
+
+#: .\templates\core\home.html:162
+msgid "<b>Zapewniamy komfort</b> tym, którzy szukają miejsca do zamieszkania."
+msgstr ""
+"<b>We provide comfort</b> to those who are looking for a place to live."
+
+#: .\templates\core\home.html:165
+msgid ""
+"<b>Wyręczamy Cię z obowiązków</b>, których nie chcesz wykonywać samodzielnie."
+msgstr "<b>We relieve you of duties</b> that you do not want to do yourself."
+
+#: .\templates\core\home.html:167
+msgid "Dla kogo jesteśmy?"
+msgstr "Who we are for?"
+
+#: .\templates\core\home.html:170
+msgid "<b>Dla firm</b> szukających kwater pracowniczych"
+msgstr "<b>For companies</b> looking for employee accommodation"
+
+#: .\templates\core\home.html:171
+msgid "<b>Dla osób prywatnych</b> potrzebujących wygodnego lokum"
+msgstr "<b>For individuals</b> in need of comfortable accommodation"
+
+#: .\templates\core\home.html:172
+msgid "<b>Dla inwestorów</b> z pakietem mieszkań"
+msgstr "<b>For investors</b> with real estate portfolio"
+
+#: .\templates\core\home.html:175
+msgid "Nasze nieruchomości"
+msgstr "Our Real Estate"
+
+#: .\templates\core\home.html:177
+msgid "W pełni wyposażone i gotowe do zamieszkania"
+msgstr "Fully equipped and ready to move in"
+
+#: .\templates\core\home.html:179
+msgid ""
+"Nowoczesne wnętrza, kompletne umeblowanie i regularna dbałość o czystość - "
+"wszystko po to, byś od razu mógł się wprowadzić, bez stresu i bez "
+"dodatkowych kosztów."
+msgstr ""
+"Modern interiors, complete furnishings and regular attention to cleanliness "
+"- all so that you can move in right away, without stress and at no extra "
+"cost."
+
+#: .\templates\core\home.html:181
+msgid "Zlokalizowane tam, gdzie trzeba"
+msgstr "Located where it needs to be"
+
+#: .\templates\core\home.html:183
+msgid ""
+"Oferujemy mieszkania w świetnie skomunikowanych miejscach - blisko zakładów "
+"pracy, w spokojnych dzielnicach, z dostępem do sklepów, przystanków i innych "
+"udogodnień."
+msgstr ""
+"We offer apartments in well-connected areas - close to workplaces, in quiet "
+"neighborhoods, with access to stores, bus stops and other amenities."
+
+#: .\templates\core\home.html:185
+msgid "Dostosowane do różnych potrzeb"
+msgstr "Tailored to different needs"
+
+#: .\templates\core\home.html:187
+msgid ""
+"Nasze kwatery idealnie sprawdzają się zarówno przy krótkich delegacjach, jak "
+"i przy dłuższych pobytach – dla firm, rodzin, par czy osób indywidualnych."
+msgstr ""
+"Our accommodations are ideal for both short business trips and longer stays "
+"- for companies, families, couples or individuals."
+
+#: .\templates\core\home.html:193
+msgid "Oferta"
+msgstr "Offerings"
+
+#: .\templates\core\home.html:196
+msgid ""
+"Nasza oferta jest kompleksowa i elastyczna - odpowiada na realne potrzeby "
+"rynku, firm oraz osób prywatnych."
+msgstr ""
+"Our offer is comprehensive and flexible - it meets the real needs of the "
+"market, companies and individuals."
+
+#: .\templates\core\home.html:199
+msgid "Dla firm i agencji zatrudnienia"
+msgstr "For companies and employment agencies"
+
+#: .\templates\core\home.html:202
+msgid ""
+"Zapewniamy sprawdzone kwatery pracownicze - gotowe do zamieszkania, w "
+"dobrych lokalizacjach, dostosowane do pobytów grupowych i rotacyjnych. Twoi "
+"pracownicy mieszkają wygodnie, bezpiecznie i blisko miejsca pracy - bez "
+"komplikacji."
+msgstr ""
+"We provide proven employee accommodations - ready to move in, in good "
+"locations, suitable for group and rotational stays. Your employees live "
+"comfortably, safely and close to the workplace - without complications."
+
+#: .\templates\core\home.html:206
+msgid "Dla klientów indywidualnych"
+msgstr "For individual clients"
+
+#: .\templates\core\home.html:209
+msgid ""
+"Szukasz mieszkania na dłuższy pobyt? Nasze lokale to idealna opcja dla "
+"singli, par i rodzin - zadbane, w pełni wyposażone i gotowe do wprowadzenia "
+"się od zaraz."
+msgstr ""
+"Looking for an apartment for a longer stay? Our units are an ideal option "
+"for singles, couples and families - well-maintained, fully equipped and "
+"ready to move in right away."
+
+#: .\templates\core\home.html:212
+msgid "Dla właścicieli i inwestorów"
+msgstr "For owners and investors"
+
+#: .\templates\core\home.html:215
+msgid ""
+"Masz mieszkanie, ale nie masz czasu się nim zajmować? Zdejmujemy z Ciebie "
+"cały ciężar:"
+msgstr ""
+"Do you have an apartment, but don't have time to take care of it? We take "
+"all the burden off you:"
+
+#: .\templates\core\home.html:217
+msgid "przygotowywujemy lokal,"
+msgstr "we prepare the appartment,"
+
+#: .\templates\core\home.html:218
+msgid "zajmujemy się najemcami,"
+msgstr "we deal with tenants,"
+
+#: .\templates\core\home.html:219
+msgid "prowadzimy rozliczenia,"
+msgstr "we conduct settlements,"
+
+#: .\templates\core\home.html:220
+msgid "dbamy o czystość i techniczny stan nieruchomości."
+msgstr ""
+"we take care of the cleanliness and technical condition of the property."
+
+#: .\templates\core\home.html:222
+msgid ""
+"<b>Ty masz spokój - my robimy resztę. Dostarczamy gotowe rozwiązania - Ty "
+"nie musisz niczego organizować.</b>"
+msgstr ""
+"<b>You have peace of mind - we do the rest. We provide ready-made solutions "
+"- you don't have to organize anything.</b>"
+
+#: .\templates\core\home.html:225
+msgid "Potrzebujesz wsparcia?"
+msgstr "Need support?"
+
+#: .\templates\core\home.html:228
+msgid ""
+"Niezależnie od tego, czy potrzebujesz mieszkania dla siebie lub swoich "
+"ludzi, czy masz nieruchomość i szukasz kogoś, kto ją poprowadzi – jesteśmy "
+"po to, żeby Ci pomóc!"
+msgstr ""
+"Whether you need an apartment for yourself or your people, or you have a "
+"property and are looking for someone to run it - we are here to help you!"
+
+#: .\templates\core\home.html:236
+msgid "Miejsc noclegowych"
+msgstr "Accommodations"
+
+#: .\templates\core\home.html:241
+msgid "Lokalizacji kwater"
+msgstr "Locations of accommodation"
+
+#: .\templates\core\home.html:246
+msgid "Zadowolonych klientów"
+msgstr "Satisfied customers"
+
+#: .\templates\core\home.html:254
+msgid "Możesz nas znaleźć na:"
+msgstr "Find us on:"
+
+#: .\templates\core\login.html:58
+msgid "Nie masz konta? Rejestracje dla administracji znajdziesz"
+msgstr "Don't have an account? You can find the register form for admins"
+
+#: .\templates\core\login.html:58
+msgid "tutaj."
+msgstr "here."
