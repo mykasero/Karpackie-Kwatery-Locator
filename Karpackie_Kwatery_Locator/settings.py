@@ -100,7 +100,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Karpackie_Kwatery_Locator.wsgi.application'
 
+#mailing (Brevo)
+EMAIL_BACKEND = env("EMAIL_BACKEND")
 
+ANYMAIL = {
+    "BREVO_API_KEY" : env("EMAIL_API_KEY"),
+}
+
+#reCaptcha
+RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
+RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
+RECAPTCHA_REQUIRED_SCORE = 0.5  # Default threshold
+
+DEFAULT_FROM_EMAIL=env("DEFAULT_FROM_EMAIL")
 
 
 # google maps
@@ -118,19 +130,7 @@ AWS_S3_FILE_OVERWRITE = False
 
 
 if not DEBUG:
-    #mailing (Brevo)
-    EMAIL_BACKEND = env("EMAIL_BACKEND")
 
-    ANYMAIL = {
-        "BREVO_API_KEY" : env("EMAIL_API_KEY"),
-    }
-
-    #reCaptcha
-    RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")
-    RECAPTCHA_PRIVATE_KEY = env("RECAPTCHA_PRIVATE_KEY")
-    RECAPTCHA_REQUIRED_SCORE = 0.5  # Default threshold
-
-    DEFAULT_FROM_EMAIL=env("DEFAULT_FROM_EMAIL")
     
     STORAGES = {
         "default" : {
@@ -141,7 +141,7 @@ if not DEBUG:
         },
     }
 else:
-    SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
+    # SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
