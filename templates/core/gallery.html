@@ -1,7 +1,7 @@
 {% extends "core/base.html" %}
 {% load static %}
-
-{% block title %}<title>Galeria</title>{% endblock%}
+{% load i18n %}
+{% block title %}<title>{% trans "Galeria" %}</title>{% endblock%}
 {% block stylings %}
     <style type="text/css">
         .shadow-text{
@@ -45,7 +45,7 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <h1>Galeria</h1>
+            <h1>{% trans "Galeria" %}</h1>
 
             {% if gallery_items %}
                 <div class="gallery-grid">
@@ -64,22 +64,22 @@
                 <div class="pagination">
                     <span class="step-links">
                         {% if page_obj.has_previous %}
-                            <a href="?page=1">&laquo; Pierwsza</a>
-                            <a href="?page={{ page.obj.previous_page_number }}">Poprzednia</a>
+                            <a href="?page=1">&laquo; {% trans "Pierwsza" %}</a>
+                            <a href="?page={{ page.obj.previous_page_number }}">{% trans "Poprzednia" %}</a>
                         {% endif %}
                         <span class="current">
-                            Strona {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}.
+                            {% trans "Strona" %} {{ page_obj.number }} z {{ page_obj.paginator.num_pages }}.
                         </span>
 
                         {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.next_page_number }}">Następna</a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}">Ostatnia &raquo;</a>
+                            <a href="?page={{ page_obj.next_page_number }}">{% trans "Następna" %}</a>
+                            <a href="?page={{ page_obj.paginator.num_pages }}">{% trans "Ostatnia" %} &raquo;</a>
                         {% endif %}
 
                     </span>
                 </div>  
             {% else %}
-                <h6 style="mb-5 shadow-text" style="color:white;"> Brak lokalizacji do wyświetlenia.</h6>
+                <h6 style="mb-5 shadow-text" style="color:white;"> {% trans "Brak lokalizacji do wyświetlenia." %}</h6>
             {% endif %}
 
         </div>

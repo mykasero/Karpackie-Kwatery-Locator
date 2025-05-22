@@ -1,6 +1,6 @@
 {% extends "core/base.html" %}
 {% load static %}
-
+{% load i18n %}
 {% block title %}<title>Login</title>{% endblock%}
 {% block stylings %}
     <style type="text/css">
@@ -55,7 +55,7 @@
                     {% endfor %}
                     <div class="form-group">
                         <button class="btn btn-primary" style="margin-bottom:20px; color:black;" type="submit" name="add_appartment">Zaloguj</button>
-                        <div class="text-center mb-5" style="font-size:0.85rem;">Nie masz konta? Rejestracje dla administracji znajdziesz <a href="/rejestracja">tutaj.</a></div>
+                        <div class="text-center mb-5" style="font-size:0.85rem;">{% trans "Nie masz konta? Rejestracje dla administracji znajdziesz" %} <a href="/rejestracja">{% trans "tutaj." %}</a></div>
                     </div>
                 </form>
             </div>
