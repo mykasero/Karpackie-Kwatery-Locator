@@ -39,11 +39,12 @@
         .counter-container {
             text-align: center;
             background: linear-gradient(135deg, rgba(31,93,140,1), rgba(36,87,130,1));
-            padding: 40px 60px;
+            padding: 80px 60px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             color: white;
             max-width: 25%;
+            margin: 0 20px;
         }
 
         .counter {
@@ -63,6 +64,32 @@
 
         .p_light_weight{
             
+        }
+        @media (min-width:1200px)
+        and (max-width:1399px){
+            .counter-label {
+                font-size: 1.2rem; /* Smaller font size for labels */
+            }
+        }
+        @media (min-width:993px)
+        and (max-width:1199px){
+            .homepage-image{
+                width:250px;
+            }
+            .counter-container {
+                padding: 80px 40px; /* Reduce padding for smaller screens */
+                max-width: 25%; 
+                margin: 0 10px;
+            }
+
+            .counter {
+                font-size: 2rem; /* Smaller font size for counters */
+                margin: 0 0;
+            }
+
+            .counter-label {
+                font-size: 1.15rem; /* Smaller font size for labels */
+            }
         }
 
         @media (min-width:700px)
@@ -85,7 +112,8 @@
                 font-size: 1rem; /* Smaller font size for labels */
             }
         }
-        @media (max-width: 700px) {
+        
+        @media (max-width: 768px) {
             .homepage-image{
                 width:200px;
             }
@@ -122,6 +150,15 @@
             filter:brightness(100%);
         }
     </style>
+{% if request.LANGUAGE_CODE == 'en' %}
+    <style type="text/css">
+        @media (min-width:993px)
+            and (max-width:992px){
+
+            }
+    </style>
+{% endif %}
+
 {% endblock %}
 {% block content %}
     <!-- Masthead-->
@@ -234,7 +271,7 @@
                     <div class="counter" id="appartments_counter">0 +</div>
                     <div class="counter-label">{% trans "Miejsc noclegowych" %}</div>
                 </div>
-                <div class="counter-container" style="margin: 0 20px;">
+                <div class="counter-container">
                     <div><img src='{% static "images/stats_map.png" %}'></div>
                     <div class="counter" id="locations_counter">0+</div>
                     <div class="counter-label">{% trans "Lokalizacji kwater" %}</div>
