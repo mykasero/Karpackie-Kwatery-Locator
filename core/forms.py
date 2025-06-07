@@ -11,6 +11,9 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
+'''
+    Classes implemented as workaround for the django built-in single image per upload limit
+'''
 class MultipleFileInput(forms.ClearableFileInput):
     allow_multiple_selected = True
 
@@ -26,6 +29,11 @@ class MultipleFileField(forms.FileField):
         else:
             result = [single_file_clean(data, initial)]
         return result
+
+"""
+    Form for adding new appartments, 
+    uses the MultiFileField class so multiple images can be uploaded at once
+"""
 
 class AppartmentForm(forms.ModelForm):
     images = MultipleFileField()
@@ -43,7 +51,9 @@ class AppartmentForm(forms.ModelForm):
         help_texts = {
             'extra_desc': 'Podaj cechy oddzielając je symbolem ";"',
         }
-        
+"""
+    Simple form for changing the value inside the counters displayed on landing page
+"""
 class CountersForm(forms.ModelForm):
     class Meta:
         model = HomepageCounters
@@ -56,12 +66,16 @@ class CountersForm(forms.ModelForm):
             'clients_amount' : 'Ilość klientów',
         }
         
-# Login Form
+"""
+     Login Form
+"""
 class LoginForm(forms.Form):
     login = forms.CharField(label = '', max_length=50, widget=forms.TextInput(attrs={'placeholder': 'Login'}))
     haslo = forms.CharField(label = '', widget=forms.PasswordInput(attrs={'placeholder': 'Haslo'}), max_length=40)
     
-# Register form
+"""
+    Register form
+"""
 class RegisterForm(UserCreationForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args,**kwargs)
@@ -150,7 +164,9 @@ class RegisterForm(UserCreationForm):
         
         return cleaned_data
 
-
+"""
+    Form for users to contact the business via email
+"""
 class ContactForm(forms.Form):
     email = forms.EmailField(label = _("Adres E-mail"), max_length=100)
     name = forms.CharField(label = _("Imię"))
@@ -162,7 +178,6 @@ class ContactForm(forms.Form):
             'cols' : 50,     
         })
     )
-    # captcha = ReCaptchaField(widget=ReCaptchaV3())
     captcha=ReCaptchaField()
     
     def clean(self):

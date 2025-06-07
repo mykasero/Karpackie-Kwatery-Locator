@@ -21,10 +21,21 @@ from django.utils.translation import gettext_lazy as _
 env = environ.Env()
 environ.Env.read_env()
 
+"""
+    Function for checking if the currents session user has staff priviledge
+"""
 def staff_required(login_url=None):
     return user_passes_test(lambda u: u.is_staff, login_url = login_url)
 
+"""
+    Landing Page view
+"""
 def home(request):
+    """
+        If there's data in the counters view, 
+        get the latest data and display it in the counters on the landing page,
+        if there's none do a safe fail and display 1 in every counter
+    """
     if HomepageCounters.objects.all():
         counters_data = HomepageCounters.objects.order_by('-id').values()[0]
         context = {
@@ -41,11 +52,21 @@ def home(request):
                 'clients_number':1}
         }
     return render(request,"core/home.html", {'context':context})
-
+"""
+    Appartments view 
+"""
 def appartments(request, appartment_pk):
+    """
+        Get the specific appartment by appartment id, 
+        display the view with the appartments information,
+        based on the location information call the gmaps geocode API to get the latitude and longitude
+        which will be used in the map API
+    """
     current_appartment = get_object_or_404(AppartmentsModel, pk=appartment_pk)
     
+    # remove trailing whitespace and newlines, split the text by ";" char
     appartments_extra_desc = current_appartment.extra_desc.strip("\r\n").split(';')
+    
     if appartments_extra_desc[-1] == '':
         appartments_extra_desc = appartments_extra_desc[:-1]
     
@@ -77,7 +98,16 @@ def appartments(request, appartment_pk):
     
     return render(request,"core/appartments.html", {'context':context})
 
+"""
+    Gallery view
+"""
 def gallery(request):
+    """
+        Get all the images of every appartment,
+        split them into first image and all images, first image will be used as the image for the miniature,
+        redistribute them into addresses that their appartments belong to,
+        create a paginator that has 9 items per page
+    """
     images = AppartmentsPhotosModel.objects.select_related('appartment').all()
     
     address_groups = {}
@@ -103,8 +133,6 @@ def gallery(request):
             'first_image' : data['first_image'],
             'all_images' : data['all_images'],
         })
-
-    first_images = [image['first_image'] for image in gallery_items]
     
     paginator = Paginator(gallery_items, 9)
     page_number = request.GET.get('page')
@@ -118,6 +146,9 @@ def gallery(request):
     
     return render(request,"core/gallery.html", context)
 
+"""
+    Remove image view, available only for staff
+"""
 @staff_required(login_url="/login/")
 def remove_image(request, image_id):
     image = get_object_or_404(AppartmentsPhotosModel, id=image_id)
@@ -125,12 +156,23 @@ def remove_image(request, image_id):
     
     return redirect('gallery')
 
+"""
+    Admin main page view, available only for staff
+"""
 @staff_required(login_url="/login/")
 def admin_page(request):        
     return render(request,"core/admin_page.html")
 
+"""
+    Admin add appartment view, available only for staff
+"""
 @staff_required(login_url="/login/")
 def add_appartment(request):
+    """
+        Render form, if request.method is POST - get the uploaded info and images
+        save the information, loop over the images and save them to the current
+        appartments instance
+    """
     if request.method=='POST':
         form_appartments = AppartmentForm(request.POST, request.FILES)
         uploaded_files = request.FILES.getlist('images')
@@ -153,8 +195,14 @@ def add_appartment(request):
         
     return render(request,"core/add_appartment.html", {'form':form_appartments})
 
+"""
+    Admin edit appartment view, available only for staff
+"""
 @staff_required(login_url="/login/")
 def edit_appartment(request, appartment_pk):
+    """
+        Works similar to the add appartment view
+    """
     appartment = get_object_or_404(AppartmentsModel, pk=appartment_pk)
 
     if request.method == "POST":
@@ -171,7 +219,6 @@ def edit_appartment(request, appartment_pk):
             instance.updated_on = datetime.now()
             instance.uploaded_by = request.user
             instance.save()
-            
             
             for image in uploaded_files:
                 AppartmentsPhotosModel.objects.create(appartment=instance, image=image)
@@ -201,14 +248,22 @@ def edit_appartment(request, appartment_pk):
                 'form' : form,
                 'appartment' : appartment,
             })
-
+"""
+    Admin remove appartment confirmation view, available only for staff
+"""
 @staff_required(login_url="/login/")
 def remove_appartment_conf(request, appartment_pk):
     appartment = get_object_or_404(AppartmentsModel, pk=appartment_pk)
     return render(request, "core/remove_appartment_conf.html", {'appartment':appartment})
 
+"""
+    Admin remove appartment view, available only for staff
+"""
 @staff_required(login_url="/login/")
 def remove_appartment(request, appartment_pk):
+    """
+        Get the specific appartment, if request.method is post, delete the appartment and send 204 response
+    """
     appartment = get_object_or_404(AppartmentsModel, pk=appartment_pk)
     if request.method == "POST":
         appartment.delete()
@@ -224,9 +279,14 @@ def remove_appartment(request, appartment_pk):
             }
         )
 
-
+"""
+    Admin update counter view, available only for staff
+"""
 @staff_required(login_url="/login/")
 def update_counters(request):
+    """
+        Render countersform, if request.method is POST - remove previous data and save the current one
+    """ 
     if request.method=='POST':
         form_counters = CountersForm(request.POST)
 
@@ -244,7 +304,9 @@ def update_counters(request):
         
     return render(request,"core/update_counters.html", {'form':form_counters})
 
-
+"""
+    Login view for staff
+"""
 def login(request):
     if request.user.is_authenticated:          
         return render(request,"core/admin_page.html")
@@ -269,13 +331,23 @@ def login(request):
                 
             form = LoginForm()
             return render(request, "core/login.html", {'form':form})
-        
+
+"""
+    Logout view
+"""  
 def logout(request):
     auth_logout(request)
     messages.info(request, _("Wylogowano pomyślnie"))
     return redirect("/")
 
+"""
+    Register view
+"""
 def register(request):
+    """
+        Render register form, if request.method is POST and data is valid, register new user
+        and add him to the admin permissions group
+    """
     form = RegisterForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
@@ -287,7 +359,6 @@ def register(request):
             group = Group.objects.get(name="admin")
             user.groups.add(group)
             messages.info(request, _("Pomyślnie zarejestrowano jako admin."))
-            # return render(request, "core/admin_page.html")
             return redirect('administracja/')
 
         else:
@@ -295,8 +366,15 @@ def register(request):
     else:
         form = RegisterForm()
         return render(request,"core/register.html", {'form':form})
-    
+
+"""
+    Contact view
+"""    
 def contact(request):
+    """
+        Render contact form, if request.method is POST - Send the email with brevo API 
+        to the business mailbox
+    """ 
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():

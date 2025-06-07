@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import AppartmentsModel, AppartmentsPhotosModel, HomepageCounters
-# Register your models here.
 
 @admin.register(AppartmentsModel)
 class AppartmentsModelAdmin(admin.ModelAdmin):

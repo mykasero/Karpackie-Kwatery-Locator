@@ -20,16 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.conf.urls.i18n import i18n_patterns, set_language
 urlpatterns = [
-    # path('i18n/setlang/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
     path('', include('core.urls')),
     path('i18n/setlang/', set_language, name="set_language"),
 ]
-
-# urlpatterns += i18n_patterns(
-#     path('', include('core.urls')),
-#     prefix_default_language=False,
-# )
 
 
 if settings.DEBUG:

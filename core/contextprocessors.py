@@ -24,16 +24,17 @@ from datetime import date
     
 '''
 def cities_context(request):
-    # appartments = cache.get('appartments')
-    # if not appartments:
     all_apps = AppartmentsModel.objects.all().values('pk','id','city','address')
     all_cities = [appartment['city'] for appartment in AppartmentsModel.objects.all().values('city').distinct()]
-        # cache.set('appartments', all_apps, timeout=60*60) # Cache for 1hour
         
     return {
         'cities_list' : all_cities,
         'appartments' : all_apps,
     }
+
+'''
+simple contextprocessor for displaying current year in the footer next to copyright
+'''
     
 def current_year_context(request):
     current_year = date.today().year
