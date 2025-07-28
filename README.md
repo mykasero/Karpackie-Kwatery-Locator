@@ -30,3 +30,6 @@
   <li>Brevo SMTP</li>
 </ul> 
 </p>
+
+<p><h2>Screenshots of the website</h2></p>
+Link to the images hosted on imgur - https://imgur.com/a/LkfN6zn
