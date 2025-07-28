@@ -6,7 +6,14 @@
 
 <p><h2>Functionalities:</h2>
 <ul>
-  <li><b>... And more functionalities TBD</b></li>
+  <li>Authentication + Authorization for admins</li>
+  <li>Custom admin panel</li>
+  <li>Custom admin operations (CRUD locations + gallery)</li>
+  <li>Custom handler of uploading multiple images</li>
+  <li>EN/PL versions of the website</li>
+  <li>User contact form + mailing to admin inbox</li>
+  <li>Dynamic tab with appartments locations</li>
+  <li>Clean and scalable UI</li>
 </ul></p>
 
 <p><h2>Tools used:</h2>
@@ -17,6 +24,9 @@
   <li>Git</li>
   <li>PostgreSQL 16</li>
   <li>Docker</li>
-  
+  <li>Google maps API</li>
+  <li>AWS S3</li>
+  <li>CloudFlare</li>
+  <li>Brevo SMTP</li>
 </ul> 
 </p>
