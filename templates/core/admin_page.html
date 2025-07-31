@@ -36,6 +36,15 @@
                 <h6 class="mb-2 shadow-text">Formularz zmiany liczb w licznikach</h6>
                 <a class="btn btn-primary btn-xl" style="height:50px; font-size:0.7rem;" href="/administracja/liczniki">Przejdź</a>
             </div>
+            {% if not data_fail %}
+                <div class="text-center">
+                    {{requests_per_timeframe}}
+                </div>
+            {% else %}
+                <div class="text-center">
+                    Błąd podczas importu danych z cloudflare.
+                </div>
+            {% endif %}
         </div>
     </div>
 

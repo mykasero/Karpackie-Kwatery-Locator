@@ -100,6 +100,11 @@ ANYMAIL = {
 }
 
 """
+    Cloudflare
+"""
+CLOUDFLARE_ZONE_TOKEN=env("CLOUDLARE_ZONE_API")
+CLOUDFLARE_ZONE_ID=env("CLOUDFLARE_ZONE_ID")
+"""
     ReCaptcha configuration
 """
 RECAPTCHA_PUBLIC_KEY = env("RECAPTCHA_PUBLIC_KEY")

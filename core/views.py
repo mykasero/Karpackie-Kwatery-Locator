@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import AppartmentsModel,AppartmentsPhotosModel, HomepageCounters
 from .forms import AppartmentForm, CountersForm, ContactForm
-import googlemaps
+import googlemaps, requests, json
 from django.conf import settings
 from django.http import JsonResponse, HttpResponse
 from django.core.paginator import Paginator
@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.contrib.auth.models import Group
 from django.core.mail import send_mail
 from datetime import datetime
-import json
+import datetime as dt
 from django.urls import reverse
 from django.core.paginator import Paginator
 import environ
@@ -72,8 +72,9 @@ def appartments(request, appartment_pk):
     
     gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_BACK)
     try:
+        print(f"test adres - {current_appartment.address}, {current_appartment.city}")
         geocode_result = gmaps.geocode(current_appartment.address+", "+current_appartment.city)
-
+        print("TEST RESULT - ", geocode_result)
         if geocode_result:
             location = geocode_result[0]['geometry']['location']
             lat, lng = location['lat'], location['lng']
@@ -160,8 +161,63 @@ def remove_image(request, image_id):
     Admin main page view, available only for staff
 """
 @staff_required(login_url="/login/")
-def admin_page(request):        
-    return render(request,"core/admin_page.html")
+def admin_page(request):    
+    date_from = (dt.date.today()-dt.timedelta(days=30)).isoformat()  
+    graphql_query = f"""
+    query {{
+      viewer {{
+        zones(filter: {{zoneTag: "{settings.CLOUDFLARE_ZONE_ID}"}}) {{
+          httpRequests1dGroups(limit: 30, filter: {{date_gt: "{date_from}"}}) {{
+            dimensions {{
+              date
+            }}
+            sum {{
+              requests
+            }}
+          }}
+        }}
+      }}
+    }}
+    """
+
+    response = requests.post(
+        "https://api.cloudflare.com/client/v4/graphql",
+        headers={
+            "Authorization" : f"Bearer {settings.CLOUDFLARE_ZONE_TOKEN}",
+            "Content-type" : "application/json",
+        },
+        json={"query": graphql_query}
+    )
+    
+    data = response.json()
+    data_failed = False
+    print(f"TEST DATA \ \ \n {data}")
+    if not data.get("success", True) or data["data"] == None:
+        print("here")
+        data_failed = True
+        return render(
+            request,
+            "core/admin_page.html",
+            {
+                "data_fail" : data_failed,
+                "data" : data,
+            }
+        )
+    else:
+        print("here2")
+        zone_data = data["data"]["viewer"]["zones"][0]
+        dates_30 = sum([request["sum"]["requests"] for request in zone_data["httpRequests1dGroups"]])
+        dates_7 = sum([request["sum"]["requests"] for request in zone_data["httpRequests1dGroups"][-7:]])
+        dates_1 = zone_data["httpRequests1dGroups"][-1]["sum"]["requests"]
+        return render(
+            request,
+            "core/admin_page.html",
+            {
+                "data_fail" : data_failed,
+                "requests_per_timeframe" : [dates_30,dates_7,dates_1],
+            }            
+        )
+    
 
 """
     Admin add appartment view, available only for staff
@@ -191,7 +247,6 @@ def add_appartment(request):
             
     else:
         form_appartments = AppartmentForm()
-        print(f"test - {form_appartments}")
         
     return render(request,"core/add_appartment.html", {'form':form_appartments})
 
