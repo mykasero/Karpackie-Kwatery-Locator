@@ -161,7 +161,13 @@ def remove_image(request, image_id):
     Admin main page view, available only for staff
 """
 @staff_required(login_url="/login/")
-def admin_page(request):    
+def admin_page(request):
+    """
+        Calculate the date from 30days ago in isoformat to send it in the 
+        graphQL query.
+        Sending graphQL query to cloudflare to receive data about traffic and
+        rendering it in the admin panel
+    """
     date_from = (dt.date.today()-dt.timedelta(days=30)).isoformat()  
     graphql_query = f"""
     query {{
@@ -191,9 +197,10 @@ def admin_page(request):
     
     data = response.json()
     data_failed = False
-    print(f"TEST DATA \ \ \n {data}")
+    # if data does not have success status or data is empty set data_failed
+    # to true, which will render information in the admin panel that
+    # something went wrong with the data import
     if not data.get("success", True) or data["data"] == None:
-        print("here")
         data_failed = True
         return render(
             request,
@@ -204,10 +211,13 @@ def admin_page(request):
             }
         )
     else:
-        print("here2")
+        # unnest the information about the past 30 days traffic
         zone_data = data["data"]["viewer"]["zones"][0]
+        # sum all visits from the past 30 days
         dates_30 = sum([request["sum"]["requests"] for request in zone_data["httpRequests1dGroups"]])
+        # sum all visits from the past 7 days
         dates_7 = sum([request["sum"]["requests"] for request in zone_data["httpRequests1dGroups"][-7:]])
+        # sum all visits from the past 24 hours
         dates_1 = zone_data["httpRequests1dGroups"][-1]["sum"]["requests"]
         return render(
             request,
