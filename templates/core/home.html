@@ -22,7 +22,11 @@
         header.masthead {
             padding-top: 10rem;
             padding-bottom: calc(10rem - 4.5rem);
-            background: linear-gradient(to bottom, rgba(121,121,121, 0.2) 0%, rgba(0,0,0, 0.1) 100%), url({% static 'images/bedroom_image.jpg' %});
+            background: linear-gradient(
+                to bottom, 
+                rgba(121,121,121, 0.2) 0%, 
+                rgba(0,0,0, 0.1) 100%), 
+                url({% static 'images/bedroom_image.jpg' %});
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: scroll;
@@ -38,7 +42,10 @@
 
         .counter-container {
             text-align: center;
-            background: linear-gradient(135deg, rgba(31,93,140,1), rgba(36,87,130,1));
+            background: linear-gradient(
+                135deg, 
+                rgba(31,93,140,1),
+                rgba(36,87,130,1));
             padding: 80px 60px;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -166,7 +173,8 @@
         <div class="container px-4 px-lg-5 h-100">
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}" style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
+                    <div class="alert alert-{{ message.tags }}" 
+                    style="margin: 0 auto; max-width:50%;margin-bottom:20px;">
                         {{ message }}
                         <br>
                     </div>
@@ -174,12 +182,16 @@
             {% endif %}
             <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
-                    <img id="home-image" class="homepage-image" src="{% static 'images/logo_main_test.png' %}" alt=""/>
+                    <img id="home-image" class="homepage-image" 
+                    src="{% static 'images/logo_main_test.png' %}" alt=""/>
                     {% comment %} <hr class="divider" /> {% endcomment %}
                 </div>
                 <div class="col-lg-8 align-self-baseline">
-                    <p class="mb-5" style="color:rgba(0,0,0,0.75); font-size:1.5rem; ">
-                        <b>{% trans "Profesjonalna obsługa najmu nieruchomości - dla firm, pracowników i klientów indywidualnych." %}</b>
+                    <p class="mb-5" 
+                    style="color:rgba(0,0,0,0.75); font-size:1.5rem; ">
+                        <b>
+                            {% trans "Profesjonalna obsługa najmu nieruchomości - dla właścicieli nieruchomości, firm i osób prywatnych." %}
+                        </b>
                     </p>
                 </div>
             </div>
@@ -187,81 +199,193 @@
     </header>
     <section class="page-section text-black" style='background: white; font-family:"Segoe UI";'>
         <div class="container px-4 px-lg-5">
-            <h1 class="mb-4 shadow-text2 text-center" style="color: black;"><b>{% trans "O nas" %}</b></h1>
+            <h1 class="mb-4 shadow-text2 text-center" style="color: black;">
+                <b>{% trans "O nas" %}</b>
+            </h1>
             <div class="text-left shadow-text2" style="text-align:justify;">
-                <p><h3><span style="margin-right:5px;">&#128188</span> <b>{% trans "Kim jesteśmy?"%}</b></h3></p>
+                <p>
+                    <h3>
+                        <span style="margin-right:5px;">
+                            &#128188
+                        </span> 
+                        <b>{% trans "Kim jesteśmy?"%}</b>
+                    </h3>
+                </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% trans "Jesteśmy firmą, która łączy doświadczenie w zarządzaniu najmem z nowoczesnym podejściem do obsługi kwater pracowniczych i mieszkań dla klientów indywidualnych. Od 2023 roku rozwijamy się w m.in. województwie podkarpackim, lubelskim, świętokrzyskim i wielu innych." %}
+                    {% trans "Od 2023 roku wspieramy właścicieli nieruchomości, oferując profesjonalne zarządzanie i pełną obsługę najmu. Naszym priorytetem jest stabilny zysk, ochrona wartości lokali i komfort zarówno właścicieli, jak i najemców." %}
                 </p>
-                <p><h3><span style="margin-right:10px;">&#128203 </span> <b>{% trans "Nasza misja" %}</b></h3></p>
-                <p class="p_light_weight">
-                    {% trans "<b>Zapewniamy komfort</b> tym, którzy szukają miejsca do zamieszkania."%}
+                <p>
+                    <h3>
+                        <span style="margin-right:10px;">&#128203 </span> 
+                        <b>{% trans "Nasza misja" %}</b>
+                    </h3>
                 </p>
-                <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% trans "<b>Wyręczamy Cię z obowiązków</b>, których nie chcesz wykonywać samodzielnie." %}
-                </p>
+                    <p class="p_light_weight">
+                        {% blocktrans %} 
+                        Tworzymy model najmu, który daje właścicielom poczucie
+                        pełnej kontroli i stabilności. Naszą misją jest wyznaczanie
+                        nowych standardów - w jakości usług, w relacjach z 
+                        klientami i w budowaniu zaufania. Zapewniamy właścicielom
+                        wolność od codziennych obowiązków, a z osobom
+                        wynajmującym - wygodne i pewne miejsce do życia.
+                        {% endblocktrans %}
+                    </p>
+                    
                 <p><h3><span style="margin-right:5px;">&#129513</span> <b>{% trans "Dla kogo jesteśmy?" %}</b></h3></p>
-                <p style="margin-bottom:20px;">
-                    <ul class="p_light_weight" style="text-align:left;">
-                        <li>{% trans "<b>Dla firm</b> szukających kwater pracowniczych" %}</li>
-                        <li>{% trans "<b>Dla osób prywatnych</b> potrzebujących wygodnego lokum" %}</li>
-                        <li>{% trans "<b>Dla inwestorów</b> z pakietem mieszkań" %}</li>
-                    </ul>
-                </p>
+                    <p style="margin-bottom:20px;">
+                        <ul class="p_light_weight" style="text-align:left;">
+                            <li>
+                                {% blocktrans %}
+                                <b>Dla właścicieli nieruchomości</b>, którzy chcą
+                                zarabiać na wynajmie, zyskując przy tym wolny
+                                czas i brak zmartwień.
+                                {% endblocktrans %}
+                            </li>
+                            <li>
+                                {% blocktrans %}
+                                <b>Dla firm</b>, które poszukują sprawdzonych i
+                                bezpiecznych kwater dla swoich pracowników.
+                                {% endblocktrans %}
+                            </li>
+                            <li>
+                                {% blocktrans %}
+                                <b>Dla osób prywatnych</b>, które szukają
+                                wygodnego i pewnego lokum do życia.
+                                {% endblocktrans %}
+                            </li>
+                            <li>
+                                {% blocktrans %}
+                                <b>Dla inwestorów</b>, którzy posiadają pojedyncze
+                                    lokale lub całe portfele nieruchomości i 
+                                    oczekują profesjonalnej obsługi zarządczej.
+                                {% endblocktrans %}
+                            </li>
+                        </ul>
+                    </p>
                 <p><h3><span style="margin-right:5px;">&#127968</span> <b>{% trans "Nasze nieruchomości" %}</b></h3></p>
-                <p style="margin-bottom:20px;">
-                    <p><span style="margin-right:5px;">&#9989</span> <b>{% trans "W pełni wyposażone i gotowe do zamieszkania" %}</b></p>
-                    <p class="p_light_weight">
-                        {% trans "Nowoczesne wnętrza, kompletne umeblowanie i regularna dbałość o czystość - wszystko po to, byś od razu mógł się wprowadzić, bez stresu i bez dodatkowych kosztów." %}
-                    </p>
-                    <p><span style="margin-right:5px;">&#9989</span> <b>{% trans "Zlokalizowane tam, gdzie trzeba" %}</b></p>
-                    <p class="p_light_weight">
-                        {% trans "Oferujemy mieszkania w świetnie skomunikowanych miejscach - blisko zakładów pracy, w spokojnych dzielnicach, z dostępem do sklepów, przystanków i innych udogodnień." %}
-                    </p>
-                    <p><span style="margin-right:5px;">&#9989</span> <b>{% trans "Dostosowane do różnych potrzeb" %}</b></p>
-                    <p class="p_light_weight">
-                        {% trans "Nasze kwatery idealnie sprawdzają się zarówno przy krótkich delegacjach, jak i przy dłuższych pobytach – dla firm, rodzin, par czy osób indywidualnych." %}
-                    </p>
-                </p>        
+                    <p style="margin-bottom:20px;">
+                        <p>
+                            <span style="margin-right:5px;">&#9989</span> 
+                            <b>{% trans "Najlepsze lokalizacje" %}</b>
+                        </p>
+                        <p class="p_light_weight">
+                            {% blocktrans %}
+                            Oferujemy nieruchomości wyłącznie w miejscach, które
+                            zapewniają wygodę i komfort życia - blisko pracy, 
+                            usług i komunikacji, w spokojnych, dobrze 
+                            skomunikowanych częściach miast.
+                            {% endblocktrans %}
+                        </p>
+                        <p>
+                            <span style="margin-right:5px;">&#9989</span> 
+                            <b>{% trans "Wysoki standard" %}</b>
+                        </p>
+                        <p class="p_light_weight">
+                            {% blocktrans %}
+                            Każdy lokal w naszej ofercie spełnia wysokie wymagania
+                            pod względem wykończenia i wyposażenia. Dbamy o estetykę,
+                            funkcjonalność i jakość - nie oferujemy przypadkowych
+                            czy niskostandardowych nieruchomości.
+                            {% endblocktrans %}
+                        </p>
+                        <p>
+                            <span style="margin-right:5px;">&#9989</span>
+                            <b>{% trans "Dopasowane do potrzeb" %}</b>
+                        </p>
+                        <p class="p_light_weight">
+                            {% blocktrans %}
+                            Nasze propozycje odpowiadają na różnorodne oczekiwania 
+                            - od biznesowych po prywatne. Zawsze utrzymujemy 
+                            najwyższy poziom obsługi i dbamy, aby każdy klient 
+                            czuł pełny komfort i pewność.
+                            {% endblocktrans %}
+                        </p>
+                    </p>        
             </div>
 
-            
-            <h1 class="mb-4 shadow-text2 text-center" style="color: black; margin-top:50px;"><b>{% trans "Oferta" %}</b></h1>
+            <h1 class="mb-4 shadow-text2 text-center" 
+                style="color: black; margin-top:50px;">
+                <b>{% trans "Oferta" %}</b>
+            </h1>
             <div class="text-left shadow-text2" style="text-align:justify;">
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% trans "Nasza oferta jest kompleksowa i elastyczna - odpowiada na realne potrzeby rynku, firm oraz osób prywatnych." %}
+                    {% blocktrans %}
+                    Przekazując nam swoją nieruchomość, zyskujesz stabilny dochód 
+                    i kompleksową obsługę bez zbędnych formalności. To my przejmujemy 
+                    stres, ryzyka i codzienne obowiązki, a Ty masz gwarancję 
+                    satysfakcjonujących efektów.
+                    {% endblocktrans %}
                 </p>
                 <p>
-                    <h3><span style="margin-right:10px;">&#128119</span> <b>{% trans "Dla firm i agencji zatrudnienia" %}</b></h3>
+                    <h3>
+                        <span style="margin-right:10px;">&#128100</span>
+                        <b>{% trans "Dla właścicieli nieruchomości" %}</b>
+                    </h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% trans "Zapewniamy sprawdzone kwatery pracownicze - gotowe do zamieszkania, w dobrych lokalizacjach, dostosowane do pobytów grupowych i rotacyjnych. Twoi pracownicy mieszkają wygodnie, bezpiecznie i blisko miejsca pracy - bez komplikacji." %}
-
+                    {% blocktrans %}
+                    Masz lokal, ale nie chcesz zajmować się jego obsługą? 
+                    Przejmujemy wszystko: najemców, rozliczenia, czystość i 
+                    stan techniczny. Pilnujemy terminowych wpłat i 
+                    minimalizujemy przestoje, aby Twoja nieruchomość 
+                    zarabiała bez strat.
+                    {% endblocktrans %}
                 </p>
                 <p>
-                    <h3><span style="margin-right:10px;">&#128100</span> <b>{% trans "Dla klientów indywidualnych" %}</b></h3>
+                    <h3>
+                        <span style="margin-right:10px;">&#128119</span>
+                        <b>{% trans "Dla firm" %}</b>
+                    </h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% trans "Szukasz mieszkania na dłuższy pobyt? Nasze lokale to idealna opcja dla singli, par i rodzin - zadbane, w pełni wyposażone i gotowe do wprowadzenia się od zaraz." %}
+                    {% blocktrans %}
+                    Twoi pracownicy potrzebują sprawdzonych miejsc noclegowych? 
+                    Zapewniamy im komfortowe i bezpieczne kwatery w najlepszych 
+                    lokalizacjach. Ty zyskujesz pewność, że wszystko działa jak 
+                    należy.
+                    {% endblocktrans %}
                 </p>
                 <p>
-                    <h3><span style="margin-right:5px;">&#127970</span> <b>{% trans "Dla właścicieli i inwestorów" %}</b></h3>
+                    <h3>
+                        <span style="margin-right:10px;">&#128100</span>
+                         <b>{% trans "Dla osób prywatnych" %}</b>
+                    </h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% trans "Masz mieszkanie, ale nie masz czasu się nim zajmować? Zdejmujemy z Ciebie cały ciężar:" %}
-                    <ul class='p_light_weight' style='text-align:left;'>
-                        <li>{% trans "przygotowywujemy lokal," %}</li>
-                        <li>{% trans "zajmujemy się najemcami," %}</li>
-                        <li>{% trans "prowadzimy rozliczenia," %}</li>
-                        <li>{% trans "dbamy o czystość i techniczny stan nieruchomości." %}</li>
-                    </ul>
-                    {% trans "<b>Ty masz spokój - my robimy resztę. Dostarczamy gotowe rozwiązania - Ty nie musisz niczego organizować.</b>" %}
+                    {% blocktrans %}    
+                    Szukasz lokum dla siebie? Oferujemy nieruchomości gotowe do 
+                    zamieszkania - zadbane, w pełni wyposażone i pewne. To miejsca, 
+                    w których można od razu poczuć się jak w domu.
+                    {% endblocktrans %}                
                 </p>
                 <p>
-                    <h3><span style="margin-right:5px;">&#128222</span> <b>{% trans "Potrzebujesz wsparcia?" %}</b></h3>
+                    <h3>
+                        <span style="margin-right:5px;">&#127970</span> 
+                        <b>{% trans "Dla inwestorów" %}</b>
+                    </h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                {% trans "Niezależnie od tego, czy potrzebujesz mieszkania dla siebie lub swoich ludzi, czy masz nieruchomość i szukasz kogoś, kto ją poprowadzi – jesteśmy po to, żeby Ci pomóc!" %}
+                    {% blocktrans %}    
+                    Niezależnie od tego, czy posiadasz jeden lokal, czy cały 
+                    pakiet - zapewniamy profesjonalne zarządzanie i stabilność 
+                    Twojej inwestycji. Weryfikujemy najemców, eliminujemy ryzyko 
+                    problemów i reagujemy natychmiast na wszelkie usterki. Dzięki
+                    temu Twoje aktywa pracują skutecznie i bezproblemowo.
+                    {% endblocktrans %}  
+                </p>
+                <p>
+                    <h3>
+                        <span style="margin-right:5px;">&#128222</span> 
+                        <b>{% trans "Potrzebujesz wsparcia?" %}</b>
+                    </h3>
+                </p>
+                <p class="p_light_weight" style="margin-bottom:20px;">
+                {% blocktrans %}    
+                Masz nieruchomość, którą chcesz wynajmować bez zbędnych nerwów? 
+                A może szukasz sprawdzonych kwater dla swoich ludzi? Zadzwoń i 
+                poznaj szczegóły! Pokażemy Ci, jak proste i bezpieczne może być 
+                zarządzanie najmem.
+                {% endblocktrans %}
                 </p>
             </div>  
 
