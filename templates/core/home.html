@@ -205,9 +205,9 @@
             <div class="text-left shadow-text2" style="text-align:justify;">
                 <p>
                     <h3>
-                        <span style="margin-right:5px;">
+                        {% comment %} <span style="margin-right:5px;">
                             &#128188
-                        </span> 
+                        </span>  {% endcomment %}
                         <b>{% trans "Kim jesteśmy?"%}</b>
                     </h3>
                 </p>
@@ -216,7 +216,7 @@
                 </p>
                 <p>
                     <h3>
-                        <span style="margin-right:10px;">&#128203 </span> 
+                        {% comment %} <span style="margin-right:10px;">&#128203 </span>  {% endcomment %}
                         <b>{% trans "Nasza misja" %}</b>
                     </h3>
                 </p>
@@ -231,41 +231,47 @@
                         {% endblocktrans %}
                     </p>
                     
-                <p><h3><span style="margin-right:5px;">&#129513</span> <b>{% trans "Dla kogo jesteśmy?" %}</b></h3></p>
-                    <p style="margin-bottom:20px;">
-                        <ul class="p_light_weight" style="text-align:left;">
-                            <li>
-                                {% blocktrans %}
-                                <b>Dla właścicieli nieruchomości</b>, którzy chcą
-                                zarabiać na wynajmie, zyskując przy tym wolny
-                                czas i brak zmartwień.
-                                {% endblocktrans %}
-                            </li>
-                            <li>
-                                {% blocktrans %}
-                                <b>Dla firm</b>, które poszukują sprawdzonych i
-                                bezpiecznych kwater dla swoich pracowników.
-                                {% endblocktrans %}
-                            </li>
-                            <li>
-                                {% blocktrans %}
-                                <b>Dla osób prywatnych</b>, które szukają
-                                wygodnego i pewnego lokum do życia.
-                                {% endblocktrans %}
-                            </li>
-                            <li>
-                                {% blocktrans %}
-                                <b>Dla inwestorów</b>, którzy posiadają pojedyncze
-                                    lokale lub całe portfele nieruchomości i 
-                                    oczekują profesjonalnej obsługi zarządczej.
-                                {% endblocktrans %}
-                            </li>
-                        </ul>
+                <p>
+                    <h3>
+                        {% comment %} <span style="margin-right:5px;">&#129513</span>  {% endcomment %}
+                        <b>{% trans "Dla kogo jesteśmy?" %}</b>
+                    </h3>
+                </p>
+                    <p class="p_light_weight">
+                        {% blocktrans %}
+                        <b>Dla właścicieli nieruchomości</b>, którzy chcą
+                        zarabiać na wynajmie, zyskując przy tym wolny
+                        czas i brak zmartwień.
+                        {% endblocktrans %}
                     </p>
-                <p><h3><span style="margin-right:5px;">&#127968</span> <b>{% trans "Nasze nieruchomości" %}</b></h3></p>
+                    <p class="p_light_weight">
+                        {% blocktrans %}
+                        <b>Dla firm</b>, które poszukują sprawdzonych i
+                        bezpiecznych kwater dla swoich pracowników.
+                        {% endblocktrans %}
+                    </p>
+                    <p class="p_light_weight">
+                        {% blocktrans %}
+                        <b>Dla osób prywatnych</b>, które szukają
+                        wygodnego i pewnego lokum do życia.
+                        {% endblocktrans %}
+                    </p>
+                    <p class="p_light_weight" style="margin-bottom:20px;">
+                        {% blocktrans %}
+                        <b>Dla inwestorów</b>, którzy posiadają pojedyncze
+                            lokale lub całe portfele nieruchomości i 
+                            oczekują profesjonalnej obsługi zarządczej.
+                        {% endblocktrans %}
+                    </p>
+                <p>
+                    <h3>
+                        {% comment %} <span style="margin-right:5px;">&#127968</span>  {% endcomment %}
+                        <b>{% trans "Nasze nieruchomości" %}</b>
+                    </h3>
+                </p>
                     <p style="margin-bottom:20px;">
                         <p>
-                            <span style="margin-right:5px;">&#9989</span> 
+                            {% comment %} <span style="margin-right:5px;">&#9989</span>  {% endcomment %}
                             <b>{% trans "Najlepsze lokalizacje" %}</b>
                         </p>
                         <p class="p_light_weight">
@@ -277,7 +283,7 @@
                             {% endblocktrans %}
                         </p>
                         <p>
-                            <span style="margin-right:5px;">&#9989</span> 
+                            {% comment %} <span style="margin-right:5px;">&#9989</span>  {% endcomment %}
                             <b>{% trans "Wysoki standard" %}</b>
                         </p>
                         <p class="p_light_weight">
@@ -289,7 +295,7 @@
                             {% endblocktrans %}
                         </p>
                         <p>
-                            <span style="margin-right:5px;">&#9989</span>
+                            {% comment %} <span style="margin-right:5px;">&#9989</span> {% endcomment %}
                             <b>{% trans "Dopasowane do potrzeb" %}</b>
                         </p>
                         <p class="p_light_weight">
@@ -318,7 +324,7 @@
                 </p>
                 <p>
                     <h3>
-                        <span style="margin-right:10px;">&#128100</span>
+                        {% comment %} <span style="margin-right:10px;">&#128100</span> {% endcomment %}
                         <b>{% trans "Dla właścicieli nieruchomości" %}</b>
                     </h3>
                 </p>
@@ -333,7 +339,7 @@
                 </p>
                 <p>
                     <h3>
-                        <span style="margin-right:10px;">&#128119</span>
+                        {% comment %} <span style="margin-right:10px;">&#128119</span> {% endcomment %}
                         <b>{% trans "Dla firm" %}</b>
                     </h3>
                 </p>
@@ -347,7 +353,7 @@
                 </p>
                 <p>
                     <h3>
-                        <span style="margin-right:10px;">&#128100</span>
+                        {% comment %} <span style="margin-right:10px;">&#128100</span> {% endcomment %}
                          <b>{% trans "Dla osób prywatnych" %}</b>
                     </h3>
                 </p>
@@ -360,7 +366,7 @@
                 </p>
                 <p>
                     <h3>
-                        <span style="margin-right:5px;">&#127970</span> 
+                        {% comment %} <span style="margin-right:5px;">&#127970</span>  {% endcomment %}
                         <b>{% trans "Dla inwestorów" %}</b>
                     </h3>
                 </p>
@@ -375,7 +381,7 @@
                 </p>
                 <p>
                     <h3>
-                        <span style="margin-right:5px;">&#128222</span> 
+                        {% comment %} <span style="margin-right:5px;">&#128222</span>  {% endcomment %}
                         <b>{% trans "Potrzebujesz wsparcia?" %}</b>
                     </h3>
                 </p>
