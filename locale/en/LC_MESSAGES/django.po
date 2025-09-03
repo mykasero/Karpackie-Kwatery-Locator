@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-01 23:39+0200\n"
+"POT-Creation-Date: 2025-09-03 18:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -195,11 +195,11 @@ msgstr ""
 msgid "O nas"
 msgstr "About us"
 
-#: .\templates\core\home.html:212
+#: .\templates\core\home.html:213
 msgid "Kim jesteśmy?"
 msgstr "Who are we?"
 
-#: .\templates\core\home.html:216
+#: .\templates\core\home.html:217
 msgid ""
 "Od 2023 roku wspieramy właścicieli nieruchomości, oferując profesjonalne "
 "zarządzanie i pełną obsługę najmu. Naszym priorytetem jest stabilny zysk, "
@@ -209,11 +209,25 @@ msgstr ""
 "management and comprehensive rental services. Our priority is stable profit, "
 "protection of property value, and comfort for both owners and tenants."
 
-#: .\templates\core\home.html:221
+#: .\templates\core\home.html:223
 msgid "Nasza misja"
 msgstr "Our mission"
 
-#: .\templates\core\home.html:225
+#: .\templates\core\home.html:227
+#, fuzzy
+#| msgid ""
+#| " \n"
+#| "                        Tworzymy model najmu, który daje właścicielom "
+#| "poczucie\n"
+#| "                        pełnej kontroli i stabilności. Naszą misją jest "
+#| "wyznaczanie\n"
+#| "                        nowych standardów - w jakości usług, w relacjach "
+#| "z \n"
+#| "                        klientami i w budowaniu zaufania. Zapewniamy "
+#| "właścicielom\n"
+#| "                        wolność od codziennych obowiązków, a z osobom\n"
+#| "                        wynajmującym - wygodne i pewne miejsce do życia.\n"
+#| "                        "
 msgid ""
 " \n"
 "                        Tworzymy model najmu, który daje właścicielom "
@@ -223,8 +237,8 @@ msgid ""
 "                        nowych standardów - w jakości usług, w relacjach z \n"
 "                        klientami i w budowaniu zaufania. Zapewniamy "
 "właścicielom\n"
-"                        wolność od codziennych obowiązków, a z osobom\n"
-"                        wynajmującym - wygodne i pewne miejsce do życia.\n"
+"                        wolność od codziennych obowiązków, a najemcom - "
+"wygodne i pewne miejsce do życia.\n"
 "                        "
 msgstr ""
 "We create a rental model that gives owners a sense of complete control and "
@@ -233,66 +247,94 @@ msgstr ""
 "responsibilities and provide tenants with a comfortable and secure place to "
 "live."
 
-#: .\templates\core\home.html:235
+#: .\templates\core\home.html:240
 msgid "Dla kogo jesteśmy?"
 msgstr "Who we are for?"
 
-#: .\templates\core\home.html:239
+#: .\templates\core\home.html:244
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                <b>Dla właścicieli nieruchomości</b>, "
+#| "którzy chcą\n"
+#| "                                zarabiać na wynajmie, zyskując przy tym "
+#| "wolny\n"
+#| "                                czas i brak zmartwień.\n"
+#| "                                "
 msgid ""
 "\n"
-"                                <b>Dla właścicieli nieruchomości</b>, którzy "
-"chcą\n"
-"                                zarabiać na wynajmie, zyskując przy tym "
-"wolny\n"
-"                                czas i brak zmartwień.\n"
-"                                "
+"                        <b>Dla właścicieli nieruchomości</b>, którzy chcą\n"
+"                        zarabiać na wynajmie, zyskując przy tym wolny\n"
+"                        czas i brak zmartwień.\n"
+"                        "
 msgstr ""
 "<b>For property owners</b> who want to earn money from renting out their "
 "property, while gaining free time and peace of mind."
 
-#: .\templates\core\home.html:246
+#: .\templates\core\home.html:251
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                <b>Dla firm</b>, które poszukują "
+#| "sprawdzonych i\n"
+#| "                                bezpiecznych kwater dla swoich "
+#| "pracowników.\n"
+#| "                                "
 msgid ""
 "\n"
-"                                <b>Dla firm</b>, które poszukują "
-"sprawdzonych i\n"
-"                                bezpiecznych kwater dla swoich pracowników.\n"
-"                                "
+"                        <b>Dla firm</b>, które poszukują sprawdzonych i\n"
+"                        bezpiecznych kwater dla swoich pracowników.\n"
+"                        "
 msgstr ""
 "<b>For companies</b> looking for reliable and safe accommodation for their "
 "employees."
 
-#: .\templates\core\home.html:252
+#: .\templates\core\home.html:257
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                <b>Dla osób prywatnych</b>, które "
+#| "szukają\n"
+#| "                                wygodnego i pewnego lokum do życia.\n"
+#| "                                "
 msgid ""
 "\n"
-"                                <b>Dla osób prywatnych</b>, które szukają\n"
-"                                wygodnego i pewnego lokum do życia.\n"
-"                                "
+"                        <b>Dla osób prywatnych</b>, które szukają\n"
+"                        wygodnego i pewnego lokum do życia.\n"
+"                        "
 msgstr ""
 "<b>For individuals</b> looking for comfortable and secure accommodation."
 
-#: .\templates\core\home.html:258
+#: .\templates\core\home.html:263
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "                                <b>Dla inwestorów</b>, którzy posiadają "
+#| "pojedyncze\n"
+#| "                                    lokale lub całe portfele "
+#| "nieruchomości i \n"
+#| "                                    oczekują profesjonalnej obsługi "
+#| "zarządczej.\n"
+#| "                                "
 msgid ""
 "\n"
-"                                <b>Dla inwestorów</b>, którzy posiadają "
-"pojedyncze\n"
-"                                    lokale lub całe portfele nieruchomości "
-"i \n"
-"                                    oczekują profesjonalnej obsługi "
-"zarządczej.\n"
-"                                "
+"                        <b>Dla inwestorów</b>, którzy posiadają pojedyncze\n"
+"                            lokale lub całe portfele nieruchomości i \n"
+"                            oczekują profesjonalnej obsługi zarządczej.\n"
+"                        "
 msgstr ""
 "<b>For investors</b> who own individual properties or entire real estate "
 "portfolios and expect professional management services."
 
-#: .\templates\core\home.html:266
+#: .\templates\core\home.html:273
 msgid "Nasze nieruchomości"
 msgstr "Our Real Estate"
 
-#: .\templates\core\home.html:270
+#: .\templates\core\home.html:280
 msgid "Najlepsze lokalizacje"
 msgstr "The best locations"
 
-#: .\templates\core\home.html:273
+#: .\templates\core\home.html:283
 msgid ""
 "\n"
 "                            Oferujemy nieruchomości wyłącznie w miejscach, "
@@ -307,11 +349,11 @@ msgstr ""
 "comfort of living – close to work, services, and transportation, in quiet, "
 "well-connected parts of cities."
 
-#: .\templates\core\home.html:282
+#: .\templates\core\home.html:293
 msgid "Wysoki standard"
 msgstr "High standard"
 
-#: .\templates\core\home.html:285
+#: .\templates\core\home.html:296
 msgid ""
 "\n"
 "                            Każdy lokal w naszej ofercie spełnia wysokie "
@@ -327,11 +369,11 @@ msgstr ""
 "furnishings. We care about aesthetics, functionality, and quality—we do not "
 "offer random or low-standard properties."
 
-#: .\templates\core\home.html:294
+#: .\templates\core\home.html:306
 msgid "Dopasowane do potrzeb"
 msgstr "Tailored to your needs"
 
-#: .\templates\core\home.html:297
+#: .\templates\core\home.html:309
 msgid ""
 "\n"
 "                            Nasze propozycje odpowiadają na różnorodne "
@@ -347,11 +389,11 @@ msgstr ""
 "always maintain the highest level of service and ensure that every customer "
 "feels completely comfortable and confident."
 
-#: .\templates\core\home.html:309
+#: .\templates\core\home.html:321
 msgid "Oferta"
 msgstr "Offerings"
 
-#: .\templates\core\home.html:313
+#: .\templates\core\home.html:325
 msgid ""
 "\n"
 "                    Przekazując nam swoją nieruchomość, zyskujesz stabilny "
@@ -368,11 +410,11 @@ msgstr ""
 "stress, risks, and daily responsibilities, and you are guaranteed "
 "satisfactory results."
 
-#: .\templates\core\home.html:323
+#: .\templates\core\home.html:336
 msgid "Dla właścicieli nieruchomości"
 msgstr "For property owners"
 
-#: .\templates\core\home.html:327
+#: .\templates\core\home.html:340
 msgid ""
 "\n"
 "                    Masz lokal, ale nie chcesz zajmować się jego obsługą? \n"
@@ -388,11 +430,11 @@ msgstr ""
 "payments and minimize downtime so that your property generates income "
 "without losses."
 
-#: .\templates\core\home.html:338
+#: .\templates\core\home.html:352
 msgid "Dla firm"
 msgstr "For companies"
 
-#: .\templates\core\home.html:342
+#: .\templates\core\home.html:356
 msgid ""
 "\n"
 "                    Twoi pracownicy potrzebują sprawdzonych miejsc "
@@ -408,11 +450,11 @@ msgstr ""
 "comfortable and safe lodgings in the best locations. You can rest assured "
 "that everything is running smoothly."
 
-#: .\templates\core\home.html:352
+#: .\templates\core\home.html:367
 msgid "Dla osób prywatnych"
 msgstr "For private individuals"
 
-#: .\templates\core\home.html:356
+#: .\templates\core\home.html:371
 msgid ""
 "    \n"
 "                    Szukasz lokum dla siebie? Oferujemy nieruchomości gotowe "
@@ -426,11 +468,11 @@ msgstr ""
 "well-maintained, fully equipped, and secure. These are places where you can "
 "immediately feel at home."
 
-#: .\templates\core\home.html:365
+#: .\templates\core\home.html:381
 msgid "Dla inwestorów"
 msgstr "For investors"
 
-#: .\templates\core\home.html:369
+#: .\templates\core\home.html:385
 msgid ""
 "    \n"
 "                    Niezależnie od tego, czy posiadasz jeden lokal, czy "
@@ -444,16 +486,16 @@ msgid ""
 "                    temu Twoje aktywa pracują skutecznie i bezproblemowo.\n"
 "                    "
 msgstr ""
-"Regardless of whether you own a single property or an entire portfolio, "
-"we provide professional management and stability for your investment. "
-"We verify tenants, eliminate the risk of problems, and respond immediately "
-"to any issues. This ensures that your assets operate efficiently and smoothly."
+"Regardless of whether you own a single property or an entire portfolio, we "
+"provide professional management and stability for your investment. We verify "
+"tenants, eliminate the risk of problems, and respond immediately to any "
+"issues. This ensures that your assets operate efficiently and smoothly."
 
-#: .\templates\core\home.html:380
+#: .\templates\core\home.html:397
 msgid "Potrzebujesz wsparcia?"
 msgstr "Need support?"
 
-#: .\templates\core\home.html:384
+#: .\templates\core\home.html:401
 msgid ""
 "    \n"
 "                Masz nieruchomość, którą chcesz wynajmować bez zbędnych "
@@ -466,23 +508,23 @@ msgid ""
 "                "
 msgstr ""
 "Do you have a property that you want to rent out without any unnecessary "
-"stress? Or maybe you are looking for reliable accommodation for your "
-"people? Call us and find out more! We will show you how easy and "
-"safe rental management can be."
+"stress? Or maybe you are looking for reliable accommodation for your people? "
+"Call us and find out more! We will show you how easy and safe rental "
+"management can be."
 
-#: .\templates\core\home.html:397
+#: .\templates\core\home.html:414
 msgid "Miejsc noclegowych"
 msgstr "Accommodations"
 
-#: .\templates\core\home.html:402
+#: .\templates\core\home.html:419
 msgid "Lokalizacji kwater"
 msgstr "Locations of accommodation"
 
-#: .\templates\core\home.html:407
+#: .\templates\core\home.html:424
 msgid "Zadowolonych klientów"
 msgstr "Satisfied customers"
 
-#: .\templates\core\home.html:415
+#: .\templates\core\home.html:432
 msgid "Możesz nas znaleźć na:"
 msgstr "Find us on:"
 
