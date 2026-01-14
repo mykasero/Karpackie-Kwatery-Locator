@@ -20,7 +20,7 @@
             font-size:24px;
         }
         header.masthead {
-            padding-top: 10rem;
+            padding-top: 6rem;
             padding-bottom: calc(10rem - 4.5rem);
             background: linear-gradient(
                 to bottom, 
@@ -180,10 +180,10 @@
                     </div>
                 {% endfor %}
             {% endif %}
-            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+            <div class="row gx-4 gx-lg-5 align-items-center justify-content-center text-center">
                 <div class="col-lg-8 align-self-end">
                     <img id="home-image" class="homepage-image" 
-                    src="{% static 'images/logo_main_test.png' %}" alt=""/>
+                    src="{% static 'images/logo_main.png' %}" alt=""/>
                     {% comment %} <hr class="divider" /> {% endcomment %}
                 </div>
                 <div class="col-lg-8 align-self-baseline">
@@ -221,13 +221,7 @@
                     </h3>
                 </p>
                     <p class="p_light_weight">
-                        {% blocktrans %} 
-                        Tworzymy model najmu, który daje właścicielom poczucie
-                        pełnej kontroli i stabilności. Naszą misją jest wyznaczanie
-                        nowych standardów - w jakości usług, w relacjach z 
-                        klientami i w budowaniu zaufania. Zapewniamy właścicielom
-                        wolność od codziennych obowiązków, a najemcom - wygodne i pewne miejsce do życia.
-                        {% endblocktrans %}
+                        {% trans "Tworzymy model najmu, który daje właścicielom poczucie pełnej kontroli i stabilności. Naszą misją jest wyznaczanie nowych standardów - w jakości usług, w relacjach z klientami i w budowaniu zaufania. Zapewniamy właścicielom wolność od codziennych obowiązków, a najemcom - wygodne i pewne miejsce do życia."%} 
                     </p>
                     
                 <p>
@@ -237,30 +231,16 @@
                     </h3>
                 </p>
                     <p class="p_light_weight">
-                        {% blocktrans %}
-                        <b>Dla właścicieli nieruchomości</b>, którzy chcą
-                        zarabiać na wynajmie, zyskując przy tym wolny
-                        czas i brak zmartwień.
-                        {% endblocktrans %}
+                        {% trans "<b>Dla właścicieli nieruchomości</b>, którzy chcą zarabiać na wynajmie, zyskując przy tym wolny czas i brak zmartwień." %}
                     </p>
                     <p class="p_light_weight">
-                        {% blocktrans %}
-                        <b>Dla firm</b>, które poszukują sprawdzonych i
-                        bezpiecznych kwater dla swoich pracowników.
-                        {% endblocktrans %}
+                        {% trans "<b>Dla firm</b>, które poszukują sprawdzonych i bezpiecznych kwater dla swoich pracowników." %}
                     </p>
                     <p class="p_light_weight">
-                        {% blocktrans %}
-                        <b>Dla osób prywatnych</b>, które szukają
-                        wygodnego i pewnego lokum do życia.
-                        {% endblocktrans %}
+                        {% trans "<b>Dla osób prywatnych</b>, które szukają wygodnego i pewnego lokum do życia." %}
                     </p>
                     <p class="p_light_weight" style="margin-bottom:20px;">
-                        {% blocktrans %}
-                        <b>Dla inwestorów</b>, którzy posiadają pojedyncze
-                            lokale lub całe portfele nieruchomości i 
-                            oczekują profesjonalnej obsługi zarządczej.
-                        {% endblocktrans %}
+                        {% trans "<b>Dla inwestorów</b>, którzy posiadają pojedyncze lokale lub całe portfele nieruchomości i oczekują profesjonalnej obsługi zarządczej."%}
                     </p>
                 <p>
                     <h3>
@@ -274,36 +254,21 @@
                             <b>{% trans "Najlepsze lokalizacje" %}</b>
                         </p>
                         <p class="p_light_weight">
-                            {% blocktrans %}
-                            Oferujemy nieruchomości wyłącznie w miejscach, które
-                            zapewniają wygodę i komfort życia - blisko pracy, 
-                            usług i komunikacji, w spokojnych, dobrze 
-                            skomunikowanych częściach miast.
-                            {% endblocktrans %}
+                            {% trans "Oferujemy nieruchomości wyłącznie w miejscach, które zapewniają wygodę i komfort życia - blisko pracy, usług i komunikacji, w spokojnych, dobrze skomunikowanych częściach miast." %}
                         </p>
                         <p>
                             {% comment %} <span style="margin-right:5px;">&#9989</span>  {% endcomment %}
                             <b>{% trans "Wysoki standard" %}</b>
                         </p>
                         <p class="p_light_weight">
-                            {% blocktrans %}
-                            Każdy lokal w naszej ofercie spełnia wysokie wymagania
-                            pod względem wykończenia i wyposażenia. Dbamy o estetykę,
-                            funkcjonalność i jakość - nie oferujemy przypadkowych
-                            czy niskostandardowych nieruchomości.
-                            {% endblocktrans %}
+                            {% trans "Każdy lokal w naszej ofercie spełnia wysokie wymagania pod względem wykończenia i wyposażenia. Dbamy o estetykę, funkcjonalność i jakość - nie oferujemy przypadkowych czy niskostandardowych nieruchomości." %}
                         </p>
                         <p>
                             {% comment %} <span style="margin-right:5px;">&#9989</span> {% endcomment %}
                             <b>{% trans "Dopasowane do potrzeb" %}</b>
                         </p>
                         <p class="p_light_weight">
-                            {% blocktrans %}
-                            Nasze propozycje odpowiadają na różnorodne oczekiwania 
-                            - od biznesowych po prywatne. Zawsze utrzymujemy 
-                            najwyższy poziom obsługi i dbamy, aby każdy klient 
-                            czuł pełny komfort i pewność.
-                            {% endblocktrans %}
+                            {% trans "Nasze propozycje odpowiadają na różnorodne oczekiwania - od biznesowych po prywatne. Zawsze utrzymujemy najwyższy poziom obsługi i dbamy, aby każdy klient czuł pełny komfort i pewność." %}
                         </p>
                     </p>        
             </div>
@@ -314,12 +279,7 @@
             </h1>
             <div class="text-left shadow-text2" style="text-align:justify;">
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% blocktrans %}
-                    Przekazując nam swoją nieruchomość, zyskujesz stabilny dochód 
-                    i kompleksową obsługę bez zbędnych formalności. To my przejmujemy 
-                    stres, ryzyka i codzienne obowiązki, a Ty masz gwarancję 
-                    satysfakcjonujących efektów.
-                    {% endblocktrans %}
+                    {% trans "Przekazując nam swoją nieruchomość, zyskujesz stabilny dochód i kompleksową obsługę bez zbędnych formalności. To my przejmujemy stres, ryzyka i codzienne obowiązki, a Ty masz gwarancję satysfakcjonujących efektów." %}
                 </p>
                 <p>
                     <h3>
@@ -328,13 +288,7 @@
                     </h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% blocktrans %}
-                    Masz lokal, ale nie chcesz zajmować się jego obsługą? 
-                    Przejmujemy wszystko: najemców, rozliczenia, czystość i 
-                    stan techniczny. Pilnujemy terminowych wpłat i 
-                    minimalizujemy przestoje, aby Twoja nieruchomość 
-                    zarabiała bez strat.
-                    {% endblocktrans %}
+                    {% trans "Masz lokal, ale nie chcesz zajmować się jego obsługą? Przejmujemy wszystko: najemców, rozliczenia, czystość i stan techniczny. Pilnujemy terminowych wpłat i minimalizujemy przestoje, aby Twoja nieruchomość zarabiała bez strat." %}
                 </p>
                 <p>
                     <h3>
@@ -343,12 +297,7 @@
                     </h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% blocktrans %}
-                    Twoi pracownicy potrzebują sprawdzonych miejsc noclegowych? 
-                    Zapewniamy im komfortowe i bezpieczne kwatery w najlepszych 
-                    lokalizacjach. Ty zyskujesz pewność, że wszystko działa jak 
-                    należy.
-                    {% endblocktrans %}
+                    {% trans "Twoi pracownicy potrzebują sprawdzonych miejsc noclegowych? Zapewniamy im komfortowe i bezpieczne kwatery w najlepszych lokalizacjach. Ty zyskujesz pewność, że wszystko działa jak należy." %}
                 </p>
                 <p>
                     <h3>
@@ -357,11 +306,7 @@
                     </h3>
                 </p>
                 <p class="p_light_weight" style="margin-bottom:20px;">
-                    {% blocktrans %}    
-                    Szukasz lokum dla siebie? Oferujemy nieruchomości gotowe do 
-                    zamieszkania - zadbane, w pełni wyposażone i pewne. To miejsca, 
-                    w których można od razu poczuć się jak w domu.
-                    {% endblocktrans %}                
+                    {% trans "Szukasz lokum dla siebie? Oferujemy nieruchomości gotowe do zamieszkania - zadbane, w pełni wyposażone i pewne. To miejsca, w których można od razu poczuć się jak w domu." %}                  
                 </p>
                 <p>
                     <h3>
