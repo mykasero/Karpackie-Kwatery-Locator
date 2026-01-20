@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 01:28+0100\n"
+"POT-Creation-Date: 2026-01-20 20:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\Karpackie_Kwatery_Locator\settings.py:212
+#: .\Karpackie_Kwatery_Locator\settings.py:217
 msgid "Polski"
 msgstr "Polish"
 
-#: .\Karpackie_Kwatery_Locator\settings.py:213
+#: .\Karpackie_Kwatery_Locator\settings.py:218
 msgid "English"
 msgstr ""
 
@@ -127,6 +127,25 @@ msgstr "Gallery"
 #: .\templates\core\contact.html:70
 msgid "Kontakt"
 msgstr "Contact"
+
+#: .\templates\core\base.html:222
+msgid "Ta strona wykorzystuje pliki cookies"
+msgstr "This website uses cookies"
+
+#: .\templates\core\base.html:226
+msgid ""
+"Używamy niezbędnych plików cookie, aby ta strona działała. Za Twoją zgodą "
+"możemy również używać nieistotnych plików cookie, aby poprawić komfort "
+"użytkowania."
+msgstr "We use essential cookies to make this site work. With your consent, we may also use non-essential cookies to improve user experience."
+
+#: .\templates\core\base.html:231
+msgid "Odrzuć opcjonalne"
+msgstr "Reject non-essential "
+
+#: .\templates\core\base.html:234
+msgid "Akceptuj wszystkie"
+msgstr "Accept all"
 
 #: .\templates\core\contact.html:85
 msgid "Formularz kontaktowy"

@@ -203,8 +203,35 @@
         <!-- Core theme JS-->
         <script src="{% static 'js/dropdowns.js' %}"></script>
 
+        <!-- Load cookie script-->
+        <script src="{% static 'js/cookie_consent.js' %}"></script>
+    
         <!-- Additional Scripts -->
         {% block scripts %}
         {% endblock %}
+
+        <!-- Cookie Consent Modal -->
+        <div class="modal fade" id="cookieConsentModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{% trans "Ta strona wykorzystuje pliki cookies" %}</h5>
+            </div>
+            <div class="modal-body">
+                <p>
+                {% trans "Używamy niezbędnych plików cookie, aby ta strona działała. Za Twoją zgodą możemy również używać nieistotnych plików cookie, aby poprawić komfort użytkowania." %}
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="rejectCookies">
+                {% trans "Odrzuć opcjonalne" %}
+                </button>
+                <button class="btn btn-primary" id="acceptCookies">
+                {% trans "Akceptuj wszystkie" %}
+                </button>
+            </div>
+            </div>
+        </div>
+        </div>
     </body>
 </html>
