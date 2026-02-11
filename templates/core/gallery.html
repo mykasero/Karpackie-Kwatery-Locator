@@ -56,12 +56,12 @@
                                 style="height: 150px; width:100%; object-fit: cover; cursor:pointer;"
                                 onclick="openModal('{{ item.title|escapejs }}', {{ image.all_images|safe}})">
                                 
-                            <div class="image-title">{{ image.title }}</div>
+                            <div class="image-title" style="font-family:'Inter'">{{ image.title }}</div>
                         </div>
                     {% endfor %}
                                   
                 </div>
-                <div class="pagination">
+                <div class="pagination" style="font-family:'Inter'">
                     <span class="step-links">
                         {% if page_obj.has_previous %}
                             <a href="?page=1">&laquo; {% trans "Pierwsza" %}</a>

@@ -67,7 +67,7 @@
                     <div class="left-col">
                         <div class="top-left">
                             <h2>{{ context.appartment.city }}</h2>
-                            <h6>{{ context.appartment.address }}</h6>
+                            <h6 style="font-family:'Inter'">{{ context.appartment.address }}</h6>
                         </div>
                         
                         <!-- Map will appear below both columns on desktop -->
@@ -88,7 +88,7 @@
                         <h3>{% trans "Atuty" %}</h3>
                         <ul class="bullet-list">
                             {% for feature in context.extra_desc %}
-                                <li style="padding-right:15px; color:black;">
+                                <li style="padding-right:15px; color:black; font-family:'Inter'">
                                     {{ feature }}
                                 </li>
                             {% endfor %}
